@@ -14,7 +14,6 @@ import br.com.fiap.appglasseek.R;
 import br.com.fiap.appglasseek.service.LoginService;
 
 public class LoginActivity extends AppCompatActivity {
-    private Usuario usuario;
     private EditText txtUsuario;
     private EditText txtSenha;
     private Button btnLogar;
