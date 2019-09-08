@@ -12,10 +12,10 @@ public class Usuario {
     private String senha;
     private List<Endereco> enderecos;
     private List<Cartao> cartoes;
-    private Favoritos favoritos;
+    private Favorito favoritos;
     private Carrinho carrinho;
 
-    public Usuario(String cpf, String nome, String sobrenome, String email, String telefone, String status, String senha, List<Endereco> enderecos, List<Cartao> cartoes, Favoritos favoritos, Carrinho carrinho) {
+    public Usuario(String cpf, String nome, String sobrenome, String email, String telefone, String status, String senha, List<Endereco> enderecos, List<Cartao> cartoes, Favorito favoritos, Carrinho carrinho) {
         this.cpf = cpf;
         this.nome = nome;
         this.sobrenome = sobrenome;
@@ -104,11 +104,11 @@ public class Usuario {
         this.cartoes = cartoes;
     }
 
-    public Favoritos getFavoritos() {
+    public Favorito getFavoritos() {
         return favoritos;
     }
 
-    public void setFavoritos(Favoritos favoritos) {
+    public void setFavoritos(Favorito favoritos) {
         this.favoritos = favoritos;
     }
 
