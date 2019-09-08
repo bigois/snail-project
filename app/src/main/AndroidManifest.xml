@@ -10,8 +10,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Design.NoActionBar">
-        <activity android:name=".OculosActivity"></activity>
-        <activity android:name=".MainActivity">
+        <activity android:name=".Activity.OculosActivity"></activity>
+        <activity android:name=".Activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -19,10 +19,10 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MenuActivity"
+            android:name=".Activity.MenuActivity"
             android:label="Glasseek"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".RegistrarActivity" />
+        <activity android:name=".Activity.RegistrarActivity" />
     </application>
 
 </manifest>

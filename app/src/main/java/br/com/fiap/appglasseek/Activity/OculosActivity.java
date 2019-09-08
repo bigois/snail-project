@@ -1,7 +1,9 @@
-package br.com.fiap.appglasseek;
+package br.com.fiap.appglasseek.Activity;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+
+import br.com.fiap.appglasseek.R;
 
 public class OculosActivity extends AppCompatActivity {
 

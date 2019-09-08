@@ -1,4 +1,4 @@
-package br.com.fiap.appglasseek;
+package br.com.fiap.appglasseek.Activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -17,6 +17,7 @@ import br.com.fiap.appglasseek.Fragments.ComprasFragment;
 import br.com.fiap.appglasseek.Fragments.FavoritosFragment;
 import br.com.fiap.appglasseek.Fragments.InicioFragment;
 import br.com.fiap.appglasseek.Fragments.PerfilFragment;
+import br.com.fiap.appglasseek.R;
 
 public class MenuActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {

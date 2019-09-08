@@ -1,4 +1,4 @@
-package br.com.fiap.appglasseek;
+package br.com.fiap.appglasseek.Activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,6 +9,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import br.com.fiap.appglasseek.Model.Usuario;
+import br.com.fiap.appglasseek.R;
 
 public class RegistrarActivity extends AppCompatActivity {
 
