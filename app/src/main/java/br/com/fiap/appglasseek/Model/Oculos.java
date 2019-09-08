@@ -9,27 +9,28 @@ public class Oculos {
     private String tipo;
     private String genero;
     private String cor;
+    private Double oculos;
     private Double comprimento;
     private Double largura;
     private Double altura;
+    private Double preco;
     private String material;
     private Image imagem;
 
-    public Oculos(String cod, String marca, String modelo, String tipo, String genero, String cor, Double comprimento, Double largura, Double altura, String material, Image imagem) {
+    public Oculos(String cod, String marca, String modelo, String tipo, String genero, String cor, Double oculos, Double comprimento, Double largura, Double altura, Double preco, String material, Image imagem) {
         this.cod = cod;
         this.marca = marca;
         this.modelo = modelo;
         this.tipo = tipo;
         this.genero = genero;
         this.cor = cor;
+        this.oculos = oculos;
         this.comprimento = comprimento;
         this.largura = largura;
         this.altura = altura;
+        this.preco = preco;
         this.material = material;
         this.imagem = imagem;
-    }
-
-    public Oculos() {
     }
 
     public String getCod() {
@@ -80,6 +81,14 @@ public class Oculos {
         this.cor = cor;
     }
 
+    public Double getOculos() {
+        return oculos;
+    }
+
+    public void setOculos(Double oculos) {
+        this.oculos = oculos;
+    }
+
     public Double getComprimento() {
         return comprimento;
     }
@@ -104,11 +113,27 @@ public class Oculos {
         this.altura = altura;
     }
 
+    public Double getPreco() {
+        return preco;
+    }
+
+    public void setPreco(Double preco) {
+        this.preco = preco;
+    }
+
     public String getMaterial() {
         return material;
     }
 
     public void setMaterial(String material) {
         this.material = material;
+    }
+
+    public Image getImagem() {
+        return imagem;
+    }
+
+    public void setImagem(Image imagem) {
+        this.imagem = imagem;
     }
 }
