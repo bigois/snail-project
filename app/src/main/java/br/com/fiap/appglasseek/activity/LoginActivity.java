@@ -3,6 +3,7 @@ package br.com.fiap.appglasseek.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -10,6 +11,7 @@ import android.widget.Toast;
 
 import br.com.fiap.appglasseek.model.Usuario;
 import br.com.fiap.appglasseek.R;
+import br.com.fiap.appglasseek.service.LoginService;
 
 public class LoginActivity extends AppCompatActivity {
     private Usuario usuario;
@@ -24,23 +26,40 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        usuario = new Usuario();
-
-        btnVoltar = findViewById(R.id.btnVoltar);
         btnLogar = findViewById(R.id.btnLogar);
+        btnRegistrar = findViewById(R.id.btnRegistrar);
+        btnVoltar = findViewById(R.id.btnVoltar);
         txtUsuario = findViewById(R.id.txtUsuario);
         txtSenha = findViewById(R.id.txtSenha);
-        btnRegistrar = findViewById(R.id.btnRegistrar);
+
+        Toast.makeText(LoginActivity.this, "Você não está conectado!\nEntre para mais detalhes", Toast.LENGTH_LONG).show();
 
         btnLogar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (validateForm()) {
-                    if (txtUsuario.getText().toString() == usuario.getEmail().toString() || txtSenha.getText().toString() == usuario.getSenha().toString()) {
-                        Intent intent = new Intent(LoginActivity.this, MenuActivity.class);
-                        startActivity(intent);
+                String email = txtUsuario.getText().toString();
+                String senha = txtSenha.getText().toString();
+                Boolean valid = true;
+
+                if (TextUtils.isEmpty(email)) {
+                    txtUsuario.setError("Informe o endereço de e-mail");
+                    valid = false;
+                }
+
+                if (TextUtils.isEmpty(senha)) {
+                    txtSenha.setError("O campo senha é obrigatório");
+                    valid = false;
+                }
+
+                if (!valid) {
+                    Toast.makeText(LoginActivity.this, "Campos obrigatórios não preenchidos", Toast.LENGTH_SHORT).show();
+                } else {
+                    if (LoginService.authUser(email, senha)) {
+                        LoginService.logIn(LoginActivity.this.getApplicationContext(), email);
+                        Toast.makeText(LoginActivity.this, "Login realizado com sucesso", Toast.LENGTH_SHORT).show();
+                        LoginActivity.this.finish();
                     } else {
-                        Toast.makeText(LoginActivity.this, "Usuário ou senha incorreto.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(LoginActivity.this, "Usuário ou senha inválido", Toast.LENGTH_SHORT).show();
                     }
                 }
             }
@@ -60,14 +79,5 @@ public class LoginActivity extends AppCompatActivity {
                 LoginActivity.this.finish();
             }
         });
-    }
-
-    private boolean validateForm() {
-        if (txtUsuario.getText() == null || txtUsuario.getText().toString().equals("") || txtUsuario.getText().toString().length() < 4) {
-            txtUsuario.setError("Campo precisa de pelo menos 4 caracteres");
-            return false;
-        }
-
-        return true;
     }
 }
