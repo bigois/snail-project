@@ -14,6 +14,7 @@ public class Usuario {
     private List<Cartao> cartoes;
     private Favorito favoritos;
     private Carrinho carrinho;
+    private List<Compra> compras;
 
     public Usuario(String cpf, String nome, String sobrenome, String email, String telefone, String status, String senha, List<Endereco> enderecos, List<Cartao> cartoes, Favorito favoritos, Carrinho carrinho) {
         this.cpf = cpf;
