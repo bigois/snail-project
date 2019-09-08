@@ -12,8 +12,9 @@ public class Usuario {
     private String senha;
     private List<Endereco> enderecos;
     private List<Cartao> cartoes;
+    private List<Favoritos> favoritos;
 
-    public Usuario(String cpf, String nome, String sobrenome, String email, String telefone, String status, String senha, List<Endereco> enderecos, List<Cartao> cartoes) {
+    public Usuario(String cpf, String nome, String sobrenome, String email, String telefone, String status, String senha, List<Endereco> enderecos, List<Cartao> cartoes, List<Favoritos> favoritos) {
         this.cpf = cpf;
         this.nome = nome;
         this.sobrenome = sobrenome;
@@ -23,6 +24,7 @@ public class Usuario {
         this.senha = senha;
         this.enderecos = enderecos;
         this.cartoes = cartoes;
+        this.favoritos = favoritos;
     }
 
     public Usuario() {
@@ -98,5 +100,13 @@ public class Usuario {
 
     public void setCartoes(List<Cartao> cartoes) {
         this.cartoes = cartoes;
+    }
+
+    public List<Favoritos> getFavoritos() {
+        return favoritos;
+    }
+
+    public void setFavoritos(List<Favoritos> favoritos) {
+        this.favoritos = favoritos;
     }
 }
