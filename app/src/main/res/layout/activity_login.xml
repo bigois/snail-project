@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/relativeLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/gradiente"
+    tools:context=".activity.LoginActivity">
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="170dp"
+        android:layout_height="155dp"
+        android:layout_marginTop="68dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/txtUsuario"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/txtUsuario"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/logoo" />
+
+    <EditText
+        android:id="@+id/txtUsuario"
+        android:layout_width="230dp"
+        android:layout_height="51dp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:drawableLeft="@mipmap/ic_launcher_user"
+        android:ems="10"
+        android:hint="Email"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/txtSenha"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/txtSenha"
+        app:layout_constraintTop_toBottomOf="@+id/imageView2"
+        app:layout_constraintVertical_bias="0.155" />
+
+    <EditText
+        android:id="@+id/txtSenha"
+        android:layout_width="231dp"
+        android:layout_height="49dp"
+        android:layout_marginBottom="202dp"
+        android:drawableLeft="@mipmap/ic_launcher_pass"
+        android:ems="10"
+        android:hint="Senha"
+        android:inputType="textPassword"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/cardView"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/cardView"
+        app:layout_constraintTop_toBottomOf="@+id/txtUsuario"
+        app:layout_constraintVertical_bias="0.162" />
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/cardView"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="136dp"
+        app:cardBackgroundColor="@color/colorAccent"
+        app:cardCornerRadius="25dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/btnRegistrar"
+        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintStart_toStartOf="@+id/btnRegistrar"
+        app:layout_constraintTop_toBottomOf="@+id/txtSenha"
+        app:layout_constraintVertical_bias="0.589">
+
+        <Button
+            android:id="@+id/btnLogar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@color/colorAccent"
+            android:text="Logar"
+            android:textColor="#fff" />
+    </android.support.v7.widget.CardView>
+
+    <Button
+        android:id="@+id/btnRegistrar"
+        android:layout_width="151dp"
+        android:layout_height="59dp"
+        android:layout_marginBottom="80dp"
+        android:text="Registrar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/btnVoltar"
+        app:layout_constraintStart_toStartOf="@+id/btnVoltar"
+        app:layout_constraintTop_toBottomOf="@+id/cardView"
+        app:layout_constraintVertical_bias="0.42" />
+
+    <Button
+        android:id="@+id/btnVoltar"
+        android:layout_width="107dp"
+        android:layout_height="53dp"
+        android:layout_alignStart="@+id/txtNome"
+        android:layout_alignTop="@+id/btnCadastrar"
+        android:text="Voltar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnRegistrar"
+        app:layout_constraintVertical_bias="0.714" />
+
+    <TextView
+        android:id="@+id/GLASSEEK"
+        android:layout_width="wrap_content"
+        android:layout_height="31dp"
+        android:fontFamily="casual"
+        android:text="GLASSEEK"
+        android:textAllCaps="false"
+        android:textColor="@android:color/black"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView2"
+        app:layout_constraintEnd_toEndOf="@+id/imageView2"
+        app:layout_constraintHorizontal_bias="0.506"
+        app:layout_constraintStart_toStartOf="@+id/imageView2"
+        app:layout_constraintTop_toTopOf="@+id/imageView2"
+        app:layout_constraintVertical_bias="0.137" />
+</android.support.constraint.ConstraintLayout>

@@ -40,14 +40,14 @@ public class RegistrarActivity extends AppCompatActivity {
 
                 Toast.makeText(RegistrarActivity.this, "Cadastro feito com sucesso!", Toast.LENGTH_SHORT).show();
 
-                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
                 startActivity(intent);
             }
         });
         btnVoltar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(RegistrarActivity.this, MainActivity.class);
+                Intent intent = new Intent(RegistrarActivity.this, LoginActivity.class);
                 startActivity(intent);
             }
         });

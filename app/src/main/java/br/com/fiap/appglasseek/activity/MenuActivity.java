@@ -18,6 +18,7 @@ import br.com.fiap.appglasseek.fragment.FavoritosFragment;
 import br.com.fiap.appglasseek.fragment.InicioFragment;
 import br.com.fiap.appglasseek.fragment.PerfilFragment;
 import br.com.fiap.appglasseek.R;
+import br.com.fiap.appglasseek.service.LoginService;
 
 public class MenuActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -73,8 +74,12 @@ public class MenuActivity extends AppCompatActivity
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new InicioFragment()).commit();
 
         } else if (id == R.id.nav_perfil) {
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new PerfilFragment()).commit();
-
+            if (LoginService.isLogged(getApplicationContext())) {
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new PerfilFragment()).commit();
+            } else {
+                Intent intent = new Intent(MenuActivity.this, LoginActivity.class);
+                startActivity(intent);
+            }
         } else if (id == R.id.nav_favoritos) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new FavoritosFragment()).commit();
 
@@ -88,7 +93,7 @@ public class MenuActivity extends AppCompatActivity
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new AjudaFragment()).commit();
 
         } else if (id == R.id.nav_sair) {
-            Intent intent = new Intent(MenuActivity.this, MainActivity.class);
+            Intent intent = new Intent(MenuActivity.this, LoginActivity.class);
             startActivity(intent);
         }
 
