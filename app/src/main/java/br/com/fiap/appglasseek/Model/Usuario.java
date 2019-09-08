@@ -1,5 +1,7 @@
 package br.com.fiap.appglasseek.Model;
 
+import java.util.List;
+
 public class Usuario {
     private String cpf;
     private String nome;
@@ -8,8 +10,9 @@ public class Usuario {
     private String telefone;
     private String status;
     private String senha;
+    private List<Endereco> enderecos;
 
-    public Usuario(String cpf, String nome, String sobrenome, String email, String telefone, String status, String senha) {
+    public Usuario(String cpf, String nome, String sobrenome, String email, String telefone, String status, String senha, List<Endereco> enderecos) {
         this.cpf = cpf;
         this.nome = nome;
         this.sobrenome = sobrenome;
@@ -17,6 +20,7 @@ public class Usuario {
         this.telefone = telefone;
         this.status = status;
         this.senha = senha;
+        this.enderecos = enderecos;
     }
 
     public Usuario() {
@@ -76,5 +80,13 @@ public class Usuario {
 
     public void setSenha(String senha) {
         this.senha = senha;
+    }
+
+    public List<Endereco> getEnderecos() {
+        return enderecos;
+    }
+
+    public void setEnderecos(List<Endereco> enderecos) {
+        this.enderecos = enderecos;
     }
 }
