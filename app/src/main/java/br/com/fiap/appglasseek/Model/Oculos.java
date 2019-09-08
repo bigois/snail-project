@@ -3,7 +3,7 @@ package br.com.fiap.appglasseek.Model;
 import android.media.Image;
 
 public class Oculos {
-    private String cod;
+    private String codigo;
     private String marca;
     private String modelo;
     private String tipo;
@@ -17,8 +17,8 @@ public class Oculos {
     private String material;
     private Image imagem;
 
-    public Oculos(String cod, String marca, String modelo, String tipo, String genero, String cor, Double oculos, Double comprimento, Double largura, Double altura, Double preco, String material, Image imagem) {
-        this.cod = cod;
+    public Oculos(String codigo, String marca, String modelo, String tipo, String genero, String cor, Double oculos, Double comprimento, Double largura, Double altura, Double preco, String material, Image imagem) {
+        this.codigo = codigo;
         this.marca = marca;
         this.modelo = modelo;
         this.tipo = tipo;
@@ -33,12 +33,15 @@ public class Oculos {
         this.imagem = imagem;
     }
 
-    public String getCod() {
-        return cod;
+    public Oculos() {
     }
 
-    public void setCod(String cod) {
-        this.cod = cod;
+    public String getcodigo() {
+        return codigo;
+    }
+
+    public void setcodigo(String codigo) {
+        this.codigo = codigo;
     }
 
     public String getMarca() {
