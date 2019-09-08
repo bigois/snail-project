@@ -36,11 +36,11 @@ public class Oculos {
     public Oculos() {
     }
 
-    public String getcodigo() {
+    public String getCodigo() {
         return codigo;
     }
 
-    public void setcodigo(String codigo) {
+    public void setCodigo(String codigo) {
         this.codigo = codigo;
     }
 
