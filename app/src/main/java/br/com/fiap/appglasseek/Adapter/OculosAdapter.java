@@ -33,14 +33,16 @@ public class OculosAdapter extends RecyclerView.Adapter<OculosHolder> {
     @Override
     public void onBindViewHolder(@NonNull OculosHolder holder, int position) {
         if (oculos != null && oculos.size() > 0) {
-            Oculos oculos = oculos.getOculos();
-
+            /*Oculos oculos = oculos.getOculos();*/
+            /*
             DecimalFormat decimalFormat = new DecimalFormat("#,##0.000000");
             String numero = decimalFormat.format(oculos.getPreco());
 
             holder.marca.setText(oculos.getMarca());
             holder.modelo.setText(oculos.getModelo());
             holder.preco.setText(numero);
+
+             */
         }
     }
 
