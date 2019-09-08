@@ -11,12 +11,12 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import br.com.fiap.appglasseek.fragments.AjudaFragment;
-import br.com.fiap.appglasseek.fragments.CarrinhoFragment;
-import br.com.fiap.appglasseek.fragments.ComprasFragment;
-import br.com.fiap.appglasseek.fragments.FavoritosFragment;
-import br.com.fiap.appglasseek.fragments.InicioFragment;
-import br.com.fiap.appglasseek.fragments.PerfilFragment;
+import br.com.fiap.appglasseek.fragment.AjudaFragment;
+import br.com.fiap.appglasseek.fragment.CarrinhoFragment;
+import br.com.fiap.appglasseek.fragment.ComprasFragment;
+import br.com.fiap.appglasseek.fragment.FavoritosFragment;
+import br.com.fiap.appglasseek.fragment.InicioFragment;
+import br.com.fiap.appglasseek.fragment.PerfilFragment;
 import br.com.fiap.appglasseek.R;
 
 public class MenuActivity extends AppCompatActivity

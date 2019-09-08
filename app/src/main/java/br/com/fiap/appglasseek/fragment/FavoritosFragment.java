@@ -1,4 +1,4 @@
-package br.com.fiap.appglasseek.fragments;
+package br.com.fiap.appglasseek.fragment;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
