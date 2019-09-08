@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 import br.com.fiap.appglasseek.holder.OculosHolder;
@@ -13,10 +14,10 @@ import br.com.fiap.appglasseek.model.Oculos;
 import br.com.fiap.appglasseek.R;
 
 public class OculosAdapter extends RecyclerView.Adapter<OculosHolder> {
-    private List<Oculos> oculos;
+    private List<Oculos> oculosLista;
 
-    public OculosAdapter(List<Oculos> oculos) {
-        this.oculos = oculos;
+    public OculosAdapter(List<Oculos> oculosLista){
+        this.oculosLista = oculosLista;
     }
 
     @NonNull
@@ -31,22 +32,21 @@ public class OculosAdapter extends RecyclerView.Adapter<OculosHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull OculosHolder holder, int position) {
-        if (oculos != null && oculos.size() > 0) {
-            /*Oculos oculos = oculos.getOculos();*/
-            /*
+        if (oculosLista != null && oculosLista.size() > 0) {
+            Oculos oculos = oculosLista.get(position);
+
             DecimalFormat decimalFormat = new DecimalFormat("#,##0.000000");
-            String numero = decimalFormat.format(oculos.getPreco());
+            String preco = decimalFormat.format(oculos.getPreco());
 
             holder.marca.setText(oculos.getMarca());
             holder.modelo.setText(oculos.getModelo());
-            holder.preco.setText(numero);
+            holder.preco.setText(preco);
 
-             */
         }
     }
 
     @Override
     public int getItemCount() {
-        return oculos.size();
+        return oculosLista.size();
     }
 }
