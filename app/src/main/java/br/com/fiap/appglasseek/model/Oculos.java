@@ -17,7 +17,7 @@ public class Oculos {
     private String material;
     private Image imagem;
 
-    public Oculos(String codigo, String marca, String modelo, String tipo, String genero, String cor, Double oculos, Double comprimento, Double largura, Double altura, Double preco, String material, Image imagem) {
+    public Oculos(String codigo, String marca, String modelo, String tipo, String genero, String cor, Double oculos, Double comprimento, Double largura, Double altura, Double preco, String material) {
         this.codigo = codigo;
         this.marca = marca;
         this.modelo = modelo;
@@ -30,7 +30,7 @@ public class Oculos {
         this.altura = altura;
         this.preco = preco;
         this.material = material;
-        this.imagem = imagem;
+
     }
 
     public Oculos() {
