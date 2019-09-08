@@ -6,7 +6,6 @@ import android.view.View;
 import android.widget.TextView;
 
 public class OculosHolder extends RecyclerView.ViewHolder {
-
     public TextView nome;
     public TextView categoria;
     public TextView marca;
@@ -15,7 +14,5 @@ public class OculosHolder extends RecyclerView.ViewHolder {
 
     public OculosHolder(View itemView) {
         super(itemView);
-
-
     }
 }

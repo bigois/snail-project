@@ -7,7 +7,6 @@ import android.widget.TextView;
 import br.com.fiap.appglasseek.R;
 
 public class UsuarioHolder extends RecyclerView.ViewHolder {
-
     public TextView nome;
     public TextView sobrenome;
     public TextView email;
@@ -15,10 +14,10 @@ public class UsuarioHolder extends RecyclerView.ViewHolder {
 
     public UsuarioHolder(View itemView) {
         super(itemView);
+
         nome = itemView.findViewById(R.id.txtNome);
         sobrenome = itemView.findViewById(R.id.txtSobrenome);
         email = itemView.findViewById(R.id.txtEmail);
         senha = itemView.findViewById(R.id.txtSenha);
-
     }
 }

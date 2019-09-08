@@ -1,7 +1,6 @@
 package br.com.fiap.appglasseek.Model;
 
 public class Usuario {
-
     private String id;
     private String nome;
     private String sobrenome;
@@ -13,6 +12,9 @@ public class Usuario {
         this.sobrenome = sobrenome;
         this.email = email;
         this.senha = senha;
+    }
+
+    public Usuario() {
     }
 
     public String getNome() {
