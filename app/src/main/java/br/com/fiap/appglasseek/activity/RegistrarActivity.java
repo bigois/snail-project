@@ -12,7 +12,6 @@ import br.com.fiap.appglasseek.model.Usuario;
 import br.com.fiap.appglasseek.R;
 
 public class RegistrarActivity extends AppCompatActivity {
-    private Usuario usuario;
     private Button btnVoltar;
     private Button btnCadastrar;
     private EditText txtNome;
@@ -25,7 +24,6 @@ public class RegistrarActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registrar);
 
-        usuario = new Usuario();
         txtNome = (EditText) findViewById(R.id.txtNome);
         txtSobrenome = (EditText) findViewById(R.id.txtSobrenome);
         txtEmail = (EditText) findViewById(R.id.txtEmail);
@@ -36,7 +34,7 @@ public class RegistrarActivity extends AppCompatActivity {
         btnCadastrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // usuario = new Usuario(txtNome.getText().toString(), txtSobrenome.getText().toString(), txtEmail.getText().toString(), txtSenha.getText().toString());
+                // TODO REALIZAR CADASTRO
 
                 Toast.makeText(RegistrarActivity.this, "Cadastro feito com sucesso!", Toast.LENGTH_SHORT).show();
 

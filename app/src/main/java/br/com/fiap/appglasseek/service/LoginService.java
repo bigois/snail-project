@@ -11,11 +11,15 @@ public class LoginService {
     }
 
     // TODO CONITNUAR NESSA JOÇA!
-    public static void logIn(Context context, String email, String senha) {
+    public static void logIn(Context context, String email) {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = preferences.edit();
 
         editor.putBoolean("logged", true);
+        editor.putString("email", email);
+
+        // TODO REQUISIÇÃO SÍNCRONA PARA RETORNO DOS DADOS
+
         editor.commit();
     }
 
@@ -24,6 +28,18 @@ public class LoginService {
         SharedPreferences.Editor editor = preferences.edit();
 
         editor.putBoolean("logged", false);
+        editor.remove("email");
         editor.commit();
+    }
+
+    public static Boolean authUser(String email, String senha) {
+        Boolean success = false;
+
+        // TODO VALIDAR NO WS
+        if (email.equals("teste@teste") && senha.equals("senha")) {
+            success = true;
+        }
+
+        return success;
     }
 }

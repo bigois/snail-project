@@ -6,6 +6,7 @@ import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 
 import br.com.fiap.appglasseek.R;
+import br.com.fiap.appglasseek.service.LoginService;
 
 public class SplashActivity extends AppCompatActivity {
 
@@ -22,6 +23,9 @@ public class SplashActivity extends AppCompatActivity {
                 Intent intent = new Intent(SplashActivity.this, MenuActivity.class);
                 startActivity(intent);
                 finish();
+
+                // TODO REMOVER
+                LoginService.logOut(SplashActivity.this.getApplicationContext());
             }
         }, 2000);
     }
