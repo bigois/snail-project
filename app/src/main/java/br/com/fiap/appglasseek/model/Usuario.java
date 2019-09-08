@@ -1,4 +1,4 @@
-package br.com.fiap.appglasseek.Model;
+package br.com.fiap.appglasseek.model;
 
 import java.util.List;
 

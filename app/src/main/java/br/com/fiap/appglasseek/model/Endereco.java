@@ -1,4 +1,4 @@
-package br.com.fiap.appglasseek.Model;
+package br.com.fiap.appglasseek.model;
 
 public class Endereco {
     private String cep;

@@ -1,4 +1,4 @@
-package br.com.fiap.appglasseek.Adapter;
+package br.com.fiap.appglasseek.adapter;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -8,8 +8,8 @@ import android.view.ViewGroup;
 
 import java.util.List;
 
-import br.com.fiap.appglasseek.Holder.OculosHolder;
-import br.com.fiap.appglasseek.Model.Oculos;
+import br.com.fiap.appglasseek.holder.OculosHolder;
+import br.com.fiap.appglasseek.model.Oculos;
 import br.com.fiap.appglasseek.R;
 
 public class OculosAdapter extends RecyclerView.Adapter<OculosHolder> {

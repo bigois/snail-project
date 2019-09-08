@@ -11,7 +11,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Design.NoActionBar">
 
-        <activity android:name=".Activity.SplashActivity">
+        <activity android:name=".activity.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -19,12 +19,12 @@
         </activity>
 
         <activity
-            android:name=".Activity.MenuActivity"
+            android:name=".activity.MenuActivity"
             android:label="Glasseek"
             android:theme="@style/AppTheme.NoActionBar" />
 
-        <activity android:name=".Activity.OculosActivity" />
-        <activity android:name=".Activity.MainActivity" />
-        <activity android:name=".Activity.RegistrarActivity" />
+        <activity android:name=".activity.OculosActivity" />
+        <activity android:name=".activity.MainActivity" />
+        <activity android:name=".activity.RegistrarActivity" />
     </application>
 </manifest>

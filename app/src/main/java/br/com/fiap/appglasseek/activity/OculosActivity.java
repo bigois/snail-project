@@ -1,4 +1,4 @@
-package br.com.fiap.appglasseek.Activity;
+package br.com.fiap.appglasseek.activity;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;

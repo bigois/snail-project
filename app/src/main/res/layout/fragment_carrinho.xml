@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/white"
-    tools:context="br.com.fiap.appglasseek.Activity.MenuActivity">
+    tools:context="br.com.fiap.appglasseek.activity.MenuActivity">
 
     <Button
         android:id="@+id/proceedToPayment"

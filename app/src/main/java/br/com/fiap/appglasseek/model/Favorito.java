@@ -1,15 +1,15 @@
-package br.com.fiap.appglasseek.Model;
+package br.com.fiap.appglasseek.model;
 
 import java.util.List;
 
-public class Carrinho {
+public class Favorito {
     private List<Oculos> oculos;
 
-    public Carrinho(List<Oculos> oculos) {
+    public Favorito(List<Oculos> oculos) {
         this.oculos = oculos;
     }
 
-    public Carrinho() {
+    public Favorito() {
     }
 
     public List<Oculos> getOculos() {
