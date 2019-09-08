@@ -29,7 +29,6 @@ public class MenuActivity extends AppCompatActivity
         setSupportActionBar(toolbar);
 
 
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -40,13 +39,12 @@ public class MenuActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
 
-        if(savedInstanceState == null) {
+        if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new InicioFragment()).commit();
             navigationView.setCheckedItem(R.id.nav_inicio);
         }
 
         navigationView.setCheckedItem(R.id.nav_inicio);
-
 
 
     }
@@ -94,7 +92,7 @@ public class MenuActivity extends AppCompatActivity
         if (id == R.id.nav_inicio) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new InicioFragment()).commit();
 
-        }else if (id == R.id.nav_perfil) {
+        } else if (id == R.id.nav_perfil) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new PerfilFragment()).commit();
 
         } else if (id == R.id.nav_favoritos) {

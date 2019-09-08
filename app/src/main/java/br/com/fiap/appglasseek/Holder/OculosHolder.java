@@ -5,9 +5,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
 
-import br.com.fiap.appglasseek.Model.Oculos;
-import br.com.fiap.appglasseek.R;
-
 public class OculosHolder extends RecyclerView.ViewHolder {
 
     public TextView nome;
@@ -18,7 +15,6 @@ public class OculosHolder extends RecyclerView.ViewHolder {
 
     public OculosHolder(View itemView) {
         super(itemView);
-
 
 
     }

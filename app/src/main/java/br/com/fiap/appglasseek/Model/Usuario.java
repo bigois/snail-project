@@ -1,8 +1,6 @@
 package br.com.fiap.appglasseek.Model;
 
-import java.io.Serializable;
-
-public class Usuario{
+public class Usuario {
 
     private String id;
     private String nome;
