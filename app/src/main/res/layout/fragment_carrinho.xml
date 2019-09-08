@@ -103,7 +103,6 @@
             android:text="New here? Sign Up"
             android:textColor="@android:color/holo_blue_light"
             android:textSize="17sp" />
-
     </LinearLayout>
 
     <LinearLayout
@@ -146,8 +145,6 @@
             android:inputType="text"
             android:text="Verify Now"
             android:textColor="@android:color/white" />
-
-
     </LinearLayout>
 
     <android.support.v7.widget.RecyclerView
@@ -155,5 +152,4 @@
         android:layout_height="522dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
-
 </RelativeLayout>
