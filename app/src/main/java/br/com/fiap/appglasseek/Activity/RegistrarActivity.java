@@ -36,7 +36,7 @@ public class RegistrarActivity extends AppCompatActivity {
         btnCadastrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                usuario = new Usuario(txtNome.getText().toString(), txtSobrenome.getText().toString(), txtEmail.getText().toString(), txtSenha.getText().toString());
+                // usuario = new Usuario(txtNome.getText().toString(), txtSobrenome.getText().toString(), txtEmail.getText().toString(), txtSenha.getText().toString());
 
                 Toast.makeText(RegistrarActivity.this, "Cadastro feito com sucesso!", Toast.LENGTH_SHORT).show();
 
