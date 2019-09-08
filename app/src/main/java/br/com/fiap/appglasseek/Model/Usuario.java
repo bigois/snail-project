@@ -11,8 +11,9 @@ public class Usuario {
     private String status;
     private String senha;
     private List<Endereco> enderecos;
+    private List<Cartao> cartoes;
 
-    public Usuario(String cpf, String nome, String sobrenome, String email, String telefone, String status, String senha, List<Endereco> enderecos) {
+    public Usuario(String cpf, String nome, String sobrenome, String email, String telefone, String status, String senha, List<Endereco> enderecos, List<Cartao> cartoes) {
         this.cpf = cpf;
         this.nome = nome;
         this.sobrenome = sobrenome;
@@ -21,6 +22,7 @@ public class Usuario {
         this.status = status;
         this.senha = senha;
         this.enderecos = enderecos;
+        this.cartoes = cartoes;
     }
 
     public Usuario() {
@@ -88,5 +90,13 @@ public class Usuario {
 
     public void setEnderecos(List<Endereco> enderecos) {
         this.enderecos = enderecos;
+    }
+
+    public List<Cartao> getCartoes() {
+        return cartoes;
+    }
+
+    public void setCartoes(List<Cartao> cartoes) {
+        this.cartoes = cartoes;
     }
 }
