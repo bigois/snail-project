@@ -24,6 +24,7 @@ public class InicioFragment extends Fragment {
     private List<Oculos> oculosLista;
 
 
+
     public InicioFragment() {
     }
 
@@ -32,27 +33,21 @@ public class InicioFragment extends Fragment {
 
 
         View rootView = inflater.inflate(R.layout.fragment_inicio, container, false);
-        // 1. get a reference to recyclerView
+
         inicioRecycler = (RecyclerView) rootView.findViewById(R.id.inicioRecycler);
 
-        // 2. set layoutManger
         inicioRecycler.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-        // this is data fro recycler view
         oculosLista = new ArrayList<>();
 
         Oculos oculosItem = new Oculos(
-                "1","Oakley","Juliet","Oculos de sol","M","Dourado","Oculos", "15", "10","5","350","Aço"
+                "1","Oakley","Juliet","Oculos de sol","M","Dourado",00.00, 50.00, 10.00,5.00,350.00,"Aço"
+
         );
         oculosLista.add(oculosItem);
 
-        // 3. create an adapter
-        OculosAdapter oculosAdapter = new OculosAdapter(oculosLista);
+        inicioRecycler.setAdapter(new OculosAdapter(oculosLista));
 
-        // 4. set adapter
-        inicioRecycler.setAdapter(oculosAdapter);
-
-        // 5. set item animator to DefaultAnimator
         inicioRecycler.setItemAnimator(new DefaultItemAnimator());
 
         return rootView;
