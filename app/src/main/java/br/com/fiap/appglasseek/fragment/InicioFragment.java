@@ -22,8 +22,7 @@ public class InicioFragment extends Fragment {
 
     private RecyclerView inicioRecycler;
     private List<Oculos> oculosLista;
-
-
+    private RecyclerView.Adapter adapter;
 
     public InicioFragment() {
     }
@@ -32,11 +31,11 @@ public class InicioFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
 
-        View rootView = inflater.inflate(R.layout.fragment_inicio, container, false);
+        View view = inflater.inflate(R.layout.fragment_inicio, container, false);
 
-        inicioRecycler = (RecyclerView) rootView.findViewById(R.id.inicioRecycler);
+        inicioRecycler = (RecyclerView) view.findViewById(R.id.inicioRecycler);
 
-        inicioRecycler.setLayoutManager(new LinearLayoutManager(getActivity()));
+        inicioRecycler.setLayoutManager(new LinearLayoutManager(this.getActivity()));
 
         oculosLista = new ArrayList<>();
 
@@ -46,10 +45,11 @@ public class InicioFragment extends Fragment {
         );
         oculosLista.add(oculosItem);
 
-        inicioRecycler.setAdapter(new OculosAdapter(oculosLista));
+        adapter = new OculosAdapter(oculosLista);
+        inicioRecycler.setAdapter(adapter);
 
         inicioRecycler.setItemAnimator(new DefaultItemAnimator());
 
-        return rootView;
+        return view;
     }
 }
