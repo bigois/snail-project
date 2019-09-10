@@ -33,6 +33,21 @@ public class Oculos {
         this.imagem = imagem;
     }
 
+    public Oculos(String codigo, String marca, String modelo, String tipo, String genero, String cor, Double oculos, Double comprimento, Double largura, Double altura, Double preco, String material) {
+        this.codigo = codigo;
+        this.marca = marca;
+        this.modelo = modelo;
+        this.tipo = tipo;
+        this.genero = genero;
+        this.cor = cor;
+        this.oculos = oculos;
+        this.comprimento = comprimento;
+        this.largura = largura;
+        this.altura = altura;
+        this.preco = preco;
+        this.material = material;
+    }
+
     public Oculos() {
     }
 
