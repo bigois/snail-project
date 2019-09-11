@@ -24,7 +24,7 @@ public class InicioFragment extends Fragment {
         RecyclerView recyclerView = (RecyclerView) rootView.findViewById(R.id.rclInicio);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-        OculosAdapter oculosAdapter = new OculosAdapter(StaticData.OculosData.getOculosList());
+        OculosAdapter oculosAdapter = new OculosAdapter(StaticData.OculosData.getOculosList(), getContext(), getFragmentManager());
         oculosAdapter.notifyDataSetChanged();
 
         recyclerView.setAdapter(oculosAdapter);
