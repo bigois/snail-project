@@ -1,7 +1,5 @@
 package br.com.fiap.appglasseek.model;
 
-import android.media.Image;
-
 public class Oculos {
     private String codigo;
     private String marca;
@@ -9,22 +7,20 @@ public class Oculos {
     private String tipo;
     private String genero;
     private String cor;
-    private Double oculos;
     private Double comprimento;
     private Double largura;
     private Double altura;
     private Double preco;
     private String material;
-    private Image imagem;
+    private Integer imagem;
 
-    public Oculos(String codigo, String marca, String modelo, String tipo, String genero, String cor, Double oculos, Double comprimento, Double largura, Double altura, Double preco, String material, Image imagem) {
+    public Oculos(String codigo, String marca, String modelo, String tipo, String genero, String cor, Double comprimento, Double largura, Double altura, Double preco, String material, Integer imagem) {
         this.codigo = codigo;
         this.marca = marca;
         this.modelo = modelo;
         this.tipo = tipo;
         this.genero = genero;
         this.cor = cor;
-        this.oculos = oculos;
         this.comprimento = comprimento;
         this.largura = largura;
         this.altura = altura;
@@ -33,14 +29,13 @@ public class Oculos {
         this.imagem = imagem;
     }
 
-    public Oculos(String codigo, String marca, String modelo, String tipo, String genero, String cor, Double oculos, Double comprimento, Double largura, Double altura, Double preco, String material) {
+    public Oculos(String codigo, String marca, String modelo, String tipo, String genero, String cor, Double comprimento, Double largura, Double altura, Double preco, String material) {
         this.codigo = codigo;
         this.marca = marca;
         this.modelo = modelo;
         this.tipo = tipo;
         this.genero = genero;
         this.cor = cor;
-        this.oculos = oculos;
         this.comprimento = comprimento;
         this.largura = largura;
         this.altura = altura;
@@ -99,14 +94,6 @@ public class Oculos {
         this.cor = cor;
     }
 
-    public Double getOculos() {
-        return oculos;
-    }
-
-    public void setOculos(Double oculos) {
-        this.oculos = oculos;
-    }
-
     public Double getComprimento() {
         return comprimento;
     }
@@ -147,11 +134,11 @@ public class Oculos {
         this.material = material;
     }
 
-    public Image getImagem() {
+    public Integer getImagem() {
         return imagem;
     }
 
-    public void setImagem(Image imagem) {
+    public void setImagem(Integer imagem) {
         this.imagem = imagem;
     }
 }
