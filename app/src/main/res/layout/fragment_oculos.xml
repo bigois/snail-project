@@ -8,12 +8,13 @@
 
     <android.support.v4.view.ViewPager
         android:id="@+id/vpOculos"
-        android:layout_width="385dp"
-        android:layout_height="214dp"
+        android:layout_width="390dp"
+        android:layout_height="185dp"
         android:layout_marginEnd="1dp"
         android:layout_marginStart="1dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="44dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.473"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -30,8 +31,8 @@
         android:id="@+id/txtCodigo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="18dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="57dp"
         android:text="Codigo"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -50,6 +51,7 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="36dp"
         android:text="Modelo:"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/lblMarca" />
 
@@ -60,6 +62,7 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="36dp"
         android:text="Tipo:"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/lblModelo" />
 
@@ -70,6 +73,7 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="36dp"
         android:text="Gênero:"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/lblTipo" />
 
@@ -80,6 +84,7 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="36dp"
         android:text="Cor:"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/lblGenero" />
 
@@ -89,6 +94,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="22dp"
         android:text="Comprimento:"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@+id/guideline2"
         app:layout_constraintTop_toTopOf="@+id/guideline" />
 
@@ -99,6 +105,7 @@
         android:layout_marginStart="22dp"
         android:layout_marginTop="36dp"
         android:text="Material:"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@+id/guideline2"
         app:layout_constraintTop_toBottomOf="@+id/lblPreco" />
 
@@ -109,6 +116,7 @@
         android:layout_marginStart="22dp"
         android:layout_marginTop="36dp"
         android:text="Preço:"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@+id/guideline2"
         app:layout_constraintTop_toBottomOf="@+id/lblAltura" />
 
@@ -119,6 +127,7 @@
         android:layout_marginStart="22dp"
         android:layout_marginTop="36dp"
         android:text="Altura:"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@+id/guideline2"
         app:layout_constraintTop_toBottomOf="@+id/lblLargura" />
 
@@ -129,6 +138,7 @@
         android:layout_marginStart="22dp"
         android:layout_marginTop="36dp"
         android:text="Largura:"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@+id/guideline2"
         app:layout_constraintTop_toBottomOf="@+id/lblComprimento" />
 
@@ -136,7 +146,6 @@
         android:id="@+id/btnComprar"
         android:layout_width="147dp"
         android:layout_height="57dp"
-        android:layout_marginBottom="30dp"
         android:text="Comprar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -146,7 +155,6 @@
         android:id="@+id/btnExperimentar"
         android:layout_width="147dp"
         android:layout_height="57dp"
-        android:layout_marginBottom="30dp"
         android:text="Experimentar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/guideline2"
@@ -156,11 +164,9 @@
         android:id="@+id/txtMarca"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:layout_marginStart="110dp"
+        android:layout_marginStart="12dp"
         android:text="TextView"
-        app:layout_constraintEnd_toStartOf="@+id/guideline2"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/lblMarca"
         app:layout_constraintTop_toTopOf="@+id/guideline" />
 
     <TextView
@@ -169,6 +175,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:text="Marca:"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline" />
 
@@ -176,97 +183,89 @@
         android:id="@+id/txtModelo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="110dp"
+        android:layout_marginStart="12dp"
         android:layout_marginTop="36dp"
         android:text="TextView"
-        app:layout_constraintEnd_toStartOf="@+id/guideline2"
-        app:layout_constraintHorizontal_bias="0.361"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/lblModelo"
         app:layout_constraintTop_toBottomOf="@+id/txtMarca" />
 
     <TextView
         android:id="@+id/txtTipo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="110dp"
+        android:layout_marginStart="12dp"
         android:layout_marginTop="36dp"
         android:text="TextView"
-        app:layout_constraintEnd_toStartOf="@+id/guideline2"
-        app:layout_constraintHorizontal_bias="0.361"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/lblTipo"
         app:layout_constraintTop_toBottomOf="@+id/txtModelo" />
 
     <TextView
         android:id="@+id/txtGenero"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="10dp"
-        android:layout_marginStart="110dp"
+        android:layout_marginStart="12dp"
         android:layout_marginTop="36dp"
         android:text="TextView"
-        app:layout_constraintEnd_toStartOf="@+id/guideline2"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/lblGenero"
         app:layout_constraintTop_toBottomOf="@+id/txtTipo" />
 
     <TextView
         android:id="@+id/txtCor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="10dp"
-        android:layout_marginStart="110dp"
+        android:layout_marginStart="12dp"
         android:layout_marginTop="36dp"
         android:text="TextView"
-        app:layout_constraintEnd_toStartOf="@+id/guideline2"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/lblCor"
         app:layout_constraintTop_toBottomOf="@+id/txtGenero" />
 
     <TextView
         android:id="@+id/txtComprimento"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="28dp"
+        android:layout_marginStart="12dp"
         android:text="TextView"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/lblComprimento"
         app:layout_constraintTop_toTopOf="@+id/guideline" />
 
     <TextView
         android:id="@+id/txtLargura"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="28dp"
+        android:layout_marginStart="12dp"
         android:layout_marginTop="36dp"
         android:text="TextView"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/lblLargura"
         app:layout_constraintTop_toBottomOf="@+id/txtComprimento" />
 
     <TextView
         android:id="@+id/txtAltura"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="28dp"
+        android:layout_marginStart="12dp"
         android:layout_marginTop="36dp"
         android:text="TextView"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/lblAltura"
         app:layout_constraintTop_toBottomOf="@+id/txtLargura" />
 
     <TextView
         android:id="@+id/txtPreco"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="28dp"
+        android:layout_marginStart="12dp"
         android:layout_marginTop="36dp"
         android:text="TextView"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/lblPreco"
         app:layout_constraintTop_toBottomOf="@+id/txtAltura" />
 
     <TextView
         android:id="@+id/txtMaterial"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="28dp"
+        android:layout_marginStart="12dp"
         android:layout_marginTop="36dp"
         android:text="TextView"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/lblMaterial"
         app:layout_constraintTop_toBottomOf="@+id/txtPreco" />
 
 </android.support.constraint.ConstraintLayout>
