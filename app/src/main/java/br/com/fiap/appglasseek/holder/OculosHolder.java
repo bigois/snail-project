@@ -8,8 +8,6 @@ import android.widget.TextView;
 import br.com.fiap.appglasseek.R;
 
 public class OculosHolder extends RecyclerView.ViewHolder {
-    public TextView nome;
-    public TextView categoria;
     public TextView marca;
     public TextView modelo;
     public TextView preco;
