@@ -1,48 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
 
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="196dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
+        android:layout_height="wrap_content"
         app:cardBackgroundColor="#801eae3a"
         app:cardCornerRadius="10dp"
-        app:cardElevation="2dp"
         app:cardUseCompatPadding="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.022">
+        app:layout_constraintTop_toTopOf="parent">
 
         <android.support.constraint.ConstraintLayout
             android:id="@+id/lytCard"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <ImageView
-                android:id="@+id/imgOculos"
-                android:layout_width="124dp"
-                android:layout_height="124dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginBottom="8dp"
-                android:background="#ffffff"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintCircleRadius="@android:dimen/dialog_min_width_minor"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.032"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/oc_ray_ban" />
+            android:layout_height="wrap_content">
 
             <TextView
                 android:id="@+id/lblModelo"
@@ -55,17 +32,16 @@
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.119"
+                app:layout_constraintHorizontal_bias="0.088"
                 app:layout_constraintStart_toEndOf="@+id/imgOculos"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.196" />
+                app:layout_constraintVertical_bias="0.0" />
 
             <TextView
                 android:id="@+id/lblMarca"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:layout_marginBottom="80dp"
+                android:layout_marginTop="4dp"
                 android:text="Marca:"
                 android:textColor="@android:color/black"
                 android:textSize="17sp"
@@ -81,8 +57,8 @@
                 android:id="@+id/lblPreco"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:layout_marginBottom="32dp"
+                android:layout_marginTop="4dp"
+                android:paddingBottom="8dp"
                 android:text="Preço:"
                 android:textColor="@android:color/black"
                 android:textSize="17sp"
@@ -92,19 +68,17 @@
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/lblMarca"
                 app:layout_constraintTop_toBottomOf="@+id/lblMarca"
-                app:layout_constraintVertical_bias="0.68" />
+                app:layout_constraintVertical_bias="0.0" />
 
             <TextView
                 android:id="@+id/txtModelo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:layout_marginBottom="8dp"
                 android:text="Round Metal"
                 android:textSize="17sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.231"
+                app:layout_constraintHorizontal_bias="0.083"
                 app:layout_constraintStart_toEndOf="@+id/lblModelo"
                 app:layout_constraintTop_toTopOf="@+id/lblModelo"
                 app:layout_constraintVertical_bias="0.0" />
@@ -113,8 +87,6 @@
                 android:id="@+id/txtMarca"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:layout_marginBottom="84dp"
                 android:text="Ray-Ban"
                 android:textSize="17sp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -128,16 +100,26 @@
                 android:id="@+id/txtPreco"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:layout_marginBottom="32dp"
-                android:text="420,00"
+                android:paddingBottom="8dp"
+                android:text="R$ 420,00"
                 android:textSize="17sp"
-                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintBottom_toBottomOf="@+id/lblPreco"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/txtMarca"
-                app:layout_constraintTop_toBottomOf="@+id/txtMarca"
-                app:layout_constraintVertical_bias="0.68" />
+                app:layout_constraintTop_toTopOf="@+id/lblPreco" />
+
+            <ImageView
+                android:id="@+id/imgOculos"
+                android:layout_width="74dp"
+                android:layout_height="72dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.048"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.476"
+                tools:srcCompat="@tools:sample/avatars" />
 
         </android.support.constraint.ConstraintLayout>
     </android.support.v7.widget.CardView>
