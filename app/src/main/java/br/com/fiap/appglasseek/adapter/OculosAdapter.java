@@ -10,14 +10,14 @@ import java.text.DecimalFormat;
 import java.util.List;
 import java.util.Locale;
 
+import br.com.fiap.appglasseek.R;
 import br.com.fiap.appglasseek.holder.OculosHolder;
 import br.com.fiap.appglasseek.model.Oculos;
-import br.com.fiap.appglasseek.R;
 
 public class OculosAdapter extends RecyclerView.Adapter<OculosHolder> {
     private List<Oculos> oculosList;
 
-    public OculosAdapter(List<Oculos> oculosList){
+    public OculosAdapter(List<Oculos> oculosList) {
         this.oculosList = oculosList;
     }
 

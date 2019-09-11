@@ -17,7 +17,7 @@ public class StaticData {
 
                 for (Integer i = 0; i < 10; i++) {
                     oculosList.add(new Oculos(
-                            "OC00000" + i.toString(),"Oakley","Juliet","Óculos de sol","M","Dourado", 50.00, 100.00,5.00,350.00,"Aço", R.drawable.oc_ray_ban));
+                            "OC00000" + i.toString(), "Oakley", "Juliet", "Óculos de sol", "M", "Dourado", 50.00, 100.00, 5.00, 350.00, "Aço", R.drawable.oc_ray_ban));
                 }
             }
 
