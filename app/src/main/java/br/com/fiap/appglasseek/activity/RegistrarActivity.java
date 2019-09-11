@@ -8,7 +8,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import br.com.fiap.appglasseek.model.Usuario;
 import br.com.fiap.appglasseek.R;
 
 public class RegistrarActivity extends AppCompatActivity {
@@ -45,8 +44,7 @@ public class RegistrarActivity extends AppCompatActivity {
         btnVoltar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(RegistrarActivity.this, LoginActivity.class);
-                startActivity(intent);
+                RegistrarActivity.this.finish();
             }
         });
 
