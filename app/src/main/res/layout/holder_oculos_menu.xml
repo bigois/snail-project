@@ -23,6 +23,7 @@
         app:layout_constraintVertical_bias="0.022">
 
         <android.support.constraint.ConstraintLayout
+            android:id="@+id/lytCard"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
@@ -38,17 +39,15 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintCircleRadius="@android:dimen/dialog_min_width_minor"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintHorizontal_bias="0.032"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.477"
                 app:srcCompat="@drawable/oc_ray_ban" />
 
             <TextView
-                android:id="@+id/lblNome"
+                android:id="@+id/lblModelo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:text="Modelo:"
                 android:textColor="@android:color/black"
@@ -56,16 +55,15 @@
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.444"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintHorizontal_bias="0.119"
+                app:layout_constraintStart_toEndOf="@+id/imgOculos"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.137" />
+                app:layout_constraintVertical_bias="0.196" />
 
             <TextView
                 android:id="@+id/lblMarca"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginBottom="80dp"
                 android:text="Marca:"
@@ -74,49 +72,15 @@
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.432"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/lblNome"
-                app:layout_constraintVertical_bias="0.838" />
-
-            <TextView
-                android:id="@+id/txtModelo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginBottom="8dp"
-                android:text="Round Metal"
-                android:textSize="17sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.75"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.131" />
-
-            <TextView
-                android:id="@+id/txtMarca"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginBottom="84dp"
-                android:text="Ray-Ban"
-                android:textSize="17sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.665"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/txtModelo"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/lblModelo"
+                app:layout_constraintTop_toBottomOf="@+id/lblModelo"
                 app:layout_constraintVertical_bias="1.0" />
 
             <TextView
                 android:id="@+id/lblPreco"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginBottom="32dp"
                 android:text="Preço:"
@@ -125,26 +89,56 @@
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.428"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/lblMarca"
                 app:layout_constraintTop_toBottomOf="@+id/lblMarca"
-                app:layout_constraintVertical_bias="1.0" />
+                app:layout_constraintVertical_bias="0.68" />
+
+            <TextView
+                android:id="@+id/txtModelo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="8dp"
+                android:text="Round Metal"
+                android:textSize="17sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.231"
+                app:layout_constraintStart_toEndOf="@+id/lblModelo"
+                app:layout_constraintTop_toTopOf="@+id/lblModelo"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <TextView
+                android:id="@+id/txtMarca"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="84dp"
+                android:text="Ray-Ban"
+                android:textSize="17sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/txtModelo"
+                app:layout_constraintTop_toTopOf="@+id/lblMarca"
+                app:layout_constraintVertical_bias="0.0" />
 
             <TextView
                 android:id="@+id/txtPreco"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginBottom="32dp"
                 android:text="420,00"
                 android:textSize="17sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.642"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/txtMarca"
                 app:layout_constraintTop_toBottomOf="@+id/txtMarca"
-                app:layout_constraintVertical_bias="1.0" />
+                app:layout_constraintVertical_bias="0.68" />
+
         </android.support.constraint.ConstraintLayout>
     </android.support.v7.widget.CardView>
 </android.support.constraint.ConstraintLayout>
