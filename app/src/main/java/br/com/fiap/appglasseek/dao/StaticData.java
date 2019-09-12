@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.fiap.appglasseek.R;
-
 import br.com.fiap.appglasseek.model.Oculos;
 import br.com.fiap.appglasseek.model.Usuario;
 

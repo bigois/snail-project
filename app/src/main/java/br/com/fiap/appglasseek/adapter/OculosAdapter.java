@@ -1,8 +1,6 @@
 package br.com.fiap.appglasseek.adapter;
 
-import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -17,8 +15,6 @@ import java.util.List;
 import java.util.Locale;
 
 import br.com.fiap.appglasseek.R;
-import br.com.fiap.appglasseek.activity.LoginActivity;
-import br.com.fiap.appglasseek.fragment.FavoritosFragment;
 import br.com.fiap.appglasseek.fragment.OculosFragment;
 import br.com.fiap.appglasseek.holder.OculosHolder;
 import br.com.fiap.appglasseek.model.Oculos;
