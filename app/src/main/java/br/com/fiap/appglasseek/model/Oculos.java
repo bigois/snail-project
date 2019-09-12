@@ -1,5 +1,7 @@
 package br.com.fiap.appglasseek.model;
 
+import java.util.List;
+
 public class Oculos {
     private String codigo;
     private String marca;
@@ -13,6 +15,23 @@ public class Oculos {
     private Double preco;
     private String material;
     private Integer imagem;
+    private List<Integer> imagens;
+
+    public Oculos(String codigo, String marca, String modelo, String tipo, String genero, String cor, Double comprimento, Double largura, Double altura, Double preco, String material, Integer imagem, List<Integer> imagens) {
+        this.codigo = codigo;
+        this.marca = marca;
+        this.modelo = modelo;
+        this.tipo = tipo;
+        this.genero = genero;
+        this.cor = cor;
+        this.comprimento = comprimento;
+        this.largura = largura;
+        this.altura = altura;
+        this.preco = preco;
+        this.material = material;
+        this.imagem = imagem;
+        this.imagens = imagens;
+    }
 
     public Oculos(String codigo, String marca, String modelo, String tipo, String genero, String cor, Double comprimento, Double largura, Double altura, Double preco, String material, Integer imagem) {
         this.codigo = codigo;
@@ -140,5 +159,13 @@ public class Oculos {
 
     public void setImagem(Integer imagem) {
         this.imagem = imagem;
+    }
+
+    public List<Integer> getImagens() {
+        return imagens;
+    }
+
+    public void setImagens(List<Integer> imagens) {
+        this.imagens = imagens;
     }
 }
