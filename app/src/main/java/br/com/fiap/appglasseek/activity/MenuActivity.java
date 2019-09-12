@@ -12,6 +12,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 import br.com.fiap.appglasseek.R;
 import br.com.fiap.appglasseek.fragment.AjudaFragment;
@@ -20,10 +21,14 @@ import br.com.fiap.appglasseek.fragment.ComprasFragment;
 import br.com.fiap.appglasseek.fragment.FavoritosFragment;
 import br.com.fiap.appglasseek.fragment.InicioFragment;
 import br.com.fiap.appglasseek.fragment.PerfilFragment;
+import br.com.fiap.appglasseek.model.Usuario;
 import br.com.fiap.appglasseek.service.LoginService;
 
 public class MenuActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+    private TextView userEmail, userName;
+    private Usuario usuario;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +37,12 @@ public class MenuActivity extends AppCompatActivity
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        userName = (TextView) findViewById(R.id.userName);
+        userName.setText("Seja bem vindo, " +usuario.getNome() + " " + usuario.getSobrenome() + "!");
+
+        userEmail = (TextView) findViewById(R.id.userEmail);
+        userEmail.setText(usuario.getEmail());
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
