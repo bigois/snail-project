@@ -5,6 +5,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.text.DecimalFormat;
@@ -15,6 +16,7 @@ import br.com.fiap.appglasseek.model.Oculos;
 public class OculosFragment extends Fragment {
     private Oculos oculos;
     private TextView txtCodigo, txtMarca, txtModelo, txtTipo, txtGenero, txtCor, txtComprimento, txtLargura, txtAltura, txtPreco, txtMaterial;
+    private ImageView imgOculos;
 
 
 
@@ -25,6 +27,9 @@ public class OculosFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_oculos, container, false);
+
+        imgOculos = view.findViewById(R.id.imgOculos);
+        imgOculos.setImageResource(oculos.getImagem());
 
         txtCodigo = view.findViewById(R.id.txtCodigo);
         txtCodigo.setText(oculos.getCodigo());
