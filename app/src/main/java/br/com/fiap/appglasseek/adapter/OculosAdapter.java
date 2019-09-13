@@ -8,7 +8,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import java.text.DecimalFormat;
 import java.util.List;
@@ -41,7 +40,7 @@ public class OculosAdapter extends RecyclerView.Adapter<OculosHolder> {
         viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(context, "Item " + oculosList.get(viewHolder.getAdapterPosition()).getCodigo() + " selecionado", Toast.LENGTH_SHORT).show();
+                // Toast.makeText(context, "Item " + oculosList.get(viewHolder.getAdapterPosition()).getCodigo() + " selecionado", Toast.LENGTH_SHORT).show();
 
                 Fragment fragment = new OculosFragment().setOculos(oculosList.get(viewHolder.getAdapterPosition()));
                 fragmentManager.beginTransaction().replace(R.id.fragment_container, fragment).commit();

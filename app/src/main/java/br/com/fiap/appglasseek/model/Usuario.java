@@ -16,6 +16,16 @@ public class Usuario {
     private Carrinho carrinho;
     private List<Compra> compras;
 
+
+    public Usuario(String cpf, String nome, String sobrenome, String email, String telefone, String senha) {
+        this.cpf = cpf;
+        this.nome = nome;
+        this.sobrenome = sobrenome;
+        this.email = email;
+        this.telefone = telefone;
+        this.senha = senha;
+    }
+
     public Usuario(String cpf, String nome, String sobrenome, String email, String telefone, String status, String senha, List<Endereco> enderecos, List<Cartao> cartoes, Favorito favoritos, Carrinho carrinho) {
         this.cpf = cpf;
         this.nome = nome;
