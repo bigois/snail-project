@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+<manifest
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="br.com.fiap.appglasseek">
 
     <application
+        tools:replace="android:label"
         android:allowBackup="true"
         android:checked="true"
         android:icon="@mipmap/ic_launcher"
@@ -21,7 +24,8 @@
         <activity
             android:name=".activity.MenuActivity"
             android:label="Glasseek"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
 
         <activity android:name=".activity.OculosActivity" />
         <activity android:name=".activity.LoginActivity" />

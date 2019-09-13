@@ -5,7 +5,11 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.synnapps.carouselview.CarouselView;
+import com.synnapps.carouselview.ImageListener;
 
 import java.text.DecimalFormat;
 
@@ -14,8 +18,17 @@ import br.com.fiap.appglasseek.model.Oculos;
 
 public class OculosFragment extends Fragment {
     private Oculos oculos;
-    private TextView txtCodigo, txtMarca, txtModelo, txtTipo, txtGenero, txtCor, txtComprimento, txtLargura, txtAltura, txtPreco, txtMaterial;
-
+    private TextView txtMarca;
+    private TextView txtModelo;
+    private TextView txtTipo;
+    private TextView txtGenero;
+    private TextView txtCor;
+    private TextView txtComprimento;
+    private TextView txtLargura;
+    private TextView txtAltura;
+    private TextView txtPreco;
+    private TextView txtMaterial;
+    private CarouselView carouselView;
 
     public OculosFragment() {
     }
@@ -24,10 +37,6 @@ public class OculosFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_oculos, container, false);
-
-
-        txtCodigo = view.findViewById(R.id.txtCodigo);
-        txtCodigo.setText(oculos.getCodigo());
 
         txtMarca = view.findViewById(R.id.txtMarca);
         txtMarca.setText(oculos.getMarca());
@@ -59,11 +68,14 @@ public class OculosFragment extends Fragment {
         txtMaterial = view.findViewById(R.id.txtMaterial);
         txtMaterial.setText(oculos.getMaterial());
 
-
-        // TODO GABRIEL
-        // RETORNAR A PARTIR DAQUI
-        // CRIAR LAYOUT E EXIBIR OS DADOS CONTIDOS NO OBJETO OCULOS
-
+        carouselView = view.findViewById(R.id.carouselView);
+        carouselView.setPageCount(oculos.getImagens().size());
+        carouselView.setImageListener(new ImageListener() {
+            @Override
+            public void setImageForPosition(int position, ImageView imageView) {
+                imageView.setImageResource(oculos.getImagens().get(position));
+            }
+        });
 
         return view;
     }
