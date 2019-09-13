@@ -11,7 +11,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Design.NoActionBar"
-        tools:replace="android:label">
+        tools:replace="android:label,android:icon,android:theme">
 
         <activity android:name=".activity.SplashActivity">
             <intent-filter>
@@ -28,5 +28,6 @@
         <activity android:name=".activity.OculosActivity" />
         <activity android:name=".activity.LoginActivity" />
         <activity android:name=".activity.RegistrarActivity" />
+        <activity android:name=".activity.UnityHolderActivity"></activity>
     </application>
 </manifest>

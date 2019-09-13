@@ -1,10 +1,12 @@
 package br.com.fiap.appglasseek.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -14,10 +16,12 @@ import com.synnapps.carouselview.ImageListener;
 import java.text.DecimalFormat;
 
 import br.com.fiap.appglasseek.R;
+import br.com.fiap.appglasseek.activity.OculosActivity;
+import br.com.fiap.appglasseek.activity.UnityHolderActivity;
 import br.com.fiap.appglasseek.model.Oculos;
 
 public class OculosFragment extends Fragment {
-    private Oculos oculos;
+    private static Oculos oculos;
     private TextView txtMarca;
     private TextView txtModelo;
     private TextView txtTipo;
@@ -29,6 +33,8 @@ public class OculosFragment extends Fragment {
     private TextView txtPreco;
     private TextView txtMaterial;
     private CarouselView carouselView;
+    private Button btnExperimentar;
+
 
     public OculosFragment() {
     }
@@ -37,6 +43,8 @@ public class OculosFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_oculos, container, false);
+
+        if (oculos != null){
 
         txtMarca = view.findViewById(R.id.txtMarca);
         txtMarca.setText(oculos.getMarca());
@@ -76,6 +84,22 @@ public class OculosFragment extends Fragment {
                 imageView.setImageResource(oculos.getImagens().get(position));
             }
         });
+
+        btnExperimentar = (Button) view.findViewById(R.id.btnExperimentar);
+        btnExperimentar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                UnityHolderActivity unityHolderActivity = new UnityHolderActivity();
+                unityHolderActivity.setOculos(txtModelo.getText().toString());
+
+                Intent intent = new Intent(getActivity(), unityHolderActivity.getClass());
+
+                startActivity(intent);
+            }
+        });
+
+    }
+
 
         return view;
     }

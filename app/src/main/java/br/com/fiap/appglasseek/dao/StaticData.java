@@ -28,7 +28,7 @@ public class StaticData {
                 oculosList.add(new Oculos(
                         "OC000003", "Track & Field", "Pipa", "Óculos de sol", "F", "Transparente", 13.15, 10.00, 5.10, 260.90, "Acrílico", R.drawable.oc_tf_pipa, imageList));
                 oculosList.add(new Oculos(
-                        "OC000004", "Prada", "Millennials", "Óculos de grau", "F", "Tartaruga", 15.00, 13.00, 5.45, 749.90, "Termoplástico", R.drawable.oc_prada_millennials, imageList));
+                        "OC000004", "Prada", "NoLenses", "Óculos de grau", "F", "Tartaruga", 15.00, 13.00, 5.45, 749.90, "Termoplástico", R.drawable.oc_prada_millennials, imageList));
                 oculosList.add(new Oculos(
                         "OC000005", "Lema21", "Otto", "Óculos de grau", "U", "Dourado", 14.20, 14.25, 6.10, 142.29, "Aço", R.drawable.oc_lema21_otto, imageList));
             }
