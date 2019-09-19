@@ -1,5 +1,6 @@
 package br.com.fiap.appglasseek.fragment;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -7,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -14,10 +16,14 @@ import com.synnapps.carouselview.CarouselView;
 import com.synnapps.carouselview.ImageListener;
 
 import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.List;
 
 import br.com.fiap.appglasseek.R;
 import br.com.fiap.appglasseek.activity.OculosActivity;
 import br.com.fiap.appglasseek.activity.UnityHolderActivity;
+import br.com.fiap.appglasseek.dao.StaticData;
+import br.com.fiap.appglasseek.model.Favorito;
 import br.com.fiap.appglasseek.model.Oculos;
 
 public class OculosFragment extends Fragment {
@@ -34,6 +40,14 @@ public class OculosFragment extends Fragment {
     private TextView txtMaterial;
     private CarouselView carouselView;
     private Button btnExperimentar;
+    private ImageButton btnFavorito;
+    private List<Oculos> favoritos;
+    private OculosFragmentListener listener;
+
+    public interface OculosFragmentListener{
+        void onInputSent(List<Oculos> favList);
+    }
+
 
 
     public OculosFragment() {
@@ -98,11 +112,50 @@ public class OculosFragment extends Fragment {
             }
         });
 
+        btnFavorito = (ImageButton) view.findViewById(R.id.btnFavorito);
+        btnFavorito.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                    favoritos = new ArrayList<Oculos>();
+
+                    favoritos.add(new Oculos(oculos.getCodigo(), oculos.getMarca(), oculos.getModelo(), oculos.getTipo(), oculos.getGenero(), oculos.getCor(), oculos.getComprimento(), oculos.getLargura(), oculos.getAltura(), oculos.getPreco(), oculos.getMaterial(), oculos.getImagem(), oculos.getImagens()));
+
+                    //listener.onInputSent(favoritos);
+
+                    Intent intent = new Intent(getContext(), FavoritosFragment.class);
+
+                    Bundle bundle = new Bundle();
+                    bundle.putParcelable("favoritos", oculos);
+                    intent.putExtras(bundle);
+                }
+            });
+
+
     }
-
-
         return view;
     }
+    /*
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if(context instanceof OculosFragmentListener){
+            listener = (OculosFragmentListener) context;
+        }else{
+            throw new RuntimeException(context.toString() + "must implement FragmentListener");
+        }
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        listener = null;
+    }
+    public void updateData(List<Oculos> novaLista){
+        favoritos.addAll(novaLista);
+    }
+
+     */
 
     public OculosFragment setOculos(Oculos oculos) {
         this.oculos = oculos;

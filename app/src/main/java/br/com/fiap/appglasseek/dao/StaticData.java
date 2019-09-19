@@ -1,5 +1,8 @@
 package br.com.fiap.appglasseek.dao;
 
+import android.content.Intent;
+import android.support.v7.app.AppCompatActivity;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,10 +10,17 @@ import br.com.fiap.appglasseek.R;
 import br.com.fiap.appglasseek.model.Oculos;
 import br.com.fiap.appglasseek.model.Usuario;
 
-public class StaticData {
+public class StaticData{
     public static class OculosData {
         static List<Oculos> oculosList;
         static List<Integer> imageList;
+        static List<Oculos> favoritos;
+
+
+
+
+
+
 
         public static List<Oculos> getOculosList() {
             if (OculosData.oculosList == null) {
