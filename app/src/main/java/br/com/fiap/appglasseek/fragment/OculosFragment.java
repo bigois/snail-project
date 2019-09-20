@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.synnapps.carouselview.CarouselView;
 import com.synnapps.carouselview.ImageListener;
@@ -41,12 +42,7 @@ public class OculosFragment extends Fragment {
     private CarouselView carouselView;
     private Button btnExperimentar;
     private ImageButton btnFavorito;
-    private List<Oculos> favoritos;
-    private OculosFragmentListener listener;
-
-    public interface OculosFragmentListener{
-        void onInputSent(List<Oculos> favList);
-    }
+    private ImageButton btnRemover;
 
 
 
@@ -116,46 +112,23 @@ public class OculosFragment extends Fragment {
         btnFavorito.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-
-                    favoritos = new ArrayList<Oculos>();
-
-                    favoritos.add(new Oculos(oculos.getCodigo(), oculos.getMarca(), oculos.getModelo(), oculos.getTipo(), oculos.getGenero(), oculos.getCor(), oculos.getComprimento(), oculos.getLargura(), oculos.getAltura(), oculos.getPreco(), oculos.getMaterial(), oculos.getImagem(), oculos.getImagens()));
-
-                    //listener.onInputSent(favoritos);
-
-                    Intent intent = new Intent(getContext(), FavoritosFragment.class);
-
-                    Bundle bundle = new Bundle();
-                    bundle.putParcelable("favoritos", oculos);
-                    intent.putExtras(bundle);
+                    StaticData.OculosData.addFavorito(oculos);
+                    Toast.makeText(getContext(), "Oculos adicionado aos favoritos.", Toast.LENGTH_SHORT).show();
                 }
             });
+        btnRemover = (ImageButton) view.findViewById(R.id.btnRemover);
+        btnRemover.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                StaticData.OculosData.removeFavorito(oculos);
+                Toast.makeText(getContext(), "Oculos removido dos favoritos.", Toast.LENGTH_SHORT).show();
+            }
+        });
 
 
     }
         return view;
     }
-    /*
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        if(context instanceof OculosFragmentListener){
-            listener = (OculosFragmentListener) context;
-        }else{
-            throw new RuntimeException(context.toString() + "must implement FragmentListener");
-        }
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        listener = null;
-    }
-    public void updateData(List<Oculos> novaLista){
-        favoritos.addAll(novaLista);
-    }
-
-     */
 
     public OculosFragment setOculos(Oculos oculos) {
         this.oculos = oculos;

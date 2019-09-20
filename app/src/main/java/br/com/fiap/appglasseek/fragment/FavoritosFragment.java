@@ -45,9 +45,9 @@ public class FavoritosFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
         //Intent intent = getActivity().getIntent();
-        if(favoritos != null) {
+        if(StaticData.OculosData.getFavoritosList() != null) {
 
-            OculosAdapter oculosAdapter = new OculosAdapter(favoritos, getContext(), getFragmentManager());
+            OculosAdapter oculosAdapter = new OculosAdapter(StaticData.OculosData.getFavoritosList(), getContext(), getFragmentManager());
             oculosAdapter.notifyDataSetChanged();
 
             recyclerView.setAdapter(oculosAdapter);
@@ -59,27 +59,5 @@ public class FavoritosFragment extends Fragment {
 
         return rootView;
     }
-    /*
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        if(context instanceof FavoritosFragmentListener){
-            listener = (FavoritosFragmentListener) context;
-        }else{
-            throw new RuntimeException(context.toString() + "must implement FragmentListener");
-        }
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        listener = null;
-    }
-
-
-    public void updateData(List<Oculos> novaLista){
-        favoritos.addAll(novaLista);
-    }
-
-     */
+    
 }

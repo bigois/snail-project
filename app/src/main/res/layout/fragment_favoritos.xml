@@ -10,28 +10,27 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <ScrollView
-            android:layout_width="409dp"
-            android:layout_height="627dp"
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rclFavoritos"
+            android:layout_width="406dp"
+            android:layout_height="382dp"
+            android:layout_marginTop="85dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.4"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.951">
+            app:layout_constraintVertical_bias="0.0" >
 
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/rclFavoritos"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-        </ScrollView>
+        </android.support.v7.widget.RecyclerView>
 
         <TextView
             android:id="@+id/noFavoritos"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="68dp"
+            android:layout_marginTop="150dp"
+            android:gravity="center"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
     </android.support.constraint.ConstraintLayout>

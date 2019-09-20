@@ -5,7 +5,7 @@ import android.os.Parcelable;
 
 import java.util.List;
 
-public class Oculos implements Parcelable {
+public class Oculos{
     private String codigo;
     private String marca;
     private String modelo;
@@ -70,52 +70,7 @@ public class Oculos implements Parcelable {
     public Oculos() {
     }
 
-    protected Oculos(Parcel in) {
-        codigo = in.readString();
-        marca = in.readString();
-        modelo = in.readString();
-        tipo = in.readString();
-        genero = in.readString();
-        cor = in.readString();
-        if (in.readByte() == 0) {
-            comprimento = null;
-        } else {
-            comprimento = in.readDouble();
-        }
-        if (in.readByte() == 0) {
-            largura = null;
-        } else {
-            largura = in.readDouble();
-        }
-        if (in.readByte() == 0) {
-            altura = null;
-        } else {
-            altura = in.readDouble();
-        }
-        if (in.readByte() == 0) {
-            preco = null;
-        } else {
-            preco = in.readDouble();
-        }
-        material = in.readString();
-        if (in.readByte() == 0) {
-            imagem = null;
-        } else {
-            imagem = in.readInt();
-        }
-    }
 
-    public static final Creator<Oculos> CREATOR = new Creator<Oculos>() {
-        @Override
-        public Oculos createFromParcel(Parcel in) {
-            return new Oculos(in);
-        }
-
-        @Override
-        public Oculos[] newArray(int size) {
-            return new Oculos[size];
-        }
-    };
 
     public String getCodigo() {
         return codigo;
@@ -221,49 +176,4 @@ public class Oculos implements Parcelable {
         this.imagens = imagens;
     }
 
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(codigo);
-        dest.writeString(marca);
-        dest.writeString(modelo);
-        dest.writeString(tipo);
-        dest.writeString(genero);
-        dest.writeString(cor);
-        if (comprimento == null) {
-            dest.writeByte((byte) 0);
-        } else {
-            dest.writeByte((byte) 1);
-            dest.writeDouble(comprimento);
-        }
-        if (largura == null) {
-            dest.writeByte((byte) 0);
-        } else {
-            dest.writeByte((byte) 1);
-            dest.writeDouble(largura);
-        }
-        if (altura == null) {
-            dest.writeByte((byte) 0);
-        } else {
-            dest.writeByte((byte) 1);
-            dest.writeDouble(altura);
-        }
-        if (preco == null) {
-            dest.writeByte((byte) 0);
-        } else {
-            dest.writeByte((byte) 1);
-            dest.writeDouble(preco);
-        }
-        dest.writeString(material);
-        if (imagem == null) {
-            dest.writeByte((byte) 0);
-        } else {
-            dest.writeByte((byte) 1);
-            dest.writeInt(imagem);
-        }
-    }
 }
