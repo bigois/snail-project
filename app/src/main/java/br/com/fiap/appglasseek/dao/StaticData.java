@@ -82,6 +82,7 @@ public class StaticData{
 
     public static class UserData {
         static Usuario usuario;
+        static List<Oculos> carrinhoList;
 
         public static Usuario getUsuario() {
             if (UserData.usuario == null) {
@@ -98,5 +99,37 @@ public class StaticData{
         public static void resetUsuario() {
             UserData.usuario = new Usuario();
         }
+
+        public static List<Oculos> getCarrinhoList() {
+            instanciarCarrinhoSeNull();
+            return carrinhoList;
+        }
+
+        public static void setCarrinhoList(List<Oculos> carrinhoList) {
+            UserData.carrinhoList = carrinhoList;
+        }
+
+        public static void addToCarrinhoList(Oculos oculos){
+            instanciarCarrinhoSeNull();
+            UserData.carrinhoList.add(oculos);
+        }
+
+        public static void removeFromCarrinhoList(Oculos oculos) {
+            if(carrinhoList!=null){
+                UserData.carrinhoList.remove(oculos);
+            }
+        }
+
+
+        public static void instanciarCarrinhoSeNull(){
+            if(carrinhoList==null){
+                UserData.carrinhoList = new ArrayList<Oculos>();
+            }
+        }
+
+
+
     }
+
+
 }

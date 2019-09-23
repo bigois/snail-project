@@ -1,22 +1,24 @@
 package br.com.fiap.appglasseek.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Carrinho {
-    private List<Oculos> oculos;
+    private List<Item> itens;
 
-    public Carrinho(List<Oculos> oculos) {
-        this.oculos = oculos;
-    }
 
     public Carrinho() {
     }
 
-    public List<Oculos> getOculos() {
-        return oculos;
+    public Carrinho(List<Item> itens) {
+        this.itens = itens;
     }
 
-    public void setOculos(List<Oculos> oculos) {
-        this.oculos = oculos;
+    public List<Item> getItens() {
+        return itens;
+    }
+
+    public void setItens(List<Item> itens) {
+        this.itens = itens;
     }
 }

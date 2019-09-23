@@ -52,6 +52,8 @@ public class OculosFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        getActivity().setTitle(oculos.getMarca() + " - " + oculos.getModelo());
+
         View view = inflater.inflate(R.layout.fragment_oculos, container, false);
 
         if (oculos != null){
@@ -100,8 +102,7 @@ public class OculosFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 UnityHolderActivity unityHolderActivity = new UnityHolderActivity();
-                unityHolderActivity.setOculos(txtModelo.getText().toString());
-
+                unityHolderActivity.setOculos(oculos.getCodigo());//txtModelo.getText().toString());
                 Intent intent = new Intent(getActivity(), unityHolderActivity.getClass());
 
                 startActivity(intent);

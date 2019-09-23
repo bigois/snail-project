@@ -2,7 +2,11 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/GlasseekAI/GlasseekAI.iml" filepath="$PROJECT_DIR$/GlasseekAI/GlasseekAI.iml" />
       <module fileurl="file://$PROJECT_DIR$/GlasseekAI-debug/GlasseekAI-debug.iml" filepath="$PROJECT_DIR$/GlasseekAI-debug/GlasseekAI-debug.iml" />
+      <module fileurl="file://$PROJECT_DIR$/GlasseekAI8/GlasseekAI8.iml" filepath="$PROJECT_DIR$/GlasseekAI8/GlasseekAI8.iml" />
+      <module fileurl="file://$PROJECT_DIR$/GlasseekAgoraVai/GlasseekAgoraVai.iml" filepath="$PROJECT_DIR$/GlasseekAgoraVai/GlasseekAgoraVai.iml" />
+      <module fileurl="file://$PROJECT_DIR$/GlasseekAugReal/GlasseekAugReal.iml" filepath="$PROJECT_DIR$/GlasseekAugReal/GlasseekAugReal.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/snail-project.iml" filepath="$PROJECT_DIR$/snail-project.iml" />
     </modules>
