@@ -66,7 +66,9 @@ public class MenuActivity extends AppCompatActivity
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        //DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+
+        getSupportFragmentManager().popBackStack();
 
         new AlertDialog.Builder(this)
                 .setMessage("Deseja realmente sair da aplicação?")

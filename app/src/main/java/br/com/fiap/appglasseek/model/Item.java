@@ -2,17 +2,23 @@ package br.com.fiap.appglasseek.model;
 
 public class Item {
     private Oculos oculos;
-    private Integer parcelas;
-    private Double custoEnvio;
-    private Double preco;
+    private Integer quantidade;
     private Double total;
 
-    public Item(Oculos oculos, Integer parcelas, Double custoEnvio, Double preco, Double total) {
+    private Integer parcelas;
+    private Double custoEnvio;
+
+    public Item(Oculos oculos, Integer parcelas, Double custoEnvio, Double total, Integer quantidade) {
         this.oculos = oculos;
         this.parcelas = parcelas;
         this.custoEnvio = custoEnvio;
-        this.preco = preco;
         this.total = total;
+        this.quantidade = quantidade;
+    }
+
+    public Item(Oculos oculos, Integer quantidade) {
+        this.oculos = oculos;
+        this.quantidade = quantidade;
     }
 
     public Item() {
@@ -42,19 +48,19 @@ public class Item {
         this.custoEnvio = custoEnvio;
     }
 
-    public Double getPreco() {
-        return preco;
-    }
-
-    public void setPreco(Double preco) {
-        this.preco = preco;
-    }
-
     public Double getTotal() {
         return total;
     }
 
     public void setTotal(Double total) {
         this.total = total;
+    }
+
+    public Integer getQuantidade() {
+        return quantidade;
+    }
+
+    public void setQuantidade(Integer quantidade) {
+        this.quantidade = quantidade;
     }
 }

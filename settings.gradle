@@ -1,1 +1,1 @@
-include ':app', ':GlasseekAI-debug'
+include ':app', ':GlasseekAI-debug', ':GlasseekAI', ':GlasseekAugReal', ':GlasseekAgoraVai', ':GlasseekAI8'

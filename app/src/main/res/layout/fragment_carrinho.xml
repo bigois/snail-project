@@ -1,155 +1,205 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/white"
-    tools:context="br.com.fiap.appglasseek.activity.MenuActivity">
+    tools:context=".fragment.FavoritosFragment">
 
-    <Button
-        android:id="@+id/proceedToPayment"
+
+    <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:background="@color/colorPrimary"
-        android:inputType="text"
-        android:text="Ir para o pagamento"
-        android:textColor="@android:color/white"
-        android:textSize="17sp" />
-
-    <LinearLayout
-        android:id="@+id/emptyCartLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:orientation="vertical"
-        android:visibility="gone">
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:src="@drawable/ic_carrinho" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:text="Your cart is empty!"
-            android:textSize="18sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:text="Add product in your cart now." />
-
-        <Button
-            android:id="@+id/continueShopping"
-            android:layout_width="150dp"
-            android:layout_height="45dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="20dp"
-            android:backgroundTint="@color/colorPrimary"
-            android:inputType="text"
-            android:text="Shop Now"
-            android:textColor="@android:color/white" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/loginLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:orientation="vertical"
-        android:visibility="gone">
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:src="@drawable/ic_perfil" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:text="Login First!"
-            android:textSize="18sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:text="Login first to view your cart" />
-
-        <Button
-            android:id="@+id/loginNow"
-            android:layout_width="200dp"
-            android:layout_height="45dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="20dp"
-            android:backgroundTint="@color/colorPrimary"
-            android:inputType="text"
-            android:text="Login Now"
-            android:textColor="@android:color/white" />
-
-        <TextView
-            android:id="@+id/txtSignUp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="New here? Sign Up"
-            android:textColor="@android:color/holo_blue_light"
-            android:textSize="17sp" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/verifyEmailLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:orientation="vertical"
-        android:visibility="gone">
-
-        <ImageView
-            android:layout_width="120dp"
-            android:layout_height="120dp"
-            android:layout_gravity="center_horizontal"
-            android:src="@drawable/ic_perfil" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="10dp"
-            android:text="Verification is pending."
-            android:textSize="18sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="10dp"
-            android:text="Please verify your email to view your cart." />
-
-        <Button
-            android:id="@+id/verfiyNow"
-            android:layout_width="200dp"
-            android:layout_height="45dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="10dp"
-            android:backgroundTint="@color/colorPrimary"
-            android:inputType="text"
-            android:text="Verify Now"
-            android:textColor="@android:color/white" />
-    </LinearLayout>
-
-    <android.support.v7.widget.RecyclerView
-        android:layout_width="match_parent"
-        android:layout_height="522dp"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/proceedToPayment"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
-</RelativeLayout>
+        android:layout_marginBottom="0dp"
+        android:layout_marginEnd="0dp"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="0dp">
+
+        <ScrollView
+            android:id="@+id/scrollView2"
+            android:layout_width="411dp"
+            android:layout_height="627dp"
+            android:layout_marginTop="56dp"
+            app:layout_constraintBottom_toTopOf="@+id/proceedToPayment"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rclCarrinho"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            </android.support.v7.widget.RecyclerView>
+        </ScrollView>
+
+        <Button
+            android:id="@+id/proceedToPayment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:background="@color/colorPrimary"
+            android:inputType="text"
+            android:text="Ir para o pagamento"
+            android:textColor="@android:color/white"
+            android:textSize="17sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+    </android.support.constraint.ConstraintLayout>
+
+</FrameLayout>
+
+
+
+
+    <!--<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--    xmlns:app="http://schemas.android.com/apk/res-auto"-->
+<!--    xmlns:tools="http://schemas.android.com/tools"-->
+<!--    android:layout_width="match_parent"-->
+<!--    android:layout_height="match_parent"-->
+<!--    android:background="@android:color/white"-->
+<!--    tools:context="br.com.fiap.appglasseek.activity.MenuActivity">-->
+
+
+
+<!--    <LinearLayout-->
+<!--        android:id="@+id/emptyCartLayout"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_centerInParent="true"-->
+<!--        android:orientation="vertical"-->
+<!--        android:visibility="gone">-->
+
+<!--        <ImageView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_gravity="center_horizontal"-->
+<!--            android:src="@drawable/ic_carrinho" />-->
+
+<!--        <TextView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_gravity="center_horizontal"-->
+<!--            android:text="Your cart is empty!"-->
+<!--            android:textSize="18sp"-->
+<!--            android:textStyle="bold" />-->
+
+<!--        <TextView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_gravity="center_horizontal"-->
+<!--            android:text="Add product in your cart now." />-->
+
+<!--        <Button-->
+<!--            android:id="@+id/continueShopping"-->
+<!--            android:layout_width="150dp"-->
+<!--            android:layout_height="45dp"-->
+<!--            android:layout_gravity="center"-->
+<!--            android:layout_marginTop="20dp"-->
+<!--            android:backgroundTint="@color/colorPrimary"-->
+<!--            android:inputType="text"-->
+<!--            android:text="Shop Now"-->
+<!--            android:textColor="@android:color/white" />-->
+<!--    </LinearLayout>-->
+
+<!--    <LinearLayout-->
+<!--        android:id="@+id/loginLayout"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_centerInParent="true"-->
+<!--        android:orientation="vertical"-->
+<!--        android:visibility="gone">-->
+
+<!--        <ImageView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_gravity="center_horizontal"-->
+<!--            android:src="@drawable/ic_perfil" />-->
+
+<!--        <TextView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_gravity="center_horizontal"-->
+<!--            android:text="Login First!"-->
+<!--            android:textSize="18sp"-->
+<!--            android:textStyle="bold" />-->
+
+<!--        <TextView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_gravity="center_horizontal"-->
+<!--            android:text="Login first to view your cart" />-->
+
+<!--        <Button-->
+<!--            android:id="@+id/loginNow"-->
+<!--            android:layout_width="200dp"-->
+<!--            android:layout_height="45dp"-->
+<!--            android:layout_gravity="center"-->
+<!--            android:layout_marginTop="20dp"-->
+<!--            android:backgroundTint="@color/colorPrimary"-->
+<!--            android:inputType="text"-->
+<!--            android:text="Login Now"-->
+<!--            android:textColor="@android:color/white" />-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/txtSignUp"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_gravity="center"-->
+<!--            android:text="New here? Sign Up"-->
+<!--            android:textColor="@android:color/holo_blue_light"-->
+<!--            android:textSize="17sp" />-->
+<!--    </LinearLayout>-->
+
+<!--    <LinearLayout-->
+<!--        android:id="@+id/verifyEmailLayout"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_centerInParent="true"-->
+<!--        android:orientation="vertical"-->
+<!--        android:visibility="gone">-->
+
+<!--        <ImageView-->
+<!--            android:layout_width="120dp"-->
+<!--            android:layout_height="120dp"-->
+<!--            android:layout_gravity="center_horizontal"-->
+<!--            android:src="@drawable/ic_perfil" />-->
+
+<!--        <TextView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_gravity="center_horizontal"-->
+<!--            android:layout_marginTop="10dp"-->
+<!--            android:text="Verification is pending."-->
+<!--            android:textSize="18sp"-->
+<!--            android:textStyle="bold" />-->
+
+<!--        <TextView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_gravity="center_horizontal"-->
+<!--            android:layout_marginTop="10dp"-->
+<!--            android:text="Please verify your email to view your cart." />-->
+
+<!--        <Button-->
+<!--            android:id="@+id/verfiyNow"-->
+<!--            android:layout_width="200dp"-->
+<!--            android:layout_height="45dp"-->
+<!--            android:layout_gravity="center"-->
+<!--            android:layout_marginTop="10dp"-->
+<!--            android:backgroundTint="@color/colorPrimary"-->
+<!--            android:inputType="text"-->
+<!--            android:text="Verify Now"-->
+<!--            android:textColor="@android:color/white" />-->
+<!--    </LinearLayout>-->
+
+
+
+<!--</RelativeLayout>-->

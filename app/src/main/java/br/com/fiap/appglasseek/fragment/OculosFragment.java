@@ -18,6 +18,7 @@ import java.text.DecimalFormat;
 import br.com.fiap.appglasseek.R;
 import br.com.fiap.appglasseek.activity.OculosActivity;
 import br.com.fiap.appglasseek.activity.UnityHolderActivity;
+import br.com.fiap.appglasseek.dao.StaticData;
 import br.com.fiap.appglasseek.model.Oculos;
 
 public class OculosFragment extends Fragment {
@@ -34,6 +35,7 @@ public class OculosFragment extends Fragment {
     private TextView txtMaterial;
     private CarouselView carouselView;
     private Button btnExperimentar;
+    private Button btnComprar;
 
 
     public OculosFragment() {
@@ -42,6 +44,8 @@ public class OculosFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        getActivity().setTitle(oculos.getMarca() + " - " + oculos.getModelo());
+
         View view = inflater.inflate(R.layout.fragment_oculos, container, false);
 
         if (oculos != null){
@@ -90,14 +94,31 @@ public class OculosFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 UnityHolderActivity unityHolderActivity = new UnityHolderActivity();
-                unityHolderActivity.setOculos(txtModelo.getText().toString());
-
+                unityHolderActivity.setOculos(oculos.getCodigo());//txtModelo.getText().toString());
                 Intent intent = new Intent(getActivity(), unityHolderActivity.getClass());
 
                 startActivity(intent);
             }
         });
 
+        btnComprar = (Button) view.findViewById(R.id.btnComprar);
+        btnComprar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+//                UnityHolderActivity unityHolderActivity = new UnityHolderActivity();
+//                unityHolderActivity.setOculos(oculos.getCodigo());//txtModelo.getText().toString());
+//                Intent intent = new Intent(getActivity(), unityHolderActivity.getClass());
+//
+//                startActivity(intent);
+
+                StaticData.UserData.addToCarrinhoList(oculos);
+
+                CarrinhoFragment carrinhoFragment = new CarrinhoFragment();
+
+                getActivity().getSupportFragmentManager().beginTransaction().replace(((ViewGroup)getView().getParent()).getId(),carrinhoFragment,"OculosFragment").addToBackStack(null).commit();
+
+            }
+        });
     }
 
 
