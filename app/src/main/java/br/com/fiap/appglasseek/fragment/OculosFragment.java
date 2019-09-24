@@ -21,7 +21,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.fiap.appglasseek.R;
-import br.com.fiap.appglasseek.activity.OculosActivity;
 import br.com.fiap.appglasseek.activity.UnityHolderActivity;
 import br.com.fiap.appglasseek.dao.StaticData;
 import br.com.fiap.appglasseek.model.Favorito;
@@ -121,8 +120,21 @@ public class OculosFragment extends Fragment {
         btnRemover.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 StaticData.OculosData.removeFavorito(oculos);
                 Toast.makeText(getContext(), "Oculos removido dos favoritos.", Toast.LENGTH_SHORT).show();
+
+
+                if(!StaticData.UserData.oculosExisteNoCarrinho(oculos)){
+                    Item item = new Item(oculos,1);
+                    StaticData.UserData.addToCarrinho(item);
+                }
+
+                CarrinhoFragment carrinhoFragment = new CarrinhoFragment();
+
+                getActivity().getSupportFragmentManager().beginTransaction().replace(((ViewGroup)getView().getParent()).getId(),carrinhoFragment,"OculosFragment").addToBackStack(null).commit();
+
+
             }
         });
 

@@ -8,8 +8,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.fiap.appglasseek.R;
+
 import br.com.fiap.appglasseek.fragment.FavoritosFragment;
 import br.com.fiap.appglasseek.fragment.OculosFragment;
+
+import br.com.fiap.appglasseek.model.Carrinho;
+import br.com.fiap.appglasseek.model.Item;
+
 import br.com.fiap.appglasseek.model.Oculos;
 import br.com.fiap.appglasseek.model.Usuario;
 
@@ -42,6 +47,7 @@ public class StaticData{
         public static void removeFavorito(Oculos oculos) {
             OculosData.favoritosList.remove(oculos);
         }
+
 
         public static List<Oculos> getOculosList() {
             if (OculosData.oculosList == null) {
@@ -82,7 +88,7 @@ public class StaticData{
 
     public static class UserData {
         static Usuario usuario;
-        static List<Oculos> carrinhoList;
+        static Carrinho carrinho;
 
         public static Usuario getUsuario() {
             if (UserData.usuario == null) {
@@ -100,32 +106,58 @@ public class StaticData{
             UserData.usuario = new Usuario();
         }
 
-        public static List<Oculos> getCarrinhoList() {
+        public static Carrinho getCarrinho() {
             instanciarCarrinhoSeNull();
-            return carrinhoList;
+            return carrinho;
         }
 
-        public static void setCarrinhoList(List<Oculos> carrinhoList) {
-            UserData.carrinhoList = carrinhoList;
+        public static void setCarrinho(Carrinho carrinho) {
+            UserData.carrinho = carrinho;
         }
-
-        public static void addToCarrinhoList(Oculos oculos){
-            instanciarCarrinhoSeNull();
-            UserData.carrinhoList.add(oculos);
-        }
-
-        public static void removeFromCarrinhoList(Oculos oculos) {
-            if(carrinhoList!=null){
-                UserData.carrinhoList.remove(oculos);
-            }
-        }
-
 
         public static void instanciarCarrinhoSeNull(){
-            if(carrinhoList==null){
-                UserData.carrinhoList = new ArrayList<Oculos>();
+            if(null==carrinho){
+                UserData.carrinho = new Carrinho();
             }
         }
+
+        public static void addToCarrinho(Item item){
+            instanciarCarrinhoSeNull();
+            UserData.carrinho.addItemToCarrinho(item);
+        }
+
+        public static void removeFromCarrinho(Item item){
+            if(carrinho!=null){
+                UserData.carrinho.getItens().remove(item);
+            }
+        }
+
+        public static boolean oculosExisteNoCarrinho(Oculos oculos){
+            instanciarCarrinhoSeNull();
+
+            for (Item item:carrinho.getItens()
+            ) {
+                if(oculos.equals(item.getOculos())){
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        public static Double valorTotalCarrinho(){
+            instanciarCarrinhoSeNull();
+            Double valorCarrinho=0.0;
+
+            for (Item item:carrinho.getItens()
+            ) {
+                valorCarrinho+= item.getQuantidade() * item.getOculos().getPreco();
+
+            }
+
+            return valorCarrinho;
+        }
+
 
 
 
