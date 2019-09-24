@@ -1,9 +1,7 @@
 package br.com.fiap.appglasseek.fragment;
 
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -12,12 +10,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
+
+import java.text.DecimalFormat;
 
 import br.com.fiap.appglasseek.R;
-import br.com.fiap.appglasseek.activity.MenuActivity;
 import br.com.fiap.appglasseek.adapter.CarrinhoAdapter;
 import br.com.fiap.appglasseek.dao.StaticData;
-import br.com.fiap.appglasseek.holder.CarrinhoOculosHolder;
 import br.com.fiap.appglasseek.model.Oculos;
 
 public class CarrinhoFragment extends Fragment {
@@ -30,6 +29,8 @@ public class CarrinhoFragment extends Fragment {
     private EditText txtQuantidade;
     private Integer quantidade;
     private Button btnIrParaPagamento;
+
+    private static TextView txtValorTotal;
 
 
     public CarrinhoFragment() {
@@ -44,51 +45,14 @@ public class CarrinhoFragment extends Fragment {
         RecyclerView carrinhoRecyclerView = (RecyclerView) rootView.findViewById(R.id.rclCarrinho);
         carrinhoRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-        final CarrinhoAdapter carrinhoAdapter = new CarrinhoAdapter(StaticData.UserData.getCarrinhoList(),getContext(),getFragmentManager());
+        final CarrinhoAdapter carrinhoAdapter = new CarrinhoAdapter(StaticData.UserData.getCarrinho(),getContext(),getFragmentManager());
         carrinhoAdapter.notifyDataSetChanged();
 
         carrinhoRecyclerView.setAdapter(carrinhoAdapter);
         carrinhoRecyclerView.setItemAnimator(new DefaultItemAnimator());
 
-
-
-//        btnMais = (Button) rootView.findViewById(R.id.btnIncreaseUnityBy1);
-//        btnMenos = (Button) rootView.findViewById(R.id.btnDecreaseUnityBy1);
-//        txtQuantidade = (EditText) rootView.findViewById(R.id.txtQuantidade);
-//        quantidade = 1;//Integer.parseInt(txtQuantidade.getText().toString());
-
-//        btnMais.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                quantidade++;
-//                txtQuantidade.setText(quantidade);
-//            }
-//        });
-//
-//        btnMenos.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                if (quantidade==1){
-//                    new AlertDialog.Builder(getContext())
-//                            .setMessage("Deseja realmente deletar este item do carrinho?")
-//                            .setCancelable(false)
-//                            .setPositiveButton("Sim", new DialogInterface.OnClickListener() {
-//                                public void onClick(DialogInterface dialog, int id) {
-//                                    StaticData.UserData.removeFromCarrinhoList(oculos);
-//                                }
-//                            })
-//                            .setNegativeButton("Não", null)
-//                            .show();
-//                }
-//                quantidade--;
-//                txtQuantidade.setText(quantidade);
-//            }
-//        });
-
-
-
-
-
+        txtValorTotal = rootView.findViewById(R.id.txtValorTotal);
+        txtValorTotal.setText(new DecimalFormat("R$ #,##0.00").format(StaticData.UserData.valorTotalCarrinho()));
 
 
         return rootView;

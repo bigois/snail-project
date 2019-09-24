@@ -16,9 +16,9 @@ import com.synnapps.carouselview.ImageListener;
 import java.text.DecimalFormat;
 
 import br.com.fiap.appglasseek.R;
-import br.com.fiap.appglasseek.activity.OculosActivity;
 import br.com.fiap.appglasseek.activity.UnityHolderActivity;
 import br.com.fiap.appglasseek.dao.StaticData;
+import br.com.fiap.appglasseek.model.Item;
 import br.com.fiap.appglasseek.model.Oculos;
 
 public class OculosFragment extends Fragment {
@@ -105,13 +105,11 @@ public class OculosFragment extends Fragment {
         btnComprar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                UnityHolderActivity unityHolderActivity = new UnityHolderActivity();
-//                unityHolderActivity.setOculos(oculos.getCodigo());//txtModelo.getText().toString());
-//                Intent intent = new Intent(getActivity(), unityHolderActivity.getClass());
-//
-//                startActivity(intent);
 
-                StaticData.UserData.addToCarrinhoList(oculos);
+                if(!StaticData.UserData.oculosExisteNoCarrinho(oculos)){
+                    Item item = new Item(oculos,1);
+                    StaticData.UserData.addToCarrinho(item);
+                }
 
                 CarrinhoFragment carrinhoFragment = new CarrinhoFragment();
 
