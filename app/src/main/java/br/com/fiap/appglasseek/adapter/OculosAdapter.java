@@ -40,13 +40,8 @@ public class OculosAdapter extends RecyclerView.Adapter<OculosHolder> {
         viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Toast.makeText(context, "Item " + oculosList.get(viewHolder.getAdapterPosition()).getCodigo() + " selecionado", Toast.LENGTH_SHORT).show();
-
                 Fragment fragment = new OculosFragment().setOculos(oculosList.get(viewHolder.getAdapterPosition()));
                 fragmentManager.beginTransaction().replace(R.id.fragment_container, fragment).commit();
-
-                // Intent intent = new Intent(context, LoginActivity.class);
-                // context.startActivity(intent);
             }
         });
 

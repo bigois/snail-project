@@ -11,6 +11,33 @@ public class StaticData {
     public static class OculosData {
         static List<Oculos> oculosList;
         static List<Integer> imageList;
+        static List<Oculos> favoritosList;
+
+        public static List<Oculos> getFavoritosList() {
+            if (favoritosList == null) {
+                OculosData.favoritosList = new ArrayList<Oculos>();
+
+            }
+            return OculosData.favoritosList;
+        }
+
+        public static void setFavoritosList(List<Oculos> favoritosList) {
+            OculosData.favoritosList = favoritosList;
+        }
+
+        public static void addFavorito(Oculos oculos) {
+            //TODO adicionar um else-if, contains e Toast para verificar se o item ja está na lista
+            if (favoritosList == null) {
+                OculosData.favoritosList = new ArrayList<Oculos>();
+                OculosData.favoritosList.add(oculos);
+            } else {
+                OculosData.favoritosList.add(oculos);
+            }
+        }
+
+        public static void removeFavorito(Oculos oculos) {
+            OculosData.favoritosList.remove(oculos);
+        }
 
         public static List<Oculos> getOculosList() {
             if (OculosData.oculosList == null) {
@@ -78,24 +105,23 @@ public class StaticData {
             UserData.carrinhoList = carrinhoList;
         }
 
-        public static void addToCarrinhoList(Oculos oculos){
+        public static void addToCarrinhoList(Oculos oculos) {
             instanciarCarrinhoSeNull();
             UserData.carrinhoList.add(oculos);
         }
 
         public static void removeFromCarrinhoList(Oculos oculos) {
-            if(carrinhoList!=null){
+            if (carrinhoList != null) {
                 UserData.carrinhoList.remove(oculos);
             }
         }
 
 
-        public static void instanciarCarrinhoSeNull(){
-            if(carrinhoList==null){
+        public static void instanciarCarrinhoSeNull() {
+            if (carrinhoList == null) {
                 UserData.carrinhoList = new ArrayList<Oculos>();
             }
         }
-
 
 
     }

@@ -57,13 +57,8 @@ public class CarrinhoAdapter extends RecyclerView.Adapter<CarrinhoOculosHolder> 
         viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Toast.makeText(context, "Item " + oculosList.get(viewHolder.getAdapterPosition()).getCodigo() + " selecionado", Toast.LENGTH_SHORT).show();
-
                 Fragment fragment = new OculosFragment().setOculos(oculosList.get(viewHolder.getAdapterPosition()));
                 fragmentManager.beginTransaction().replace(R.id.fragment_container, fragment).commit();
-
-                // Intent intent = new Intent(context, LoginActivity.class);
-                // context.startActivity(intent);
             }
         });
 
@@ -78,7 +73,7 @@ public class CarrinhoAdapter extends RecyclerView.Adapter<CarrinhoOculosHolder> 
         btnMenos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (intQuantidade==1){
+                if (intQuantidade == 1) {
                     new AlertDialog.Builder(view.getContext())
                             .setMessage("Deseja realmente deletar este item do carrinho?")
                             .setCancelable(false)
@@ -86,12 +81,12 @@ public class CarrinhoAdapter extends RecyclerView.Adapter<CarrinhoOculosHolder> 
                                 public void onClick(DialogInterface dialog, int id) {
                                     StaticData.UserData.removeFromCarrinhoList(oculosList.get(viewHolder.getAdapterPosition()));
                                 }
-                            })
-                            .setNegativeButton("Não", null)
+                            }).setNegativeButton("Não", null)
                             .show();
+
                     notifyDataSetChanged();
                     notify();
-                }else{
+                } else {
                     intQuantidade = Integer.parseInt(quantidade.getText().toString()) - 1;
                     quantidade.setText(intQuantidade.toString());
                 }
@@ -104,8 +99,7 @@ public class CarrinhoAdapter extends RecyclerView.Adapter<CarrinhoOculosHolder> 
 
     @Override
     public void onBindViewHolder(@NonNull CarrinhoOculosHolder carrinhoOculosHolder, int position) {
-
-        if (oculosList != null && oculosList.size() > 0){
+        if (oculosList != null && oculosList.size() > 0) {
             Oculos oculos = oculosList.get(position);
 
             Locale.setDefault(new Locale("pt", "BR"));
@@ -116,14 +110,13 @@ public class CarrinhoAdapter extends RecyclerView.Adapter<CarrinhoOculosHolder> 
             carrinhoOculosHolder.imagem.setImageResource(oculos.getImagem());
             carrinhoOculosHolder.quantidade.setText("1");
         }
-
     }
 
     @Override
     public int getItemCount() {
-        if(oculosList!=null) {
+        if (oculosList != null) {
             return oculosList.size();
-        }else {
+        } else {
             return 0;
         }
     }

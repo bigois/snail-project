@@ -1,11 +1,9 @@
 package br.com.fiap.appglasseek.model;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Carrinho {
     private List<Item> itens;
-
 
     public Carrinho() {
     }

@@ -17,6 +17,7 @@ public class Oculos {
     private Integer imagem;
     private List<Integer> imagens;
 
+
     public Oculos(String codigo, String marca, String modelo, String tipo, String genero, String cor, Double comprimento, Double largura, Double altura, Double preco, String material, Integer imagem, List<Integer> imagens) {
         this.codigo = codigo;
         this.marca = marca;

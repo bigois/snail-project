@@ -38,15 +38,6 @@ public class MenuActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        /*
-        userName = (TextView) findViewById(R.id.userName);
-        userName.setText("Seja bem vindo, " +usuario.getNome() + " " + usuario.getSobrenome() + "!");
-
-        userEmail = (TextView) findViewById(R.id.userEmail);
-        userEmail.setText(usuario.getEmail());
-        
-         */
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -66,8 +57,6 @@ public class MenuActivity extends AppCompatActivity
 
     @Override
     public void onBackPressed() {
-        //DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-
         getSupportFragmentManager().popBackStack();
 
         new AlertDialog.Builder(this)

@@ -1,9 +1,7 @@
 package br.com.fiap.appglasseek.fragment;
 
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -14,14 +12,11 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import br.com.fiap.appglasseek.R;
-import br.com.fiap.appglasseek.activity.MenuActivity;
 import br.com.fiap.appglasseek.adapter.CarrinhoAdapter;
 import br.com.fiap.appglasseek.dao.StaticData;
-import br.com.fiap.appglasseek.holder.CarrinhoOculosHolder;
 import br.com.fiap.appglasseek.model.Oculos;
 
 public class CarrinhoFragment extends Fragment {
-
     private static final String TAG = "CarrinhoFragment";
 
     private static Oculos oculos;
@@ -31,12 +26,11 @@ public class CarrinhoFragment extends Fragment {
     private Integer quantidade;
     private Button btnIrParaPagamento;
 
-
     public CarrinhoFragment() {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         getActivity().setTitle("Carrinho");
 
         View rootView = inflater.inflate(R.layout.fragment_carrinho, container, false);
@@ -44,12 +38,11 @@ public class CarrinhoFragment extends Fragment {
         RecyclerView carrinhoRecyclerView = (RecyclerView) rootView.findViewById(R.id.rclCarrinho);
         carrinhoRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-        final CarrinhoAdapter carrinhoAdapter = new CarrinhoAdapter(StaticData.UserData.getCarrinhoList(),getContext(),getFragmentManager());
+        final CarrinhoAdapter carrinhoAdapter = new CarrinhoAdapter(StaticData.UserData.getCarrinhoList(), getContext(), getFragmentManager());
         carrinhoAdapter.notifyDataSetChanged();
 
         carrinhoRecyclerView.setAdapter(carrinhoAdapter);
         carrinhoRecyclerView.setItemAnimator(new DefaultItemAnimator());
-
 
 
 //        btnMais = (Button) rootView.findViewById(R.id.btnIncreaseUnityBy1);
@@ -84,11 +77,6 @@ public class CarrinhoFragment extends Fragment {
 //                txtQuantidade.setText(quantidade);
 //            }
 //        });
-
-
-
-
-
 
 
         return rootView;

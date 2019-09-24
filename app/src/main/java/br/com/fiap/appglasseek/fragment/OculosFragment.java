@@ -7,8 +7,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.synnapps.carouselview.CarouselView;
 import com.synnapps.carouselview.ImageListener;
@@ -16,7 +18,6 @@ import com.synnapps.carouselview.ImageListener;
 import java.text.DecimalFormat;
 
 import br.com.fiap.appglasseek.R;
-import br.com.fiap.appglasseek.activity.OculosActivity;
 import br.com.fiap.appglasseek.activity.UnityHolderActivity;
 import br.com.fiap.appglasseek.dao.StaticData;
 import br.com.fiap.appglasseek.model.Oculos;
@@ -36,9 +37,13 @@ public class OculosFragment extends Fragment {
     private CarouselView carouselView;
     private Button btnExperimentar;
     private Button btnComprar;
+    private ImageButton btnFavorito;
+    private ImageButton btnRemover;
 
+    public OculosFragment setOculos(Oculos oculos) {
+        this.oculos = oculos;
 
-    public OculosFragment() {
+        return this;
     }
 
     @Override
@@ -48,87 +53,88 @@ public class OculosFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_oculos, container, false);
 
-        if (oculos != null){
+        if (oculos != null) {
+            txtMarca = view.findViewById(R.id.txtMarca);
+            txtMarca.setText(oculos.getMarca());
 
-        txtMarca = view.findViewById(R.id.txtMarca);
-        txtMarca.setText(oculos.getMarca());
+            txtModelo = view.findViewById(R.id.txtModelo);
+            txtModelo.setText(oculos.getModelo());
 
-        txtModelo = view.findViewById(R.id.txtModelo);
-        txtModelo.setText(oculos.getModelo());
+            txtTipo = view.findViewById(R.id.txtTipo);
+            txtTipo.setText(oculos.getTipo());
 
-        txtTipo = view.findViewById(R.id.txtTipo);
-        txtTipo.setText(oculos.getTipo());
+            txtGenero = view.findViewById(R.id.txtGenero);
+            txtGenero.setText(oculos.getGenero());
 
-        txtGenero = view.findViewById(R.id.txtGenero);
-        txtGenero.setText(oculos.getGenero());
+            txtCor = view.findViewById(R.id.txtCor);
+            txtCor.setText(oculos.getCor());
 
-        txtCor = view.findViewById(R.id.txtCor);
-        txtCor.setText(oculos.getCor());
+            txtComprimento = view.findViewById(R.id.txtComprimento);
+            txtComprimento.setText(new DecimalFormat("#,##0.00").format(oculos.getComprimento()));
 
-        txtComprimento = view.findViewById(R.id.txtComprimento);
-        txtComprimento.setText(new DecimalFormat("#,##0.00").format(oculos.getComprimento()));
+            txtLargura = view.findViewById(R.id.txtLargura);
+            txtLargura.setText(new DecimalFormat("#,##0.00").format(oculos.getLargura()));
 
-        txtLargura = view.findViewById(R.id.txtLargura);
-        txtLargura.setText(new DecimalFormat("#,##0.00").format(oculos.getLargura()));
+            txtAltura = view.findViewById(R.id.txtAltura);
+            txtAltura.setText(new DecimalFormat("#,##0.00").format(oculos.getAltura()));
 
-        txtAltura = view.findViewById(R.id.txtAltura);
-        txtAltura.setText(new DecimalFormat("#,##0.00").format(oculos.getAltura()));
+            txtPreco = view.findViewById(R.id.txtPreco);
+            txtPreco.setText(new DecimalFormat("#,##0.00").format(oculos.getPreco()));
 
-        txtPreco = view.findViewById(R.id.txtPreco);
-        txtPreco.setText(new DecimalFormat("#,##0.00").format(oculos.getPreco()));
+            txtMaterial = view.findViewById(R.id.txtMaterial);
+            txtMaterial.setText(oculos.getMaterial());
 
-        txtMaterial = view.findViewById(R.id.txtMaterial);
-        txtMaterial.setText(oculos.getMaterial());
+            carouselView = view.findViewById(R.id.carouselView);
+            carouselView.setPageCount(oculos.getImagens().size());
+            carouselView.setImageListener(new ImageListener() {
+                @Override
+                public void setImageForPosition(int position, ImageView imageView) {
+                    imageView.setImageResource(oculos.getImagens().get(position));
+                }
+            });
 
-        carouselView = view.findViewById(R.id.carouselView);
-        carouselView.setPageCount(oculos.getImagens().size());
-        carouselView.setImageListener(new ImageListener() {
-            @Override
-            public void setImageForPosition(int position, ImageView imageView) {
-                imageView.setImageResource(oculos.getImagens().get(position));
-            }
-        });
+            btnExperimentar = (Button) view.findViewById(R.id.btnExperimentar);
+            btnExperimentar.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    UnityHolderActivity unityHolderActivity = new UnityHolderActivity();
+                    unityHolderActivity.setOculos(oculos.getCodigo());//txtModelo.getText().toString());
 
-        btnExperimentar = (Button) view.findViewById(R.id.btnExperimentar);
-        btnExperimentar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                UnityHolderActivity unityHolderActivity = new UnityHolderActivity();
-                unityHolderActivity.setOculos(oculos.getCodigo());//txtModelo.getText().toString());
-                Intent intent = new Intent(getActivity(), unityHolderActivity.getClass());
+                    Intent intent = new Intent(getActivity(), unityHolderActivity.getClass());
+                    startActivity(intent);
+                }
+            });
 
-                startActivity(intent);
-            }
-        });
+            btnComprar = (Button) view.findViewById(R.id.btnComprar);
+            btnComprar.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    StaticData.UserData.addToCarrinhoList(oculos);
+                    CarrinhoFragment carrinhoFragment = new CarrinhoFragment();
 
-        btnComprar = (Button) view.findViewById(R.id.btnComprar);
-        btnComprar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-//                UnityHolderActivity unityHolderActivity = new UnityHolderActivity();
-//                unityHolderActivity.setOculos(oculos.getCodigo());//txtModelo.getText().toString());
-//                Intent intent = new Intent(getActivity(), unityHolderActivity.getClass());
-//
-//                startActivity(intent);
+                    getActivity().getSupportFragmentManager().beginTransaction().replace(((ViewGroup) getView().getParent()).getId(), carrinhoFragment, "OculosFragment").addToBackStack(null).commit();
+                }
+            });
 
-                StaticData.UserData.addToCarrinhoList(oculos);
+            btnFavorito = (ImageButton) view.findViewById(R.id.btnFavorito);
+            btnFavorito.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    StaticData.OculosData.addFavorito(oculos);
+                    Toast.makeText(getContext(), "Oculos adicionado aos favoritos.", Toast.LENGTH_SHORT).show();
+                }
+            });
 
-                CarrinhoFragment carrinhoFragment = new CarrinhoFragment();
-
-                getActivity().getSupportFragmentManager().beginTransaction().replace(((ViewGroup)getView().getParent()).getId(),carrinhoFragment,"OculosFragment").addToBackStack(null).commit();
-
-            }
-        });
-    }
-
+            btnRemover = (ImageButton) view.findViewById(R.id.btnRemover);
+            btnRemover.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    StaticData.OculosData.removeFavorito(oculos);
+                    Toast.makeText(getContext(), "Oculos removido dos favoritos.", Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
 
         return view;
     }
-
-    public OculosFragment setOculos(Oculos oculos) {
-        this.oculos = oculos;
-
-        return this;
-    }
-
 }
