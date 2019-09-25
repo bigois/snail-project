@@ -12,6 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Design.NoActionBar"
         tools:replace="android:label,android:icon,android:theme">
+        <activity android:name=".activity.ActivityCartao" />
         <activity android:name=".activity.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -24,6 +24,7 @@ import br.com.fiap.appglasseek.R;
 import br.com.fiap.appglasseek.activity.UnityHolderActivity;
 import br.com.fiap.appglasseek.dao.StaticData;
 import br.com.fiap.appglasseek.model.Favorito;
+import br.com.fiap.appglasseek.model.Item;
 import br.com.fiap.appglasseek.model.Oculos;
 
 public class OculosFragment extends Fragment {
