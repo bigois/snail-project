@@ -21,19 +21,18 @@ public class FavoritosFragment extends Fragment {
     private TextView noFavoritos;
     private List<Oculos> favoritos;
     private FavoritosFragmentListener listener;
-    public FavoritosFragment() {
-    }
+
+    public FavoritosFragment() {}
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         getActivity().setTitle("Favoritos");
-
         View rootView = inflater.inflate(R.layout.fragment_favoritos, container, false);
 
         noFavoritos = rootView.findViewById(R.id.noFavoritos);
 
-        RecyclerView recyclerView = (RecyclerView) rootView.findViewById(R.id.rclFavoritos);
+        RecyclerView recyclerView = rootView.findViewById(R.id.rclFavoritos);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
         if (StaticData.OculosData.getFavoritosList() != null) {

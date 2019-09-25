@@ -39,8 +39,7 @@ public class Usuario {
         this.carrinho = carrinho;
     }
 
-    public Usuario() {
-    }
+    public Usuario() {}
 
     public String getCpf() {
         return cpf;

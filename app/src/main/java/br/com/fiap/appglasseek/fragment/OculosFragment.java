@@ -7,10 +7,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.synnapps.carouselview.CarouselView;
 import com.synnapps.carouselview.ImageListener;
@@ -20,6 +18,7 @@ import java.text.DecimalFormat;
 import br.com.fiap.appglasseek.R;
 import br.com.fiap.appglasseek.activity.UnityHolderActivity;
 import br.com.fiap.appglasseek.dao.StaticData;
+import br.com.fiap.appglasseek.model.Item;
 import br.com.fiap.appglasseek.model.Oculos;
 
 public class OculosFragment extends Fragment {
@@ -37,12 +36,9 @@ public class OculosFragment extends Fragment {
     private CarouselView carouselView;
     private Button btnExperimentar;
     private Button btnComprar;
-    private ImageButton btnFavorito;
-    private ImageButton btnRemover;
 
     public OculosFragment setOculos(Oculos oculos) {
-        this.oculos = oculos;
-
+        OculosFragment.oculos = oculos;
         return this;
     }
 
@@ -50,7 +46,6 @@ public class OculosFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         getActivity().setTitle(oculos.getMarca() + " - " + oculos.getModelo());
-
         View view = inflater.inflate(R.layout.fragment_oculos, container, false);
 
         if (oculos != null) {
@@ -93,44 +88,29 @@ public class OculosFragment extends Fragment {
                 }
             });
 
-            btnExperimentar = (Button) view.findViewById(R.id.btnExperimentar);
+            btnExperimentar = view.findViewById(R.id.btnExperimentar);
             btnExperimentar.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     UnityHolderActivity unityHolderActivity = new UnityHolderActivity();
-                    unityHolderActivity.setOculos(oculos.getCodigo());//txtModelo.getText().toString());
+                    unityHolderActivity.setOculos(oculos.getCodigo());
 
                     Intent intent = new Intent(getActivity(), unityHolderActivity.getClass());
                     startActivity(intent);
                 }
             });
 
-            btnComprar = (Button) view.findViewById(R.id.btnComprar);
+            btnComprar = view.findViewById(R.id.btnComprar);
             btnComprar.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    StaticData.UserData.addToCarrinhoList(oculos);
+                    if (!StaticData.UserData.oculosExisteNoCarrinho(oculos)) {
+                        Item item = new Item(oculos, 1);
+                        StaticData.UserData.addToCarrinho(item);
+                    }
+
                     CarrinhoFragment carrinhoFragment = new CarrinhoFragment();
-
                     getActivity().getSupportFragmentManager().beginTransaction().replace(((ViewGroup) getView().getParent()).getId(), carrinhoFragment, "OculosFragment").addToBackStack(null).commit();
-                }
-            });
-
-            btnFavorito = (ImageButton) view.findViewById(R.id.btnFavorito);
-            btnFavorito.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    StaticData.OculosData.addFavorito(oculos);
-                    Toast.makeText(getContext(), "Oculos adicionado aos favoritos.", Toast.LENGTH_SHORT).show();
-                }
-            });
-
-            btnRemover = (ImageButton) view.findViewById(R.id.btnRemover);
-            btnRemover.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    StaticData.OculosData.removeFavorito(oculos);
-                    Toast.makeText(getContext(), "Oculos removido dos favoritos.", Toast.LENGTH_SHORT).show();
                 }
             });
         }

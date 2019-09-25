@@ -30,6 +30,6 @@ public class UnityHolderActivity extends UnityPlayerActivity {
     }
 
     public void setOculos(String oculos) {
-        this.oculos = oculos;
+        UnityHolderActivity.oculos = oculos;
     }
 }

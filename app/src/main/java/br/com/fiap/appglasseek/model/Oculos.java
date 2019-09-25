@@ -63,8 +63,7 @@ public class Oculos {
         this.material = material;
     }
 
-    public Oculos() {
-    }
+    public Oculos() {}
 
     public String getCodigo() {
         return codigo;
