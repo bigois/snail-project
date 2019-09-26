@@ -105,7 +105,6 @@
             app:layout_constraintTop_toBottomOf="@+id/txtNome" />
 
         <ImageView
-            android:id="@+id/imageView3"
             android:layout_width="157dp"
             android:layout_height="182dp"
             android:src="@drawable/logoo"
@@ -114,7 +113,6 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/textView4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="192dp"
@@ -127,7 +125,6 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/textView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"

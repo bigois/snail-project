@@ -1,11 +1,8 @@
 package br.com.fiap.appglasseek.model;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-
 import java.util.List;
 
-public class Oculos{
+public class Oculos {
     private String codigo;
     private String marca;
     private String modelo;
@@ -19,7 +16,6 @@ public class Oculos{
     private String material;
     private Integer imagem;
     private List<Integer> imagens;
-
 
 
     public Oculos(String codigo, String marca, String modelo, String tipo, String genero, String cor, Double comprimento, Double largura, Double altura, Double preco, String material, Integer imagem, List<Integer> imagens) {
@@ -67,10 +63,7 @@ public class Oculos{
         this.material = material;
     }
 
-    public Oculos() {
-    }
-
-
+    public Oculos() {}
 
     public String getCodigo() {
         return codigo;
@@ -175,5 +168,4 @@ public class Oculos{
     public void setImagens(List<Integer> imagens) {
         this.imagens = imagens;
     }
-
 }

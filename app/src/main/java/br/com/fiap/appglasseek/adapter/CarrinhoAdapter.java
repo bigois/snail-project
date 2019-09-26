@@ -23,10 +23,8 @@ import br.com.fiap.appglasseek.model.Oculos;
 
 public class CarrinhoAdapter extends RecyclerView.Adapter<CarrinhoOculosHolder> {
     private Carrinho carrinho;
-
     private Context context;
     private FragmentManager fragmentManager;
-
     private Button btnMais;
     private Button btnMenos;
     private EditText quantidade;
@@ -35,7 +33,6 @@ public class CarrinhoAdapter extends RecyclerView.Adapter<CarrinhoOculosHolder> 
 
     public CarrinhoAdapter(Carrinho carrinho, Context context, FragmentManager fragmentManager) {
         this.carrinho = carrinho;
-        //this.oculosList = oculosList;
         this.context = context;
         this.fragmentManager = fragmentManager;
     }
@@ -59,13 +56,11 @@ public class CarrinhoAdapter extends RecyclerView.Adapter<CarrinhoOculosHolder> 
 
     @Override
     public void onBindViewHolder(@NonNull final CarrinhoOculosHolder carrinhoOculosHolder, final int position) {
-
-        if (carrinho.getItens() != null && carrinho.getItens().size() > 0){
+        if (carrinho.getItens() != null && carrinho.getItens().size() > 0) {
             Oculos oculos = carrinho.getItens().get(position).getOculos();
 
             Locale.setDefault(new Locale("pt", "BR"));
 
-            //carrinhoOculosHolder.marca.setText();
             carrinhoOculosHolder.modelo.setText(oculos.getMarca() + " - " + oculos.getModelo());
             carrinhoOculosHolder.preco.setText(new DecimalFormat("R$ #,##0.00").format(oculos.getPreco()));
             carrinhoOculosHolder.imagem.setImageResource(oculos.getImagem());
@@ -75,7 +70,6 @@ public class CarrinhoAdapter extends RecyclerView.Adapter<CarrinhoOculosHolder> 
             btnMais.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-
                     intQuantidade = 1 + Integer.parseInt(carrinhoOculosHolder.quantidade.getText().toString());
                     quantidade.setText(intQuantidade.toString());
 
@@ -87,22 +81,22 @@ public class CarrinhoAdapter extends RecyclerView.Adapter<CarrinhoOculosHolder> 
             btnMenos.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    if (Integer.parseInt(carrinhoOculosHolder.quantidade.getText().toString())==1){
+                    if (Integer.parseInt(carrinhoOculosHolder.quantidade.getText().toString()) == 1) {
                         new AlertDialog.Builder(view.getContext())
                                 .setMessage("Deseja realmente deletar este item do carrinho?")
                                 .setCancelable(false)
                                 .setPositiveButton("Sim", new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int id) {
                                         StaticData.UserData.removeFromCarrinho(carrinho.getItens().get(position));
-                                        //.removeFromCarrinhoList(oculosList.get(viewHolder.getAdapterPosition()));
                                         notifyDataSetChanged();
                                     }
                                 })
                                 .setNegativeButton("Não", null)
                                 .show();
-                    }else{
+                    } else {
                         intQuantidade = Integer.parseInt(carrinhoOculosHolder.quantidade.getText().toString()) - 1;
                         quantidade.setText(intQuantidade.toString());
+
                         StaticData.UserData.getCarrinho().getItens().get(position).setQuantidade(Integer.parseInt(quantidade.getText().toString()));
                         notifyDataSetChanged();
                     }
@@ -110,14 +104,13 @@ public class CarrinhoAdapter extends RecyclerView.Adapter<CarrinhoOculosHolder> 
                 }
             });
         }
-
     }
 
     @Override
     public int getItemCount() {
-        if(carrinho.getItens()!=null) {
+        if (carrinho.getItens() != null) {
             return carrinho.getItens().size();
-        }else {
+        } else {
             return 0;
         }
     }

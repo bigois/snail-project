@@ -10,16 +10,12 @@ public class LoginService {
         return preferences.getBoolean("logged", false);
     }
 
-    // TODO CONITNUAR NESSA JOÇA!
     public static void logIn(Context context, String email) {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = preferences.edit();
 
         editor.putBoolean("logged", true);
         editor.putString("email", email);
-
-        // TODO REQUISIÇÃO SÍNCRONA PARA RETORNO DOS DADOS
-
         editor.commit();
     }
 
@@ -35,7 +31,6 @@ public class LoginService {
     public static Boolean authUser(String email, String senha) {
         Boolean success = false;
 
-        // TODO VALIDAR NO WS
         if (email.equals("teste@teste") && senha.equals("senha")) {
             success = true;
         }

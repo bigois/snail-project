@@ -22,8 +22,9 @@ import br.com.fiap.appglasseek.dao.StaticData;
 import br.com.fiap.appglasseek.model.Oculos;
 
 public class CarrinhoFragment extends Fragment {
-
     private static final String TAG = "CarrinhoFragment";
+
+    private static TextView txtValorTotal;
 
     private static Oculos oculos;
     private Button btnMais;
@@ -32,29 +33,26 @@ public class CarrinhoFragment extends Fragment {
     private Integer quantidade;
     private Button btnIrParaPagamento;
 
-    private static TextView txtValorTotal;
-
-
-    public CarrinhoFragment() {
-    }
+    public CarrinhoFragment() {}
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         getActivity().setTitle("Carrinho");
 
         View rootView = inflater.inflate(R.layout.fragment_carrinho, container, false);
 
-        RecyclerView carrinhoRecyclerView = (RecyclerView) rootView.findViewById(R.id.rclCarrinho);
+        RecyclerView carrinhoRecyclerView = rootView.findViewById(R.id.rclCarrinho);
         carrinhoRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-        final CarrinhoAdapter carrinhoAdapter = new CarrinhoAdapter(StaticData.UserData.getCarrinho(),getContext(),getFragmentManager());
-        carrinhoAdapter.notifyDataSetChanged();
+        final CarrinhoAdapter carrinhoAdapter = new CarrinhoAdapter(StaticData.UserData.getCarrinho(), getContext(), getFragmentManager());
 
+        carrinhoAdapter.notifyDataSetChanged();
         carrinhoRecyclerView.setAdapter(carrinhoAdapter);
         carrinhoRecyclerView.setItemAnimator(new DefaultItemAnimator());
 
         txtValorTotal = rootView.findViewById(R.id.txtValorTotal);
         txtValorTotal.setText(new DecimalFormat("R$ #,##0.00").format(StaticData.UserData.valorTotalCarrinho()));
+
 
         btnIrParaPagamento = rootView.findViewById(R.id.proceedToPayment);
         btnIrParaPagamento.setOnClickListener(new View.OnClickListener() {
@@ -63,10 +61,11 @@ public class CarrinhoFragment extends Fragment {
                 CartaoFragment cartaoFragment = new CartaoFragment();
                 FragmentManager manager = getFragmentManager();
                 manager.beginTransaction()
-                        .replace(R.id.c, cartaoFragment, cartaoFragment.getTag())
+                        .replace(R.id.cartaoConstr, cartaoFragment, cartaoFragment.getTag())
                         .commit();
             }
         });
+
 
 
         return rootView;
@@ -74,8 +73,7 @@ public class CarrinhoFragment extends Fragment {
 
 
     public CarrinhoFragment setOculos(Oculos oculos) {
-        this.oculos = oculos;
-
+        CarrinhoFragment.oculos = oculos;
         return this;
     }
 }

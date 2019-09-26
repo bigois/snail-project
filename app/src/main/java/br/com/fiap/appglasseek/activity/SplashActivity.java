@@ -24,7 +24,6 @@ public class SplashActivity extends AppCompatActivity {
                 startActivity(intent);
                 finish();
 
-                // TODO REMOVER
                 LoginService.logOut(SplashActivity.this.getApplicationContext());
             }
         }, 2000);

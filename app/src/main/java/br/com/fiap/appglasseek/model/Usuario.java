@@ -16,7 +16,6 @@ public class Usuario {
     private Carrinho carrinho;
     private List<Compra> compras;
 
-
     public Usuario(String cpf, String nome, String sobrenome, String email, String telefone, String senha) {
         this.cpf = cpf;
         this.nome = nome;
@@ -40,8 +39,7 @@ public class Usuario {
         this.carrinho = carrinho;
     }
 
-    public Usuario() {
-    }
+    public Usuario() {}
 
     public String getCpf() {
         return cpf;

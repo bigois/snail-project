@@ -28,30 +28,27 @@ public class RegistrarActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registrar);
 
-        txtNome = (EditText) findViewById(R.id.txtNome);
-        txtEndereco = (EditText) findViewById(R.id.txtEndereco);
-        txtCpf = (EditText) findViewById(R.id.txtCpf);
-        txtTelefone = (EditText) findViewById(R.id.txtTelefone);
-        txtSobrenome = (EditText) findViewById(R.id.txtSobrenome);
-        txtEmail = (EditText) findViewById(R.id.txtEmail);
-        txtSenha = (EditText) findViewById(R.id.txtSenha);
-        btnCadastrar = (Button) findViewById(R.id.btnCadastrar);
-        btnVoltar = (Button) findViewById(R.id.btnVoltar);
+        txtNome = findViewById(R.id.txtNome);
+        txtEndereco = findViewById(R.id.txtEndereco);
+        txtCpf = findViewById(R.id.txtCpf);
+        txtTelefone = findViewById(R.id.txtTelefone);
+        txtSobrenome = findViewById(R.id.txtSobrenome);
+        txtEmail = findViewById(R.id.txtEmail);
+        txtSenha = findViewById(R.id.txtSenha);
+        btnCadastrar = findViewById(R.id.btnCadastrar);
+        btnVoltar = findViewById(R.id.btnVoltar);
 
         btnCadastrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // TODO REALIZAR CADASTRO
-
                 usuario = new Usuario(txtCpf.getText().toString(), txtNome.getText().toString(), txtSobrenome.getText().toString(), txtEmail.getText().toString(), txtTelefone.getText().toString(), txtSenha.getText().toString());
-
-
                 Toast.makeText(RegistrarActivity.this, "Cadastro feito com sucesso!", Toast.LENGTH_SHORT).show();
 
                 Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
                 startActivity(intent);
             }
         });
+
         btnVoltar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -1,49 +1,38 @@
 package br.com.fiap.appglasseek.dao;
 
-import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
-import android.widget.Toast;
-
 import java.util.ArrayList;
 import java.util.List;
 
 import br.com.fiap.appglasseek.R;
-
-import br.com.fiap.appglasseek.fragment.FavoritosFragment;
-import br.com.fiap.appglasseek.fragment.OculosFragment;
-
 import br.com.fiap.appglasseek.model.Carrinho;
 import br.com.fiap.appglasseek.model.Item;
-
 import br.com.fiap.appglasseek.model.Oculos;
 import br.com.fiap.appglasseek.model.Usuario;
 
-public class StaticData{
+public class StaticData {
     public static class OculosData {
         static List<Oculos> oculosList;
         static List<Integer> imageList;
         static List<Oculos> favoritosList;
 
         public static List<Oculos> getFavoritosList() {
-            if(favoritosList == null){
-                OculosData.favoritosList = new ArrayList<Oculos>();
-
-            }
+            if (favoritosList == null) OculosData.favoritosList = new ArrayList<Oculos>();
             return OculosData.favoritosList;
         }
 
         public static void setFavoritosList(List<Oculos> favoritosList) {
             OculosData.favoritosList = favoritosList;
         }
+
         public static void addFavorito(Oculos oculos) {
-            //TODO adicionar um else-if, contains e Toast para verificar se o item ja está na lista
-            if(favoritosList == null) {
+            if (favoritosList == null) {
                 OculosData.favoritosList = new ArrayList<Oculos>();
                 OculosData.favoritosList.add(oculos);
-            }else{
+            } else {
                 OculosData.favoritosList.add(oculos);
             }
         }
+
         public static void removeFavorito(Oculos oculos) {
             OculosData.favoritosList.remove(oculos);
         }
@@ -91,10 +80,7 @@ public class StaticData{
         static Carrinho carrinho;
 
         public static Usuario getUsuario() {
-            if (UserData.usuario == null) {
-                UserData.usuario = new Usuario();
-            }
-
+            if (UserData.usuario == null) UserData.usuario = new Usuario();
             return UserData.usuario;
         }
 
@@ -115,53 +101,38 @@ public class StaticData{
             UserData.carrinho = carrinho;
         }
 
-        public static void instanciarCarrinhoSeNull(){
-            if(null==carrinho){
-                UserData.carrinho = new Carrinho();
-            }
+        public static void instanciarCarrinhoSeNull() {
+            if (null == carrinho) UserData.carrinho = new Carrinho();
         }
 
-        public static void addToCarrinho(Item item){
+        public static void addToCarrinho(Item item) {
             instanciarCarrinhoSeNull();
             UserData.carrinho.addItemToCarrinho(item);
         }
 
-        public static void removeFromCarrinho(Item item){
-            if(carrinho!=null){
-                UserData.carrinho.getItens().remove(item);
-            }
+        public static void removeFromCarrinho(Item item) {
+            if (carrinho != null) UserData.carrinho.getItens().remove(item);
         }
 
-        public static boolean oculosExisteNoCarrinho(Oculos oculos){
+        public static boolean oculosExisteNoCarrinho(Oculos oculos) {
             instanciarCarrinhoSeNull();
 
-            for (Item item:carrinho.getItens()
-            ) {
-                if(oculos.equals(item.getOculos())){
-                    return true;
-                }
+            for (Item item : carrinho.getItens()) {
+                if (oculos.equals(item.getOculos())) return true;
             }
 
             return false;
         }
 
-        public static Double valorTotalCarrinho(){
+        public static Double valorTotalCarrinho() {
             instanciarCarrinhoSeNull();
-            Double valorCarrinho=0.0;
+            Double valorCarrinho = 0.0;
 
-            for (Item item:carrinho.getItens()
-            ) {
-                valorCarrinho+= item.getQuantidade() * item.getOculos().getPreco();
-
+            for (Item item : carrinho.getItens()) {
+                valorCarrinho += item.getQuantidade() * item.getOculos().getPreco();
             }
 
             return valorCarrinho;
         }
-
-
-
-
     }
-
-
 }

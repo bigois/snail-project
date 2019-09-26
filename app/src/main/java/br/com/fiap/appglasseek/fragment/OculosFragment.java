@@ -1,6 +1,5 @@
 package br.com.fiap.appglasseek.fragment;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -17,13 +16,9 @@ import com.synnapps.carouselview.CarouselView;
 import com.synnapps.carouselview.ImageListener;
 
 import java.text.DecimalFormat;
-import java.util.ArrayList;
-import java.util.List;
-
 import br.com.fiap.appglasseek.R;
 import br.com.fiap.appglasseek.activity.UnityHolderActivity;
 import br.com.fiap.appglasseek.dao.StaticData;
-import br.com.fiap.appglasseek.model.Favorito;
 import br.com.fiap.appglasseek.model.Item;
 import br.com.fiap.appglasseek.model.Oculos;
 
@@ -41,113 +36,106 @@ public class OculosFragment extends Fragment {
     private TextView txtMaterial;
     private CarouselView carouselView;
     private Button btnExperimentar;
-    private ImageButton btnFavorito;
-    private ImageButton btnRemover;
+    private Button btnComprar;
+    private ImageButton btnFavorito, btnRemover;
 
-
-
-    public OculosFragment() {
+    public OculosFragment setOculos(Oculos oculos) {
+        OculosFragment.oculos = oculos;
+        return this;
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         getActivity().setTitle(oculos.getMarca() + " - " + oculos.getModelo());
-
         View view = inflater.inflate(R.layout.fragment_oculos, container, false);
 
-        if (oculos != null){
+        if (oculos != null) {
+            txtMarca = view.findViewById(R.id.txtMarca);
+            txtMarca.setText(oculos.getMarca());
 
-        txtMarca = view.findViewById(R.id.txtMarca);
-        txtMarca.setText(oculos.getMarca());
+            txtModelo = view.findViewById(R.id.txtModelo);
+            txtModelo.setText(oculos.getModelo());
 
-        txtModelo = view.findViewById(R.id.txtModelo);
-        txtModelo.setText(oculos.getModelo());
+            txtTipo = view.findViewById(R.id.txtTipo);
+            txtTipo.setText(oculos.getTipo());
 
-        txtTipo = view.findViewById(R.id.txtTipo);
-        txtTipo.setText(oculos.getTipo());
+            txtGenero = view.findViewById(R.id.txtGenero);
+            txtGenero.setText(oculos.getGenero());
 
-        txtGenero = view.findViewById(R.id.txtGenero);
-        txtGenero.setText(oculos.getGenero());
+            txtCor = view.findViewById(R.id.txtCor);
+            txtCor.setText(oculos.getCor());
 
-        txtCor = view.findViewById(R.id.txtCor);
-        txtCor.setText(oculos.getCor());
+            txtComprimento = view.findViewById(R.id.txtComprimento);
+            txtComprimento.setText(new DecimalFormat("#,##0.00").format(oculos.getComprimento()));
 
-        txtComprimento = view.findViewById(R.id.txtComprimento);
-        txtComprimento.setText(new DecimalFormat("#,##0.00").format(oculos.getComprimento()));
+            txtLargura = view.findViewById(R.id.txtLargura);
+            txtLargura.setText(new DecimalFormat("#,##0.00").format(oculos.getLargura()));
 
-        txtLargura = view.findViewById(R.id.txtLargura);
-        txtLargura.setText(new DecimalFormat("#,##0.00").format(oculos.getLargura()));
+            txtAltura = view.findViewById(R.id.txtAltura);
+            txtAltura.setText(new DecimalFormat("#,##0.00").format(oculos.getAltura()));
 
-        txtAltura = view.findViewById(R.id.txtAltura);
-        txtAltura.setText(new DecimalFormat("#,##0.00").format(oculos.getAltura()));
+            txtPreco = view.findViewById(R.id.txtPreco);
+            txtPreco.setText(new DecimalFormat("#,##0.00").format(oculos.getPreco()));
 
-        txtPreco = view.findViewById(R.id.txtPreco);
-        txtPreco.setText(new DecimalFormat("#,##0.00").format(oculos.getPreco()));
+            txtMaterial = view.findViewById(R.id.txtMaterial);
+            txtMaterial.setText(oculos.getMaterial());
 
-        txtMaterial = view.findViewById(R.id.txtMaterial);
-        txtMaterial.setText(oculos.getMaterial());
+            btnRemover = (ImageButton) view.findViewById(R.id.btnRemover);
+            btnFavorito = (ImageButton) view.findViewById(R.id.btnFavorito);
 
-        carouselView = view.findViewById(R.id.carouselView);
-        carouselView.setPageCount(oculos.getImagens().size());
-        carouselView.setImageListener(new ImageListener() {
-            @Override
-            public void setImageForPosition(int position, ImageView imageView) {
-                imageView.setImageResource(oculos.getImagens().get(position));
-            }
-        });
+            carouselView = view.findViewById(R.id.carouselView);
+            carouselView.setPageCount(oculos.getImagens().size());
+            carouselView.setImageListener(new ImageListener() {
+                @Override
+                public void setImageForPosition(int position, ImageView imageView) {
+                    imageView.setImageResource(oculos.getImagens().get(position));
+                }
+            });
 
-        btnExperimentar = (Button) view.findViewById(R.id.btnExperimentar);
-        btnExperimentar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                UnityHolderActivity unityHolderActivity = new UnityHolderActivity();
-                unityHolderActivity.setOculos(oculos.getCodigo());//txtModelo.getText().toString());
-                Intent intent = new Intent(getActivity(), unityHolderActivity.getClass());
-
-                startActivity(intent);
-            }
-        });
-
-        btnFavorito = (ImageButton) view.findViewById(R.id.btnFavorito);
-        btnFavorito.setOnClickListener(new View.OnClickListener() {
+            btnExperimentar = view.findViewById(R.id.btnExperimentar);
+            btnExperimentar.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    UnityHolderActivity unityHolderActivity = new UnityHolderActivity();
+                    unityHolderActivity.setOculos(oculos.getCodigo());
+
+                    Intent intent = new Intent(getActivity(), unityHolderActivity.getClass());
+                    startActivity(intent);
+                }
+            });
+
+            btnComprar = view.findViewById(R.id.btnComprar);
+            btnComprar.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (!StaticData.UserData.oculosExisteNoCarrinho(oculos)) {
+                        Item item = new Item(oculos, 1);
+                        StaticData.UserData.addToCarrinho(item);
+                    }
+
+                    CarrinhoFragment carrinhoFragment = new CarrinhoFragment();
+                    getActivity().getSupportFragmentManager().beginTransaction().replace(((ViewGroup) getView().getParent()).getId(), carrinhoFragment, "OculosFragment").addToBackStack(null).commit();
+                }
+            });
+
+            btnFavorito.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
                     StaticData.OculosData.addFavorito(oculos);
                     Toast.makeText(getContext(), "Oculos adicionado aos favoritos.", Toast.LENGTH_SHORT).show();
                 }
             });
-        btnRemover = (ImageButton) view.findViewById(R.id.btnRemover);
-        btnRemover.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                StaticData.OculosData.removeFavorito(oculos);
-                Toast.makeText(getContext(), "Oculos removido dos favoritos.", Toast.LENGTH_SHORT).show();
-
-
-                if(!StaticData.UserData.oculosExisteNoCarrinho(oculos)){
-                    Item item = new Item(oculos,1);
-                    StaticData.UserData.addToCarrinho(item);
+            btnRemover.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    StaticData.OculosData.removeFavorito(oculos);
+                    Toast.makeText(getContext(), "Oculos removido dos favoritos.", Toast.LENGTH_SHORT).show();
                 }
+            });
 
-                CarrinhoFragment carrinhoFragment = new CarrinhoFragment();
+        }
 
-                getActivity().getSupportFragmentManager().beginTransaction().replace(((ViewGroup)getView().getParent()).getId(),carrinhoFragment,"OculosFragment").addToBackStack(null).commit();
-
-
-            }
-        });
-
-
-    }
         return view;
     }
-
-    public OculosFragment setOculos(Oculos oculos) {
-        this.oculos = oculos;
-
-        return this;
-    }
-
 }

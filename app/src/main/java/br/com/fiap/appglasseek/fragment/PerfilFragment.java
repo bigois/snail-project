@@ -9,8 +9,7 @@ import android.view.ViewGroup;
 import br.com.fiap.appglasseek.R;
 
 public class PerfilFragment extends Fragment {
-    public PerfilFragment() {
-    }
+    public PerfilFragment() {}
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

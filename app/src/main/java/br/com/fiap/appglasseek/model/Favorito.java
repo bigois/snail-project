@@ -9,8 +9,7 @@ public class Favorito {
         this.oculos = oculos;
     }
 
-    public Favorito() {
-    }
+    public Favorito() {}
 
     public List<Oculos> getOculos() {
         return oculos;

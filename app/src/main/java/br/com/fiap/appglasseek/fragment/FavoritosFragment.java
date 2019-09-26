@@ -1,7 +1,5 @@
 package br.com.fiap.appglasseek.fragment;
 
-import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -17,47 +15,41 @@ import java.util.List;
 import br.com.fiap.appglasseek.R;
 import br.com.fiap.appglasseek.adapter.OculosAdapter;
 import br.com.fiap.appglasseek.dao.StaticData;
-import br.com.fiap.appglasseek.model.Favorito;
 import br.com.fiap.appglasseek.model.Oculos;
-import br.com.fiap.appglasseek.model.Usuario;
 
 public class FavoritosFragment extends Fragment {
-    public FavoritosFragment() {
-    }
     private TextView noFavoritos;
     private List<Oculos> favoritos;
     private FavoritosFragmentListener listener;
 
-    public interface FavoritosFragmentListener{
-        void onInputSentFav(List<Oculos> favList);
-    }
-
+    public FavoritosFragment() {}
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
-        View rootView = inflater.inflate(R.layout. fragment_favoritos, container, false);
+        getActivity().setTitle("Favoritos");
+        View rootView = inflater.inflate(R.layout.fragment_favoritos, container, false);
 
         noFavoritos = rootView.findViewById(R.id.noFavoritos);
 
-        RecyclerView recyclerView = (RecyclerView) rootView.findViewById(R.id.rclFavoritos);
+        RecyclerView recyclerView = rootView.findViewById(R.id.rclFavoritos);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-        //Intent intent = getActivity().getIntent();
-        if(StaticData.OculosData.getFavoritosList() != null) {
+        if (StaticData.OculosData.getFavoritosList() != null) {
 
             OculosAdapter oculosAdapter = new OculosAdapter(StaticData.OculosData.getFavoritosList(), getContext(), getFragmentManager());
             oculosAdapter.notifyDataSetChanged();
 
             recyclerView.setAdapter(oculosAdapter);
             recyclerView.setItemAnimator(new DefaultItemAnimator());
-        }else{
+        } else {
             noFavoritos.setText("Você não possui favoritos");
         }
 
-
         return rootView;
     }
-    
+
+    public interface FavoritosFragmentListener {
+        void onInputSentFav(List<Oculos> favList);
+    }
 }

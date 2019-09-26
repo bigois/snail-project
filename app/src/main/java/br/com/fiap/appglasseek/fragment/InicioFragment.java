@@ -14,14 +14,13 @@ import br.com.fiap.appglasseek.adapter.OculosAdapter;
 import br.com.fiap.appglasseek.dao.StaticData;
 
 public class InicioFragment extends Fragment {
-    public InicioFragment() {
-    }
+    public InicioFragment() {}
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_inicio, container, false);
 
-        RecyclerView recyclerView = (RecyclerView) rootView.findViewById(R.id.rclInicio);
+        RecyclerView recyclerView = rootView.findViewById(R.id.rclInicio);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
         OculosAdapter oculosAdapter = new OculosAdapter(StaticData.OculosData.getOculosList(), getContext(), getFragmentManager());

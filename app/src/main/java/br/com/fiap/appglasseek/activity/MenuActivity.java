@@ -35,25 +35,16 @@ public class MenuActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        /*
-        userName = (TextView) findViewById(R.id.userName);
-        userName.setText("Seja bem vindo, " +usuario.getNome() + " " + usuario.getSobrenome() + "!");
-
-        userEmail = (TextView) findViewById(R.id.userEmail);
-        userEmail.setText(usuario.getEmail());
-        
-         */
-
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
         if (savedInstanceState == null) {
@@ -66,8 +57,6 @@ public class MenuActivity extends AppCompatActivity
 
     @Override
     public void onBackPressed() {
-        //DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-
         getSupportFragmentManager().popBackStack();
 
         new AlertDialog.Builder(this)
@@ -120,7 +109,7 @@ public class MenuActivity extends AppCompatActivity
             startActivity(intent);
         }
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
 
         return true;
