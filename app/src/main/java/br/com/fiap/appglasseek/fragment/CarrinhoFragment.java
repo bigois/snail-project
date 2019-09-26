@@ -59,10 +59,7 @@ public class CarrinhoFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 CartaoFragment cartaoFragment = new CartaoFragment();
-                FragmentManager manager = getFragmentManager();
-                manager.beginTransaction()
-                        .replace(R.id.cartaoConstr, cartaoFragment, cartaoFragment.getTag())
-                        .commit();
+                getActivity().getSupportFragmentManager().beginTransaction().replace(((ViewGroup) getView().getParent()).getId(), cartaoFragment, "CartaoFragment").addToBackStack(null).commit();
             }
         });
 

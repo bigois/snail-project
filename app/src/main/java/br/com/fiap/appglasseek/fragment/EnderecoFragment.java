@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import br.com.fiap.appglasseek.R;
+import br.com.fiap.appglasseek.model.Carrinho;
 
 
 /**
@@ -16,6 +17,7 @@ import br.com.fiap.appglasseek.R;
  */
 public class EnderecoFragment extends Fragment {
     private Button btnConcluir;
+    private Carrinho carrinho;
 
 
     public EnderecoFragment() {
@@ -28,6 +30,13 @@ public class EnderecoFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_endereco, container, false);
+        btnConcluir = rootView.findViewById(R.id.btnConcluir);
+        btnConcluir.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                
+            }
+        });
         return rootView;
 
     }

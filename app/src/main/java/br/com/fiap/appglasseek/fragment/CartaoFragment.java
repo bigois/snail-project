@@ -36,10 +36,7 @@ public class CartaoFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 EnderecoFragment enderecoFragment = new EnderecoFragment();
-                FragmentManager manager = getFragmentManager();
-                manager.beginTransaction()
-                        .replace(R.id. enderecoConstr, enderecoFragment, enderecoFragment.getTag())
-                        .commit();
+                getActivity().getSupportFragmentManager().beginTransaction().replace(((ViewGroup) getView().getParent()).getId(), enderecoFragment, "EnderecoFragment").addToBackStack(null).commit();
             }
         });
         return rootView;
