@@ -23,6 +23,7 @@ public class CarrinhoFragment extends Fragment {
     private static final String TAG = "CarrinhoFragment";
 
     private static TextView txtValorTotal;
+    private static Button btnCheckout;
 
     private static Oculos oculos;
     private Button btnMais;
@@ -49,7 +50,18 @@ public class CarrinhoFragment extends Fragment {
         carrinhoRecyclerView.setItemAnimator(new DefaultItemAnimator());
 
         txtValorTotal = rootView.findViewById(R.id.txtValorTotal);
-        txtValorTotal.setText(new DecimalFormat("R$ #,##0.00").format(StaticData.UserData.valorTotalCarrinho()));
+        btnCheckout = rootView.findViewById(R.id.btnCheckout);
+
+        updateValorTotalNoFragment();
+
+        btnCheckout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            CarrinhoFragment carrinhoFragment = new CarrinhoFragment();
+            getActivity().getSupportFragmentManager().beginTransaction().replace(((ViewGroup) getView().getParent()).getId(), carrinhoFragment, "CarrinhoFragment").addToBackStack(null).commit();
+            }
+        });
 
         return rootView;
     }
@@ -59,4 +71,16 @@ public class CarrinhoFragment extends Fragment {
         CarrinhoFragment.oculos = oculos;
         return this;
     }
+
+    public static void updateValorTotalNoFragment(){
+        txtValorTotal.setText(new DecimalFormat("R$ #,##0.00").format(StaticData.UserData.valorTotalCarrinho()));
+
+        if(StaticData.UserData.valorTotalCarrinho()==Double.parseDouble("0")){
+            btnCheckout.setEnabled(false);
+        }else{
+            btnCheckout.setEnabled(true);
+        }
+    }
+
+
 }

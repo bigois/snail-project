@@ -3,6 +3,7 @@ package br.com.fiap.appglasseek.adapter;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.support.annotation.NonNull;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
@@ -17,9 +18,12 @@ import java.util.Locale;
 
 import br.com.fiap.appglasseek.R;
 import br.com.fiap.appglasseek.dao.StaticData;
+import br.com.fiap.appglasseek.fragment.OculosFragment;
 import br.com.fiap.appglasseek.holder.CarrinhoOculosHolder;
 import br.com.fiap.appglasseek.model.Carrinho;
 import br.com.fiap.appglasseek.model.Oculos;
+
+import static br.com.fiap.appglasseek.fragment.CarrinhoFragment.updateValorTotalNoFragment;
 
 public class CarrinhoAdapter extends RecyclerView.Adapter<CarrinhoOculosHolder> {
     private Carrinho carrinho;
@@ -51,6 +55,16 @@ public class CarrinhoAdapter extends RecyclerView.Adapter<CarrinhoOculosHolder> 
         txtQuantidade = quantidade.getEditableText().toString();
         intQuantidade = txtQuantidade.isEmpty() ? 1 : Integer.parseInt(txtQuantidade);
 
+
+        viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Fragment fragment = new OculosFragment().setOculos(StaticData.OculosData.getOculosList().get(viewHolder.getAdapterPosition()));
+                fragmentManager.beginTransaction().replace(R.id.fragment_container, fragment).addToBackStack(null).commit();
+            }
+        });
+
+
         return viewHolder;
     }
 
@@ -74,6 +88,7 @@ public class CarrinhoAdapter extends RecyclerView.Adapter<CarrinhoOculosHolder> 
                     quantidade.setText(intQuantidade.toString());
 
                     StaticData.UserData.getCarrinho().getItens().get(position).setQuantidade(Integer.parseInt(quantidade.getText().toString()));
+                    updateValorTotalNoFragment();
                     notifyDataSetChanged();
                 }
             });
@@ -88,6 +103,7 @@ public class CarrinhoAdapter extends RecyclerView.Adapter<CarrinhoOculosHolder> 
                                 .setPositiveButton("Sim", new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int id) {
                                         StaticData.UserData.removeFromCarrinho(carrinho.getItens().get(position));
+                                        updateValorTotalNoFragment();
                                         notifyDataSetChanged();
                                     }
                                 })
@@ -98,6 +114,7 @@ public class CarrinhoAdapter extends RecyclerView.Adapter<CarrinhoOculosHolder> 
                         quantidade.setText(intQuantidade.toString());
 
                         StaticData.UserData.getCarrinho().getItens().get(position).setQuantidade(Integer.parseInt(quantidade.getText().toString()));
+                        updateValorTotalNoFragment();
                         notifyDataSetChanged();
                     }
 
@@ -105,6 +122,8 @@ public class CarrinhoAdapter extends RecyclerView.Adapter<CarrinhoOculosHolder> 
             });
         }
     }
+
+
 
     @Override
     public int getItemCount() {
