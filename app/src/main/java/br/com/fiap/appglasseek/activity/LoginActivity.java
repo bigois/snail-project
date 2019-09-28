@@ -10,6 +10,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import br.com.fiap.appglasseek.R;
+import br.com.fiap.appglasseek.model.Usuario;
 import br.com.fiap.appglasseek.service.LoginUtility;
 import br.com.fiap.appglasseek.service.UserService;
 
@@ -54,7 +55,7 @@ public class LoginActivity extends AppCompatActivity {
                     Toast.makeText(LoginActivity.this, "Campos obrigatórios não preenchidos", Toast.LENGTH_SHORT).show();
                 } else {
                     UserService userService = new UserService(LoginActivity.this);
-                    userService.execute("VAI");
+                    userService.execute(email, senha);
                 }
             }
         });

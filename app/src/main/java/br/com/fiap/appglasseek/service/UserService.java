@@ -1,8 +1,11 @@
 package br.com.fiap.appglasseek.service;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
 import android.os.AsyncTask;
+import android.util.Log;
+import android.widget.Toast;
 
 import com.android.volley.toolbox.HttpResponse;
 import com.google.gson.Gson;
@@ -15,16 +18,25 @@ import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
+import java.io.PrintStream;
 import java.net.URL;
 import java.net.HttpURLConnection;
+import java.util.Scanner;
 
+import br.com.fiap.appglasseek.dao.StaticData;
+import br.com.fiap.appglasseek.model.Usuario;
 import cc.cloudist.acplibrary.ACProgressConstant;
 import cc.cloudist.acplibrary.ACProgressFlower;
+import okhttp3.MediaType;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
 import retrofit2.http.HTTP;
 
-public class UserService extends AsyncTask<String, Void, Void> {
+public class UserService extends AsyncTask<String, Void, Usuario> {
     static final String IP_ADDRESS = "192.168.1.139";
-    static final String URL = "https://" + IP_ADDRESS + ":6085/rest/00User";
+    static final String URL = "http://" + IP_ADDRESS + ":6085/rest/00User";
 
     private Context context;
     private ACProgressFlower dialog;
@@ -43,47 +55,54 @@ public class UserService extends AsyncTask<String, Void, Void> {
     }
 
     @Override
-    protected Void doInBackground(String... params) {
-        StringBuffer stringBuffer = new StringBuffer();
-        JsonObject response = new JsonObject();
+    protected Usuario doInBackground(String... params) {
+        JsonObject jsonObject;
+        Usuario usuario = new Usuario();
 
         try {
             URL url = new URL(URL + "/getUser");
 
-            JSONObject request = new JSONObject();
-            request.put("user", "79779558031");
-            request.put("password", "@bananadepija");
+            JSONObject jsonBody = new JSONObject();
+            jsonBody.put("user", params[0]);
+            jsonBody.put("password", params[1]);
 
-            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-            connection.setRequestProperty("Content-Type", "application/json");
-            connection.setRequestProperty("Accept", "application/json");
-            connection.setRequestMethod("POST");
+            OkHttpClient client = new OkHttpClient();
+            MediaType mediaType = MediaType.parse("application/json");
+            RequestBody body = RequestBody.create(mediaType, jsonBody.toString());
+            Request request = new Request.Builder()
+                    .url(URL)
+                    .post(body)
+                    .addHeader("Content-Type", "application/json")
+                    .build();
 
-            connection.setDoOutput(true);
-            try (OutputStream os = connection.getOutputStream()) {
-                byte[] input = request.toString().getBytes("utf-8");
-                os.write(input, 0, input.length);
-            }
+            Response response = client.newCall(request).execute();
+            jsonObject = new Gson().fromJson(response.body().string(), JsonObject.class);
 
-            InputStream stream = connection.getInputStream();
-
-            BufferedReader rd = new BufferedReader(new InputStreamReader(stream));
-            String line = "";
-            while ((line = rd.readLine()) != null) {
-                stringBuffer.append(line);
-            }
-
-            response = new Gson().fromJson(stringBuffer.toString(), JsonObject.class);
+            usuario.setStatus(jsonObject.get("status").getAsString());
+            usuario.setSenha(jsonObject.get("password").getAsString());
+            usuario.setTelefone(jsonObject.get("phone").getAsString());
+            usuario.setCpf(jsonObject.get("userId").getAsString());
+            usuario.setNome(jsonObject.get("name").getAsString());
+            usuario.setSobrenome(jsonObject.get("lastName").getAsString());
+            usuario.setEmail(jsonObject.get("email").getAsString());
         } catch (Exception e) {
-            // TODO:Handle exception
             e.printStackTrace();
         }
 
-        return null;
+        return usuario;
     }
 
     @Override
-    protected void onPostExecute(Void aVoid) {
+    protected void onPostExecute(Usuario usuario) {
         dialog.hide();
+
+        if (usuario.getEmail().isEmpty()) {
+            Toast.makeText(context, "Usuário ou senha inválido!", Toast.LENGTH_SHORT).show();
+        } else {
+            StaticData.UserData.setUsuario(usuario);
+            ((Activity) context).finish();
+        }
+
+
     }
 }
