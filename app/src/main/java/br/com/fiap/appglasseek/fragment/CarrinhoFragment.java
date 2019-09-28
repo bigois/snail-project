@@ -25,13 +25,14 @@ public class CarrinhoFragment extends Fragment {
     private static final String TAG = "CarrinhoFragment";
 
     private static TextView txtValorTotal;
+    private static Button btnCheckout;
 
     private static Oculos oculos;
     private Button btnMais;
     private Button btnMenos;
     private EditText txtQuantidade;
     private Integer quantidade;
-    private Button btnIrParaPagamento;
+    //private Button btnIrParaPagamento;
 
     public CarrinhoFragment() {}
 
@@ -51,17 +52,28 @@ public class CarrinhoFragment extends Fragment {
         carrinhoRecyclerView.setItemAnimator(new DefaultItemAnimator());
 
         txtValorTotal = rootView.findViewById(R.id.txtValorTotal);
-        txtValorTotal.setText(new DecimalFormat("R$ #,##0.00").format(StaticData.UserData.valorTotalCarrinho()));
+        btnCheckout = rootView.findViewById(R.id.btnCheckout);
 
+        updateValorTotalNoFragment();
 
-        btnIrParaPagamento = rootView.findViewById(R.id.proceedToPayment);
-        btnIrParaPagamento.setOnClickListener(new View.OnClickListener() {
+        btnCheckout.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                CartaoFragment cartaoFragment = new CartaoFragment();
-                getActivity().getSupportFragmentManager().beginTransaction().replace(((ViewGroup) getView().getParent()).getId(), cartaoFragment, "CartaoFragment").addToBackStack(null).commit();
+            public void onClick(View view) {
+
+            CarrinhoFragment carrinhoFragment = new CarrinhoFragment();
+            getActivity().getSupportFragmentManager().beginTransaction().replace(((ViewGroup) getView().getParent()).getId(), carrinhoFragment, "CarrinhoFragment").addToBackStack(null).commit();
             }
         });
+
+
+//        btnIrParaPagamento = rootView.findViewById(R.id.proceedToPayment);
+//        btnIrParaPagamento.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                CartaoFragment cartaoFragment = new CartaoFragment();
+//                getActivity().getSupportFragmentManager().beginTransaction().replace(((ViewGroup) getView().getParent()).getId(), cartaoFragment, "CartaoFragment").addToBackStack(null).commit();
+//            }
+//        });
 
 
 
@@ -73,4 +85,16 @@ public class CarrinhoFragment extends Fragment {
         CarrinhoFragment.oculos = oculos;
         return this;
     }
+
+    public static void updateValorTotalNoFragment(){
+        txtValorTotal.setText(new DecimalFormat("R$ #,##0.00").format(StaticData.UserData.valorTotalCarrinho()));
+
+        if(StaticData.UserData.valorTotalCarrinho()==Double.parseDouble("0")){
+            btnCheckout.setEnabled(false);
+        }else{
+            btnCheckout.setEnabled(true);
+        }
+    }
+
+
 }
