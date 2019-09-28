@@ -22,7 +22,7 @@ import br.com.fiap.appglasseek.fragment.FavoritosFragment;
 import br.com.fiap.appglasseek.fragment.InicioFragment;
 import br.com.fiap.appglasseek.fragment.PerfilFragment;
 import br.com.fiap.appglasseek.model.Usuario;
-import br.com.fiap.appglasseek.service.UsuarioService;
+import br.com.fiap.appglasseek.service.LoginUtility;
 
 public class MenuActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -86,7 +86,7 @@ public class MenuActivity extends AppCompatActivity
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new InicioFragment()).commit();
 
         } else if (id == R.id.nav_perfil) {
-            if (UsuarioService.isLogged(getApplicationContext())) {
+            if (LoginUtility.isLogged(getApplicationContext())) {
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new PerfilFragment()).commit();
             } else {
                 Intent intent = new Intent(MenuActivity.this, LoginActivity.class);

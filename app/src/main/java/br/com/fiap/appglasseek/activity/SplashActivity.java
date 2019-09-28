@@ -6,7 +6,7 @@ import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 
 import br.com.fiap.appglasseek.R;
-import br.com.fiap.appglasseek.service.UsuarioService;
+import br.com.fiap.appglasseek.service.LoginUtility;
 
 public class SplashActivity extends AppCompatActivity {
 
@@ -24,7 +24,7 @@ public class SplashActivity extends AppCompatActivity {
                 startActivity(intent);
                 finish();
 
-                UsuarioService.logOut(SplashActivity.this.getApplicationContext());
+                LoginUtility.logOut(SplashActivity.this.getApplicationContext());
             }
         }, 2000);
     }
