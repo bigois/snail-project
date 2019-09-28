@@ -13,6 +13,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import br.com.fiap.appglasseek.R;
 import br.com.fiap.appglasseek.fragment.AjudaFragment;
@@ -105,8 +106,9 @@ public class MenuActivity extends AppCompatActivity
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new AjudaFragment()).commit();
 
         } else if (id == R.id.nav_sair) {
-            Intent intent = new Intent(MenuActivity.this, LoginActivity.class);
-            startActivity(intent);
+            LoginUtility.logOut(getApplicationContext());
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new InicioFragment()).commit();
+            Toast.makeText(this, "Você foi desconectado!", Toast.LENGTH_SHORT).show();
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);

@@ -60,8 +60,6 @@ public class UserService extends AsyncTask<String, Void, Usuario> {
         Usuario usuario = new Usuario();
 
         try {
-            URL url = new URL(URL + "/getUser");
-
             JSONObject jsonBody = new JSONObject();
             jsonBody.put("user", params[0]);
             jsonBody.put("password", params[1]);
@@ -70,7 +68,7 @@ public class UserService extends AsyncTask<String, Void, Usuario> {
             MediaType mediaType = MediaType.parse("application/json");
             RequestBody body = RequestBody.create(mediaType, jsonBody.toString());
             Request request = new Request.Builder()
-                    .url(URL)
+                    .url(URL + "/getUser")
                     .post(body)
                     .addHeader("Content-Type", "application/json")
                     .build();
@@ -78,13 +76,15 @@ public class UserService extends AsyncTask<String, Void, Usuario> {
             Response response = client.newCall(request).execute();
             jsonObject = new Gson().fromJson(response.body().string(), JsonObject.class);
 
-            usuario.setStatus(jsonObject.get("status").getAsString());
-            usuario.setSenha(jsonObject.get("password").getAsString());
-            usuario.setTelefone(jsonObject.get("phone").getAsString());
-            usuario.setCpf(jsonObject.get("userId").getAsString());
-            usuario.setNome(jsonObject.get("name").getAsString());
-            usuario.setSobrenome(jsonObject.get("lastName").getAsString());
-            usuario.setEmail(jsonObject.get("email").getAsString());
+            if (response.isSuccessful()) {
+                usuario.setStatus(jsonObject.get("status").getAsString());
+                usuario.setSenha(jsonObject.get("password").getAsString());
+                usuario.setTelefone(jsonObject.get("phone").getAsString());
+                usuario.setCpf(jsonObject.get("userId").getAsString());
+                usuario.setNome(jsonObject.get("name").getAsString());
+                usuario.setSobrenome(jsonObject.get("lastName").getAsString());
+                usuario.setEmail(jsonObject.get("email").getAsString());
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -96,13 +96,12 @@ public class UserService extends AsyncTask<String, Void, Usuario> {
     protected void onPostExecute(Usuario usuario) {
         dialog.hide();
 
-        if (usuario.getEmail().isEmpty()) {
+        if (usuario.getCpf() == null) {
             Toast.makeText(context, "Usuário ou senha inválido!", Toast.LENGTH_SHORT).show();
         } else {
             StaticData.UserData.setUsuario(usuario);
+            LoginUtility.logIn(context, usuario.getEmail());
             ((Activity) context).finish();
         }
-
-
     }
 }
