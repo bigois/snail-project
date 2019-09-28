@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import br.com.fiap.appglasseek.R;
 import br.com.fiap.appglasseek.service.LoginUtility;
+import br.com.fiap.appglasseek.service.UserService;
 
 public class LoginActivity extends AppCompatActivity {
     private EditText txtUsuario;
@@ -52,13 +53,8 @@ public class LoginActivity extends AppCompatActivity {
                 if (!valid) {
                     Toast.makeText(LoginActivity.this, "Campos obrigatórios não preenchidos", Toast.LENGTH_SHORT).show();
                 } else {
-                    if (LoginUtility.authUser(email, senha)) {
-                        LoginUtility.logIn(LoginActivity.this.getApplicationContext(), email, senha);
-                        // Toast.makeText(LoginActivity.this, "Login realizado com sucesso", Toast.LENGTH_SHORT).show();
-                        // LoginActivity.this.finish();
-                    } else {
-                        Toast.makeText(LoginActivity.this, "Usuário ou senha inválido", Toast.LENGTH_SHORT).show();
-                    }
+                    UserService userService = new UserService(LoginActivity.this);
+                    userService.execute("VAI");
                 }
             }
         });
