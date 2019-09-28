@@ -32,7 +32,7 @@ public class CarrinhoFragment extends Fragment {
     private Button btnMenos;
     private EditText txtQuantidade;
     private Integer quantidade;
-    private Button btnIrParaPagamento;
+    //private Button btnIrParaPagamento;
 
     public CarrinhoFragment() {}
 
@@ -66,14 +66,14 @@ public class CarrinhoFragment extends Fragment {
         });
 
 
-        btnIrParaPagamento = rootView.findViewById(R.id.proceedToPayment);
-        btnIrParaPagamento.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                CartaoFragment cartaoFragment = new CartaoFragment();
-                getActivity().getSupportFragmentManager().beginTransaction().replace(((ViewGroup) getView().getParent()).getId(), cartaoFragment, "CartaoFragment").addToBackStack(null).commit();
-            }
-        });
+//        btnIrParaPagamento = rootView.findViewById(R.id.proceedToPayment);
+//        btnIrParaPagamento.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                CartaoFragment cartaoFragment = new CartaoFragment();
+//                getActivity().getSupportFragmentManager().beginTransaction().replace(((ViewGroup) getView().getParent()).getId(), cartaoFragment, "CartaoFragment").addToBackStack(null).commit();
+//            }
+//        });
 
 
 
