@@ -1,7 +1,9 @@
 package br.com.fiap.appglasseek.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -62,6 +64,18 @@ public class CarrinhoFragment extends Fragment {
             getActivity().getSupportFragmentManager().beginTransaction().replace(((ViewGroup) getView().getParent()).getId(), carrinhoFragment, "CarrinhoFragment").addToBackStack(null).commit();
             }
         });
+
+
+        btnIrParaPagamento = rootView.findViewById(R.id.proceedToPayment);
+        btnIrParaPagamento.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                CartaoFragment cartaoFragment = new CartaoFragment();
+                getActivity().getSupportFragmentManager().beginTransaction().replace(((ViewGroup) getView().getParent()).getId(), cartaoFragment, "CartaoFragment").addToBackStack(null).commit();
+            }
+        });
+
+
 
         return rootView;
     }

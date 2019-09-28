@@ -30,4 +30,8 @@ public class Carrinho {
         if (null == itens) itens = new ArrayList<Item>();
     }
 
+    public void limpaCarrinho(List<Item> item){
+        this.itens.removeAll(item);
+    }
+
 }

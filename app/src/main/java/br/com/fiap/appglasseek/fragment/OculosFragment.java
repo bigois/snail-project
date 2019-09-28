@@ -7,14 +7,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CompoundButton;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+import android.widget.ToggleButton;
 
 import com.synnapps.carouselview.CarouselView;
 import com.synnapps.carouselview.ImageListener;
 
 import java.text.DecimalFormat;
-
 import br.com.fiap.appglasseek.R;
 import br.com.fiap.appglasseek.activity.UnityHolderActivity;
 import br.com.fiap.appglasseek.dao.StaticData;
@@ -36,6 +39,7 @@ public class OculosFragment extends Fragment {
     private CarouselView carouselView;
     private Button btnExperimentar;
     private Button btnComprar;
+    private ToggleButton toggleButton;
 
     public OculosFragment setOculos(Oculos oculos) {
         OculosFragment.oculos = oculos;
@@ -79,6 +83,21 @@ public class OculosFragment extends Fragment {
             txtMaterial = view.findViewById(R.id.txtMaterial);
             txtMaterial.setText(oculos.getMaterial());
 
+            toggleButton = (ToggleButton) view.findViewById(R.id.toggleButton);
+
+            toggleButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    if(isChecked){
+                        StaticData.OculosData.addFavorito(oculos);
+                        Toast.makeText(getContext(), "Oculos adicionado aos favoritos.", Toast.LENGTH_SHORT).show();
+                    }else{
+                        StaticData.OculosData.removeFavorito(oculos);
+                        Toast.makeText(getContext(), "Oculos removido dos favoritos.", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+
             carouselView = view.findViewById(R.id.carouselView);
             carouselView.setPageCount(oculos.getImagens().size());
             carouselView.setImageListener(new ImageListener() {
@@ -113,6 +132,7 @@ public class OculosFragment extends Fragment {
                     getActivity().getSupportFragmentManager().beginTransaction().replace(((ViewGroup) getView().getParent()).getId(), carrinhoFragment, "OculosFragment").addToBackStack(null).commit();
                 }
             });
+
         }
 
         return view;
