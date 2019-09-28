@@ -5,9 +5,6 @@ import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
 public class LoginUtility {
-    static final String IP_ADDRESS = "192.168.1.139";
-    static final String URL = "http://" + IP_ADDRESS + ":6085/rest/00User";
-
     public static Boolean isLogged(Context context) {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
         return preferences.getBoolean("logged", false);
