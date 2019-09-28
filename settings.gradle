@@ -1,1 +1,1 @@
-include ':app', ':GlasseekAI-debug'
+include ':app', ':GlasseekAI-debug', ':AugmentedFace-2.0-debug'

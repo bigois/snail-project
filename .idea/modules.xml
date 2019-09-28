@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/AugmentedFace-2.0-debug/AugmentedFace-2.0-debug.iml" filepath="$PROJECT_DIR$/AugmentedFace-2.0-debug/AugmentedFace-2.0-debug.iml" />
       <module fileurl="file://$PROJECT_DIR$/GlasseekAI-debug/GlasseekAI-debug.iml" filepath="$PROJECT_DIR$/GlasseekAI-debug/GlasseekAI-debug.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/snail-project.iml" filepath="$PROJECT_DIR$/snail-project.iml" />
