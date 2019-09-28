@@ -35,9 +35,9 @@ public class FavoritosFragment extends Fragment {
         RecyclerView recyclerView = rootView.findViewById(R.id.rclFavoritos);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-        if (StaticData.OculosData.getFavoritosList() != null) {
+        if (StaticData.UserData.getFavoritosList() != null) {
 
-            OculosAdapter oculosAdapter = new OculosAdapter(StaticData.OculosData.getFavoritosList(), getContext(), getFragmentManager());
+            OculosAdapter oculosAdapter = new OculosAdapter(StaticData.UserData.getFavoritosList(), getContext(), getFragmentManager());
             oculosAdapter.notifyDataSetChanged();
 
             recyclerView.setAdapter(oculosAdapter);
