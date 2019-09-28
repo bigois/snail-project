@@ -4,7 +4,15 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
+import com.android.volley.Request;
+import com.android.volley.toolbox.JsonObjectRequest;
+
+import br.com.fiap.appglasseek.model.Usuario;
+
 public class UsuarioService {
+    static final String IP_ADDRESS = "192.168.1.139";
+    static final String URL = "http://" + IP_ADDRESS + ":6085/rest/00User";
+
     public static Boolean isLogged(Context context) {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
         return preferences.getBoolean("logged", false);
