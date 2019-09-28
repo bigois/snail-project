@@ -88,7 +88,7 @@ public class OculosFragment extends Fragment {
                 }
             });
 
-            btnExperimentar = view.findViewById(R.id.btnExperimentar);
+            btnExperimentar = (Button) view.findViewById(R.id.btnExperimentar);
             btnExperimentar.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
