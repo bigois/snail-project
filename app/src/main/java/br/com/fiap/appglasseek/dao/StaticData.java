@@ -13,29 +13,7 @@ public class StaticData {
     public static class OculosData {
         static List<Oculos> oculosList;
         static List<Integer> imageList;
-        static List<Oculos> favoritosList;
 
-        public static List<Oculos> getFavoritosList() {
-            if (favoritosList == null) OculosData.favoritosList = new ArrayList<Oculos>();
-            return OculosData.favoritosList;
-        }
-
-        public static void setFavoritosList(List<Oculos> favoritosList) {
-            OculosData.favoritosList = favoritosList;
-        }
-
-        public static void addFavorito(Oculos oculos) {
-            if (favoritosList == null) {
-                OculosData.favoritosList = new ArrayList<Oculos>();
-                OculosData.favoritosList.add(oculos);
-            } else {
-                OculosData.favoritosList.add(oculos);
-            }
-        }
-
-        public static void removeFavorito(Oculos oculos) {
-            OculosData.favoritosList.remove(oculos);
-        }
 
 
         public static List<Oculos> getOculosList() {
@@ -78,9 +56,32 @@ public class StaticData {
     public static class UserData {
         static Usuario usuario;
         static Carrinho carrinho;
+        static List<Oculos> favoritosList;
+
+        public static List<Oculos> getFavoritosList() {
+            instanciarFavoritosList();
+            return favoritosList;
+        }
+
+        public static void setFavoritosList(List<Oculos> favoritosList) {
+            UserData.favoritosList = favoritosList;
+        }
+
+        public static void addFavorito(Oculos oculos) {
+            instanciarFavoritosList();
+            UserData.favoritosList.add(oculos);
+        }
+
+        public static void removeFavorito(Oculos oculos) {
+            UserData.favoritosList.remove(oculos);
+        }
+
+        public static void instanciarFavoritosList(){
+            if (null == favoritosList) UserData.favoritosList = new ArrayList<Oculos>();
+        }
 
         public static Usuario getUsuario() {
-            if (UserData.usuario == null) UserData.usuario = new Usuario();
+            if (null == UserData.usuario) UserData.usuario = new Usuario();
             return UserData.usuario;
         }
 
