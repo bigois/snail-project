@@ -30,6 +30,9 @@ public class EnderecoFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_endereco, container, false);
+
+        getActivity().setTitle("Endereço");
+
         btnConcluir = rootView.findViewById(R.id.btnConcluir);
         btnConcluir.setOnClickListener(new View.OnClickListener() {
             @Override

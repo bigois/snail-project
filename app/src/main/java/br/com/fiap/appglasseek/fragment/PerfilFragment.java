@@ -7,6 +7,7 @@ import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 
 import br.com.fiap.appglasseek.R;
@@ -22,8 +23,8 @@ public class PerfilFragment extends Fragment {
     private EditText txtCpf;
     private EditText txtTelefone;
     private EditText txtSenha;
-    private EditText btnEnderecos;
-    private EditText btnDeletarUsuario;
+    private Button btnEnderecos;
+    private Button btnDeletarUsuario;
 
 
     @Override

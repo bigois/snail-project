@@ -25,6 +25,8 @@ import br.com.fiap.appglasseek.model.Item;
 import br.com.fiap.appglasseek.model.Oculos;
 
 public class OculosFragment extends Fragment {
+    public OculosFragment() {}
+
     private static Oculos oculos;
     private TextView txtMarca;
     private TextView txtModelo;
