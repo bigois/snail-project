@@ -13,7 +13,8 @@ public class Cartao {
         this.tipo = tipo;
     }
 
-    public Cartao() {}
+    public Cartao() {
+    }
 
     public String getNumero() {
         return numero;

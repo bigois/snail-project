@@ -22,7 +22,8 @@ public class FavoritosFragment extends Fragment {
     private List<Oculos> favoritos;
     private FavoritosFragmentListener listener;
 
-    public FavoritosFragment() {}
+    public FavoritosFragment() {
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

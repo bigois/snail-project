@@ -124,7 +124,6 @@ public class CarrinhoAdapter extends RecyclerView.Adapter<CarrinhoOculosHolder> 
     }
 
 
-
     @Override
     public int getItemCount() {
         if (carrinho.getItens() != null) {

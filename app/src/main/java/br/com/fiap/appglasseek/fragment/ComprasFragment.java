@@ -9,7 +9,8 @@ import android.view.ViewGroup;
 import br.com.fiap.appglasseek.R;
 
 public class ComprasFragment extends Fragment {
-    public ComprasFragment() {}
+    public ComprasFragment() {
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

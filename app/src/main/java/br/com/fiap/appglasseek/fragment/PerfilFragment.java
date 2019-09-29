@@ -11,11 +11,8 @@ import android.widget.EditText;
 
 import br.com.fiap.appglasseek.R;
 import br.com.fiap.appglasseek.dao.StaticData;
-import br.com.fiap.appglasseek.service.UserService;
 
 public class PerfilFragment extends Fragment {
-    public PerfilFragment() {}
-
     private EditText txtNome;
     private EditText txtSobrenome;
     private EditText txtEmail;
@@ -24,7 +21,8 @@ public class PerfilFragment extends Fragment {
     private EditText txtSenha;
     private EditText btnEnderecos;
     private EditText btnDeletarUsuario;
-
+    public PerfilFragment() {
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -74,7 +72,6 @@ public class PerfilFragment extends Fragment {
                         .show();
             }
         });
-
 
 
         return view;

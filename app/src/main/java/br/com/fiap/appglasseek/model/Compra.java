@@ -20,7 +20,8 @@ public class Compra {
         this.item = item;
     }
 
-    public Compra() {}
+    public Compra() {
+    }
 
     public Date getData() {
         return data;

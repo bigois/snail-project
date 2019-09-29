@@ -7,7 +7,6 @@ import android.support.v7.app.AppCompatActivity;
 import com.glasseek.Glasseek.UnityPlayerActivity;
 
 import br.com.fiap.appglasseek.R;
-import br.com.fiap.appglasseek.fragment.OculosFragment;
 
 public class UnityHolderActivity extends AppCompatActivity {
     static String oculos;

@@ -8,7 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CompoundButton;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -18,6 +17,7 @@ import com.synnapps.carouselview.CarouselView;
 import com.synnapps.carouselview.ImageListener;
 
 import java.text.DecimalFormat;
+
 import br.com.fiap.appglasseek.R;
 import br.com.fiap.appglasseek.activity.UnityHolderActivity;
 import br.com.fiap.appglasseek.dao.StaticData;
@@ -85,19 +85,19 @@ public class OculosFragment extends Fragment {
 
             toggleButton = (ToggleButton) view.findViewById(R.id.toggleButton);
 
-            if(StaticData.UserData.getFavoritosList().contains(oculos)){
+            if (StaticData.UserData.getFavoritosList().contains(oculos)) {
                 toggleButton.setChecked(true);
-            }else{
+            } else {
                 toggleButton.setChecked(false);
             }
 
             toggleButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                 @Override
                 public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                    if(isChecked){
+                    if (isChecked) {
                         StaticData.UserData.addFavorito(oculos);
                         Toast.makeText(getContext(), "Oculos adicionado aos favoritos.", Toast.LENGTH_SHORT).show();
-                    }else{
+                    } else {
                         StaticData.UserData.removeFavorito(oculos);
                         Toast.makeText(getContext(), "Oculos removido dos favoritos.", Toast.LENGTH_SHORT).show();
                     }

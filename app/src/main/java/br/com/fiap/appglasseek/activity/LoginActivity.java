@@ -10,8 +10,6 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import br.com.fiap.appglasseek.R;
-import br.com.fiap.appglasseek.model.Usuario;
-import br.com.fiap.appglasseek.service.LoginUtility;
 import br.com.fiap.appglasseek.service.UserService;
 
 public class LoginActivity extends AppCompatActivity {
