@@ -4,16 +4,14 @@ import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
 import android.os.AsyncTask;
-import android.util.Log;
 import android.widget.Toast;
 
-import com.android.volley.toolbox.HttpResponse;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
 
 import org.json.JSONObject;
 
+<<<<<<< HEAD
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -24,6 +22,8 @@ import java.net.HttpURLConnection;
 import java.util.Scanner;
 
 import br.com.fiap.appglasseek.R;
+=======
+>>>>>>> 51d972a94ea8fbd75c9fce771ad577386ccefb8e
 import br.com.fiap.appglasseek.dao.StaticData;
 import br.com.fiap.appglasseek.model.Usuario;
 import cc.cloudist.acplibrary.ACProgressConstant;
@@ -33,7 +33,6 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
-import retrofit2.http.HTTP;
 
 public class UserService extends AsyncTask<String, Void, Usuario> {
     static final String URL = "http://" + R.string.ip_address + ":6085/rest/00User";
