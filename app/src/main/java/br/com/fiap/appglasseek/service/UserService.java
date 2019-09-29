@@ -4,24 +4,12 @@ import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
 import android.os.AsyncTask;
-import android.util.Log;
 import android.widget.Toast;
 
-import com.android.volley.toolbox.HttpResponse;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
 
 import org.json.JSONObject;
-
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.io.PrintStream;
-import java.net.URL;
-import java.net.HttpURLConnection;
-import java.util.Scanner;
 
 import br.com.fiap.appglasseek.dao.StaticData;
 import br.com.fiap.appglasseek.model.Usuario;
@@ -32,7 +20,6 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
-import retrofit2.http.HTTP;
 
 public class UserService extends AsyncTask<String, Void, Usuario> {
     static final String IP_ADDRESS = "192.168.1.139";
@@ -61,7 +48,7 @@ public class UserService extends AsyncTask<String, Void, Usuario> {
 
         try {
             JSONObject jsonBody = new JSONObject();
-            jsonBody.put("user", params[0]);
+            jsonBody.put("email", params[0]);
             jsonBody.put("password", params[1]);
 
             OkHttpClient client = new OkHttpClient();

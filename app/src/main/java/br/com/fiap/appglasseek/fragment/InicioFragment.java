@@ -20,6 +20,8 @@ public class InicioFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_inicio, container, false);
 
+        getActivity().setTitle("Glasseek");
+
         RecyclerView recyclerView = rootView.findViewById(R.id.rclInicio);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
