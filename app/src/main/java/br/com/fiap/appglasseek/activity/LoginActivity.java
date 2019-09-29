@@ -54,7 +54,7 @@ public class LoginActivity extends AppCompatActivity {
                 if (!valid) {
                     Toast.makeText(LoginActivity.this, "Campos obrigatórios não preenchidos", Toast.LENGTH_SHORT).show();
                 } else {
-                    UserService userService = new UserService(LoginActivity.this);
+                    UserService userService = new UserService(LoginActivity.this, "GET");
                     userService.execute(email, senha);
                 }
             }

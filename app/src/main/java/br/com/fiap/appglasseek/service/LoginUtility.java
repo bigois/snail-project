@@ -27,14 +27,4 @@ public class LoginUtility {
         editor.remove("email");
         editor.commit();
     }
-
-    public static Boolean authUser(String email, String senha) {
-        Boolean success = false;
-
-        if (email.equals("teste@teste") && senha.equals("senha")) {
-            success = true;
-        }
-
-        return success;
-    }
 }

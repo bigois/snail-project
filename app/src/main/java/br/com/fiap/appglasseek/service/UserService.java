@@ -23,6 +23,7 @@ import java.net.URL;
 import java.net.HttpURLConnection;
 import java.util.Scanner;
 
+import br.com.fiap.appglasseek.R;
 import br.com.fiap.appglasseek.dao.StaticData;
 import br.com.fiap.appglasseek.model.Usuario;
 import cc.cloudist.acplibrary.ACProgressConstant;
@@ -35,14 +36,15 @@ import okhttp3.Response;
 import retrofit2.http.HTTP;
 
 public class UserService extends AsyncTask<String, Void, Usuario> {
-    static final String IP_ADDRESS = "192.168.1.139";
-    static final String URL = "http://" + IP_ADDRESS + ":6085/rest/00User";
+    static final String URL = "http://" + R.string.ip_address + ":6085/rest/00User";
+    static String operation;
 
     private Context context;
     private ACProgressFlower dialog;
 
-    public UserService(Context context) {
+    public UserService(Context context, String operation) {
         this.context = context;
+        this.operation = operation;
     }
 
     @Override
@@ -59,34 +61,40 @@ public class UserService extends AsyncTask<String, Void, Usuario> {
         JsonObject jsonObject;
         Usuario usuario = new Usuario();
 
-        try {
-            JSONObject jsonBody = new JSONObject();
-            jsonBody.put("user", params[0]);
-            jsonBody.put("password", params[1]);
+        if (operation.equals("GET")) {
+            try {
+                JSONObject jsonBody = new JSONObject();
+                jsonBody.put("user", params[0]);
+                jsonBody.put("password", params[1]);
 
-            OkHttpClient client = new OkHttpClient();
-            MediaType mediaType = MediaType.parse("application/json");
-            RequestBody body = RequestBody.create(mediaType, jsonBody.toString());
-            Request request = new Request.Builder()
-                    .url(URL + "/getUser")
-                    .post(body)
-                    .addHeader("Content-Type", "application/json")
-                    .build();
+                OkHttpClient client = new OkHttpClient();
+                MediaType mediaType = MediaType.parse("application/json");
+                RequestBody body = RequestBody.create(mediaType, jsonBody.toString());
+                Request request = new Request.Builder()
+                        .url(URL + "/getUser")
+                        .post(body)
+                        .addHeader("Content-Type", "application/json")
+                        .build();
 
-            Response response = client.newCall(request).execute();
-            jsonObject = new Gson().fromJson(response.body().string(), JsonObject.class);
+                Response response = client.newCall(request).execute();
+                jsonObject = new Gson().fromJson(response.body().string(), JsonObject.class);
 
-            if (response.isSuccessful()) {
-                usuario.setStatus(jsonObject.get("status").getAsString());
-                usuario.setSenha(jsonObject.get("password").getAsString());
-                usuario.setTelefone(jsonObject.get("phone").getAsString());
-                usuario.setCpf(jsonObject.get("userId").getAsString());
-                usuario.setNome(jsonObject.get("name").getAsString());
-                usuario.setSobrenome(jsonObject.get("lastName").getAsString());
-                usuario.setEmail(jsonObject.get("email").getAsString());
+                if (response.isSuccessful()) {
+                    usuario.setStatus(jsonObject.get("status").getAsString());
+                    usuario.setSenha(jsonObject.get("password").getAsString());
+                    usuario.setTelefone(jsonObject.get("phone").getAsString());
+                    usuario.setCpf(jsonObject.get("userId").getAsString());
+                    usuario.setNome(jsonObject.get("name").getAsString());
+                    usuario.setSobrenome(jsonObject.get("lastName").getAsString());
+                    usuario.setEmail(jsonObject.get("email").getAsString());
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-        } catch (Exception e) {
-            e.printStackTrace();
+        } else if (operation.equals("CREATE")) {
+            // TODO CHAMADO APÓS SPLASH
+        } else if (operation.equals("UPDATE")) {
+            //
         }
 
         return usuario;
