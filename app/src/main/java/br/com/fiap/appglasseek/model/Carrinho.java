@@ -6,7 +6,8 @@ import java.util.List;
 public class Carrinho {
     private List<Item> itens;
 
-    public Carrinho() {}
+    public Carrinho() {
+    }
 
     public Carrinho(List<Item> itens) {
         this.itens = itens;
@@ -30,7 +31,7 @@ public class Carrinho {
         if (null == itens) itens = new ArrayList<Item>();
     }
 
-    public void limpaCarrinho(List<Item> item){
+    public void limpaCarrinho(List<Item> item) {
         this.itens.removeAll(item);
     }
 

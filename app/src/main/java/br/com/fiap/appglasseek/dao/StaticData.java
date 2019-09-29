@@ -15,7 +15,6 @@ public class StaticData {
         static List<Integer> imageList;
 
 
-
         public static List<Oculos> getOculosList() {
             if (OculosData.oculosList == null) {
                 OculosData.oculosList = new ArrayList<Oculos>();
@@ -76,7 +75,7 @@ public class StaticData {
             UserData.favoritosList.remove(oculos);
         }
 
-        public static void instanciarFavoritosList(){
+        public static void instanciarFavoritosList() {
             if (null == favoritosList) UserData.favoritosList = new ArrayList<Oculos>();
         }
 

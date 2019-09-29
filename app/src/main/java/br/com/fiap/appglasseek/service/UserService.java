@@ -11,19 +11,7 @@ import com.google.gson.JsonObject;
 
 import org.json.JSONObject;
 
-<<<<<<< HEAD
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.io.PrintStream;
-import java.net.URL;
-import java.net.HttpURLConnection;
-import java.util.Scanner;
-
 import br.com.fiap.appglasseek.R;
-=======
->>>>>>> 51d972a94ea8fbd75c9fce771ad577386ccefb8e
 import br.com.fiap.appglasseek.dao.StaticData;
 import br.com.fiap.appglasseek.model.Usuario;
 import cc.cloudist.acplibrary.ACProgressConstant;

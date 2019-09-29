@@ -31,7 +31,8 @@ public class Endereco {
         this.telefone = telefone;
     }
 
-    public Endereco() {}
+    public Endereco() {
+    }
 
     public String getCep() {
         return cep;

@@ -1,9 +1,7 @@
 package br.com.fiap.appglasseek.fragment;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -34,7 +32,18 @@ public class CarrinhoFragment extends Fragment {
     private Integer quantidade;
     //private Button btnIrParaPagamento;
 
-    public CarrinhoFragment() {}
+    public CarrinhoFragment() {
+    }
+
+    public static void updateValorTotalNoFragment() {
+        txtValorTotal.setText(new DecimalFormat("R$ #,##0.00").format(StaticData.UserData.valorTotalCarrinho()));
+
+        if (StaticData.UserData.valorTotalCarrinho() == Double.parseDouble("0")) {
+            btnCheckout.setEnabled(false);
+        } else {
+            btnCheckout.setEnabled(true);
+        }
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -60,8 +69,8 @@ public class CarrinhoFragment extends Fragment {
             @Override
             public void onClick(View view) {
 
-            CarrinhoFragment carrinhoFragment = new CarrinhoFragment();
-            getActivity().getSupportFragmentManager().beginTransaction().replace(((ViewGroup) getView().getParent()).getId(), carrinhoFragment, "CarrinhoFragment").addToBackStack(null).commit();
+                CarrinhoFragment carrinhoFragment = new CarrinhoFragment();
+                getActivity().getSupportFragmentManager().beginTransaction().replace(((ViewGroup) getView().getParent()).getId(), carrinhoFragment, "CarrinhoFragment").addToBackStack(null).commit();
             }
         });
 
@@ -76,24 +85,12 @@ public class CarrinhoFragment extends Fragment {
 //        });
 
 
-
         return rootView;
     }
-
 
     public CarrinhoFragment setOculos(Oculos oculos) {
         CarrinhoFragment.oculos = oculos;
         return this;
-    }
-
-    public static void updateValorTotalNoFragment(){
-        txtValorTotal.setText(new DecimalFormat("R$ #,##0.00").format(StaticData.UserData.valorTotalCarrinho()));
-
-        if(StaticData.UserData.valorTotalCarrinho()==Double.parseDouble("0")){
-            btnCheckout.setEnabled(false);
-        }else{
-            btnCheckout.setEnabled(true);
-        }
     }
 
 
