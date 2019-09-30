@@ -10,6 +10,8 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import br.com.fiap.appglasseek.R;
+import br.com.fiap.appglasseek.dao.StaticData;
+import br.com.fiap.appglasseek.fragment.PerfilFragment;
 import br.com.fiap.appglasseek.service.UserService;
 
 public class LoginActivity extends AppCompatActivity {
@@ -22,15 +24,18 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.fragment_login);
 
         btnLogar = findViewById(R.id.btnLogar);
         btnRegistrar = findViewById(R.id.btnRegistrar);
         btnVoltar = findViewById(R.id.btnVoltar);
-        txtUsuario = findViewById(R.id.txtUsuario);
+        txtUsuario = findViewById(R.id.txtEmail);
         txtSenha = findViewById(R.id.txtSenha);
 
-        Toast.makeText(LoginActivity.this, "Você não está conectado!\nEntre para mais detalhes", Toast.LENGTH_LONG).show();
+        Toast.makeText(this, "Você não está conectado!\nEntre para mais detalhes", Toast.LENGTH_LONG).show();
+
+
+
 
         btnLogar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -54,6 +59,10 @@ public class LoginActivity extends AppCompatActivity {
                 } else {
                     UserService userService = new UserService(LoginActivity.this, "GET");
                     userService.execute(email, senha);
+                    if(null != StaticData.UserData.getUsuario().getCpf()){
+                        getSupportFragmentManager().beginTransaction().replace(android.R.id.content, new PerfilFragment(), "PerfilFragment").commit();
+                    }
+
                 }
             }
         });

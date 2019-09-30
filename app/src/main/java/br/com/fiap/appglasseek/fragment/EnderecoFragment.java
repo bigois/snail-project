@@ -9,15 +9,15 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import br.com.fiap.appglasseek.R;
-import br.com.fiap.appglasseek.model.Carrinho;
+import br.com.fiap.appglasseek.dao.StaticData;
+import br.com.fiap.appglasseek.service.UserService;
 
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class EnderecoFragment extends Fragment {
-    private Button btnConcluir;
-    private Carrinho carrinho;
+    private Button btnSalvar;
 
 
     public EnderecoFragment() {
@@ -33,11 +33,13 @@ public class EnderecoFragment extends Fragment {
 
         getActivity().setTitle("Endereço");
 
-        btnConcluir = rootView.findViewById(R.id.btnConcluir);
-        btnConcluir.setOnClickListener(new View.OnClickListener() {
+        //if(StaticData.UserData.getUsuario().getEnderecos())
+
+        btnSalvar = rootView.findViewById(R.id.btnSalvar);
+        btnSalvar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                //UserService.updateAddress();
             }
         });
         return rootView;

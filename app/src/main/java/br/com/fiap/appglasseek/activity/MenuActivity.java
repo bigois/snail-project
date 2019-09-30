@@ -21,6 +21,7 @@ import br.com.fiap.appglasseek.fragment.CarrinhoFragment;
 import br.com.fiap.appglasseek.fragment.ComprasFragment;
 import br.com.fiap.appglasseek.fragment.FavoritosFragment;
 import br.com.fiap.appglasseek.fragment.InicioFragment;
+import br.com.fiap.appglasseek.fragment.LoginFragment;
 import br.com.fiap.appglasseek.fragment.PerfilFragment;
 import br.com.fiap.appglasseek.model.Usuario;
 import br.com.fiap.appglasseek.service.LoginUtility;
@@ -84,30 +85,31 @@ public class MenuActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_inicio) {
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new InicioFragment()).commit();
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new InicioFragment()).addToBackStack(null).commit();
 
         } else if (id == R.id.nav_perfil) {
             if (LoginUtility.isLogged(getApplicationContext())) {
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new PerfilFragment()).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new PerfilFragment()).addToBackStack(null).commit();
             } else {
-                Intent intent = new Intent(MenuActivity.this, LoginActivity.class);
-                startActivity(intent);
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new LoginFragment()).addToBackStack(null).commit();
+//                Intent intent = new Intent(MenuActivity.this, LoginActivity.class);
+//                startActivity(intent);
             }
         } else if (id == R.id.nav_favoritos) {
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new FavoritosFragment()).commit();
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new FavoritosFragment()).addToBackStack(null).commit();
 
         } else if (id == R.id.nav_compras) {
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ComprasFragment()).commit();
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ComprasFragment()).addToBackStack(null).commit();
 
         } else if (id == R.id.nav_carrinho) {
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new CarrinhoFragment()).commit();
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new CarrinhoFragment()).addToBackStack(null).commit();
 
         } else if (id == R.id.nav_ajuda) {
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new AjudaFragment()).commit();
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new AjudaFragment()).addToBackStack(null).commit();
 
         } else if (id == R.id.nav_sair) {
             LoginUtility.logOut(getApplicationContext());
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new InicioFragment()).commit();
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new InicioFragment()).addToBackStack(null).commit();
             Toast.makeText(this, "Você foi desconectado!", Toast.LENGTH_SHORT).show();
         }
 

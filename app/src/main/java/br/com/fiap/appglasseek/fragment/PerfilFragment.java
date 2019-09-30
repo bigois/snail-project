@@ -1,5 +1,6 @@
 package br.com.fiap.appglasseek.fragment;
 
+import android.app.Activity;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -12,6 +13,7 @@ import android.widget.EditText;
 
 import br.com.fiap.appglasseek.R;
 import br.com.fiap.appglasseek.dao.StaticData;
+import br.com.fiap.appglasseek.service.UserService;
 
 public class PerfilFragment extends Fragment {
     private EditText txtNome;
@@ -22,6 +24,8 @@ public class PerfilFragment extends Fragment {
     private EditText txtSenha;
     private Button btnEnderecos;
     private Button btnDeletarUsuario;
+    private Button btnAtualizar;
+    private Button btnRegistrar;
 
     public PerfilFragment() {
     }
@@ -41,6 +45,7 @@ public class PerfilFragment extends Fragment {
         txtSenha = view.findViewById(R.id.txtSenha);
         btnEnderecos = view.findViewById(R.id.btnEnderecos);
         btnDeletarUsuario = view.findViewById(R.id.btnDeletarUsuario);
+        btnAtualizar = view.findViewById(R.id.btnAtualizar);
 
         txtNome.setText(StaticData.UserData.getUsuario().getNome());
         txtSobrenome.setText(StaticData.UserData.getUsuario().getSobrenome());
@@ -49,6 +54,8 @@ public class PerfilFragment extends Fragment {
         txtTelefone.setText(StaticData.UserData.getUsuario().getTelefone());
         txtSenha.setText(StaticData.UserData.getUsuario().getSenha());
 
+        btnEnderecos.setEnabled(true);
+        btnEnderecos.setVisibility(View.VISIBLE);
         btnEnderecos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -58,6 +65,8 @@ public class PerfilFragment extends Fragment {
             }
         });
 
+        btnDeletarUsuario.setEnabled(true);
+        btnDeletarUsuario.setVisibility(View.VISIBLE);
         btnDeletarUsuario.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -67,11 +76,22 @@ public class PerfilFragment extends Fragment {
                         .setCancelable(false)
                         .setPositiveButton("Sim", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
-                                //UserService.deleteUser()
+                                UserService userService = new UserService(getContext(), "DELETE");
+                                userService.execute();
+                                getActivity().getSupportFragmentManager().popBackStack();
                             }
                         })
                         .setNegativeButton("Não", null)
                         .show();
+            }
+        });
+
+
+        btnAtualizar.setText("Atualizar");
+        btnAtualizar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
             }
         });
 

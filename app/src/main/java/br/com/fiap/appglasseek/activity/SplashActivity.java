@@ -26,6 +26,6 @@ public class SplashActivity extends AppCompatActivity {
 
                 LoginUtility.logOut(SplashActivity.this.getApplicationContext());
             }
-        }, 2000);
+        }, 1500);
     }
 }

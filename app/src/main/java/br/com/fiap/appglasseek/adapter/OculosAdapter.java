@@ -41,7 +41,7 @@ public class OculosAdapter extends RecyclerView.Adapter<OculosHolder> {
             @Override
             public void onClick(View v) {
                 Fragment fragment = new OculosFragment().setOculos(oculosList.get(viewHolder.getAdapterPosition()));
-                fragmentManager.beginTransaction().replace(R.id.fragment_container, fragment).commit();
+                fragmentManager.beginTransaction().replace(R.id.fragment_container, fragment).addToBackStack(null).commit();
             }
         });
 

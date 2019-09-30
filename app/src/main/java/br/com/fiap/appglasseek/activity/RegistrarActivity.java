@@ -26,11 +26,11 @@ public class RegistrarActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_registrar);
-
-        txtNome = findViewById(R.id.txtNome);
-        txtEndereco = findViewById(R.id.txtEndereco);
-        txtCpf = findViewById(R.id.txtCpf);
+//        setContentView(R.layout.fragment_registrar);
+//
+//        txtNome = findViewById(R.id.txtNome);
+//        txtEndereco = findViewById(R.id.txtEndereco);
+//        txtCpf = findViewById(R.id.txtCpf);
         txtTelefone = findViewById(R.id.txtTelefone);
         txtSobrenome = findViewById(R.id.txtSobrenome);
         txtEmail = findViewById(R.id.txtEmail);

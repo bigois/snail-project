@@ -2,7 +2,23 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/tela_login">
+
+    <Button
+        android:id="@+id/btnDeletarUsuario"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="50dp"
+        android:layout_marginEnd="100dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginStart="210dp"
+        android:layout_marginTop="65dp"
+        android:text="Deletar Conta"
+        android:textSize="12sp" />
 
     <ImageView
         android:id="@+id/imageView5"
@@ -15,28 +31,6 @@
         android:cropToPadding="false"
         android:src="@drawable/ic_perfil" />
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:layout_alignTop="@+id/imageView5"
-        android:layout_alignParentStart="true"
-        android:background="#801eae3a" />
-
-    <Button
-        android:id="@+id/btnDeletarUsuario"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="210dp"
-        android:layout_marginLeft="0dp"
-        android:layout_marginTop="65dp"
-        android:layout_marginEnd="100dp"
-        android:layout_marginBottom="50dp"
-        android:text="Deletar Conta"
-        android:textSize="12sp" />
-
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -45,28 +39,25 @@
         android:layout_marginBottom="130dp"
         android:orientation="vertical">
 
-        <EditText
-            android:id="@+id/txtNome"
+        <Button
+            android:id="@+id/btnEnderecos"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="0dp"
-            android:layout_marginEnd="0dp"
-            android:ems="10"
-            android:hint="Nome"
-            android:inputType="textPersonName"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:layout_marginLeft="0dp"
+            android:background="#00FFFFFF"
+            android:text="Endereços >"
+            android:textSize="12sp" />
 
-        <EditText
-            android:id="@+id/txtSobrenome"
+        <Button
+            android:id="@+id/btnAtualizar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="0dp"
-            android:ems="10"
-            android:hint="Sobrenome"
-            android:inputType="textPersonName"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtNome" />
+            android:layout_marginTop="20dp"
+            android:background="#80167c2a"
+            android:inputType="text"
+            android:text="Atualizar"
+            android:textColor="@android:color/white"
+            android:textSize="18sp" />
 
         <EditText
             android:id="@+id/txtCpf"
@@ -115,24 +106,28 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/txtTelefone" />
 
-        <Button
-            android:id="@+id/btnEnderecos"
+        <EditText
+            android:id="@+id/txtNome"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="0dp"
-            android:background="#00FFFFFF"
-            android:text="Endereços >"
-            android:textSize="12sp" />
+            android:layout_marginEnd="0dp"
+            android:layout_marginTop="0dp"
+            android:ems="10"
+            android:hint="Nome"
+            android:inputType="textPersonName"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-        <Button
+        <EditText
+            android:id="@+id/txtSobrenome"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:background="#80167c2a"
-            android:inputType="text"
-            android:text="Atualizar"
-            android:textColor="@android:color/white"
-            android:textSize="18sp" />
+            android:layout_marginEnd="0dp"
+            android:ems="10"
+            android:hint="Sobrenome"
+            android:inputType="textPersonName"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtNome" />
 
     </LinearLayout>
 
@@ -144,4 +139,11 @@
         android:layout_marginTop="183dp"
         android:text="Edite seu perfil abaixo:"
         android:textSize="18sp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignTop="@+id/imageView5"
+        android:background="#801eae3a" />
 </RelativeLayout>
