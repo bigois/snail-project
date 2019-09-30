@@ -30,9 +30,14 @@ public class CarrinhoFragment extends Fragment {
     private Button btnMenos;
     private EditText txtQuantidade;
     private Integer quantidade;
-    //private Button btnIrParaPagamento;
+    private Button btnIrParaPagamento;
 
     public CarrinhoFragment() {
+    }
+
+    public CarrinhoFragment setOculos(Oculos oculos) {
+        CarrinhoFragment.oculos = oculos;
+        return this;
     }
 
     public static void updateValorTotalNoFragment() {
@@ -61,27 +66,18 @@ public class CarrinhoFragment extends Fragment {
         carrinhoRecyclerView.setItemAnimator(new DefaultItemAnimator());
 
         txtValorTotal = rootView.findViewById(R.id.txtValorTotal);
-        btnCheckout = rootView.findViewById(R.id.btnCheckout);
+        btnCheckout = rootView.findViewById(R.id.btnComprar);
 
         updateValorTotalNoFragment();
 
         btnCheckout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 PagamentoFragment pagamentoFragment = new PagamentoFragment();
                 getActivity().getSupportFragmentManager().beginTransaction().replace(((ViewGroup) getView().getParent()).getId(), pagamentoFragment, "PagamentoFragment").addToBackStack(null).commit();
             }
         });
 
-
         return rootView;
     }
-
-    public CarrinhoFragment setOculos(Oculos oculos) {
-        CarrinhoFragment.oculos = oculos;
-        return this;
-    }
-
-
 }

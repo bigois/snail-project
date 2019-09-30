@@ -35,7 +35,6 @@ public class PerfilFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         getActivity().setTitle("Perfil");
-
         View view = inflater.inflate(R.layout.fragment_perfil, container, false);
 
         txtNome = view.findViewById(R.id.txtNome);
@@ -71,7 +70,6 @@ public class PerfilFragment extends Fragment {
         btnDeletarUsuario.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 new AlertDialog.Builder(getContext())
                         .setMessage("Deseja realmente deletar seu perfil?")
                         .setCancelable(false)
@@ -101,9 +99,8 @@ public class PerfilFragment extends Fragment {
                 usuario.setEmail(txtEmail.getText().toString());
                 usuario.setSenha(txtSenha.getText().toString());
 
-
                 UserService userService = new UserService(getContext(), "UPDATE");
-                userService.execute(usuario.getNome(),usuario.getSobrenome(),usuario.getCpf(),usuario.getTelefone(),usuario.getEmail(),usuario.getSenha());
+                userService.execute(usuario.getNome(), usuario.getSobrenome(), usuario.getCpf(), usuario.getTelefone(), usuario.getEmail(), usuario.getSenha());
                 getActivity().getSupportFragmentManager().popBackStack();
             }
         });

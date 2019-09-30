@@ -8,10 +8,7 @@ import android.widget.Toast;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
-import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.io.IOException;
 
 import br.com.fiap.appglasseek.R;
 import br.com.fiap.appglasseek.dao.StaticData;
@@ -33,7 +30,7 @@ public class UserService extends AsyncTask<String, Void, Usuario> {
 
     public UserService(Context context, String operation) {
         this.context = context;
-        this.operation = operation;
+        UserService.operation = operation;
         this.URL = "http://" + context.getString(R.string.ip_address) + ":6085/rest/00User";
     }
 

@@ -20,7 +20,6 @@ import br.com.fiap.appglasseek.model.Oculos;
 public class FavoritosFragment extends Fragment {
     private TextView noFavoritos;
     private List<Oculos> favoritos;
-    private FavoritosFragmentListener listener;
 
     public FavoritosFragment() {
     }
@@ -37,7 +36,6 @@ public class FavoritosFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
         if (StaticData.UserData.getFavoritosList() != null) {
-
             OculosAdapter oculosAdapter = new OculosAdapter(StaticData.UserData.getFavoritosList(), getContext(), getFragmentManager());
             oculosAdapter.notifyDataSetChanged();
 
@@ -48,9 +46,5 @@ public class FavoritosFragment extends Fragment {
         }
 
         return rootView;
-    }
-
-    public interface FavoritosFragmentListener {
-        void onInputSentFav(List<Oculos> favList);
     }
 }

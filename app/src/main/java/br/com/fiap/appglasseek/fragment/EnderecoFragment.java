@@ -1,6 +1,5 @@
 package br.com.fiap.appglasseek.fragment;
 
-
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -11,13 +10,8 @@ import android.widget.EditText;
 
 import br.com.fiap.appglasseek.R;
 
-
-/**
- * A simple {@link Fragment} subclass.
- */
 public class EnderecoFragment extends Fragment {
     private Button btnSalvar;
-
     private EditText txtCep;
     private EditText txtDestinatario;
     private EditText txtEndereco;
@@ -26,18 +20,13 @@ public class EnderecoFragment extends Fragment {
     private EditText txtComplemento;
     private EditText txtTelefone;
 
-
     public EnderecoFragment() {
-        // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_endereco, container, false);
-
         getActivity().setTitle("Endereço");
 
         txtCep = rootView.findViewById(R.id.txtCep);
@@ -51,14 +40,11 @@ public class EnderecoFragment extends Fragment {
 
         btnSalvar = rootView.findViewById(R.id.btnSalvar);
         btnSalvar.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View v) {
-                //UserService.updateAddress();
             }
         });
+
         return rootView;
-
     }
-
 }

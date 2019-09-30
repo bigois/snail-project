@@ -40,6 +40,7 @@ public class OculosFragment extends Fragment {
     private Button btnExperimentar;
     private Button btnComprar;
     private ToggleButton toggleButton;
+
     public OculosFragment() {
     }
 
@@ -85,7 +86,7 @@ public class OculosFragment extends Fragment {
             txtMaterial = view.findViewById(R.id.txtMaterial);
             txtMaterial.setText(oculos.getMaterial());
 
-            toggleButton = (ToggleButton) view.findViewById(R.id.toggleButton);
+            toggleButton = view.findViewById(R.id.toggleButton);
 
             if (StaticData.UserData.getFavoritosList().contains(oculos)) {
                 toggleButton.setChecked(true);
@@ -115,7 +116,7 @@ public class OculosFragment extends Fragment {
                 }
             });
 
-            btnExperimentar = (Button) view.findViewById(R.id.btnExperimentar);
+            btnExperimentar = view.findViewById(R.id.btnExperimentar);
             btnExperimentar.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -140,7 +141,6 @@ public class OculosFragment extends Fragment {
                     getActivity().getSupportFragmentManager().beginTransaction().replace(((ViewGroup) getView().getParent()).getId(), carrinhoFragment, "OculosFragment").addToBackStack(null).commit();
                 }
             });
-
         }
 
         return view;
