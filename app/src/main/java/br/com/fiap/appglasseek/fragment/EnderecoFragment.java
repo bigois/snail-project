@@ -19,7 +19,7 @@ public class EnderecoFragment extends Fragment {
     private EditText txtEstado;
     private EditText txtComplemento;
     private EditText txtTelefone;
-
+    
     public EnderecoFragment() {
     }
 
