@@ -109,16 +109,7 @@ public class UserService extends AsyncTask<String, Void, Usuario> {
             }catch (Exception e){
                 e.printStackTrace();
             }
-
         }
-
-//        usuario.setStatus("A");
-//        usuario.setSenha("batata");
-//        usuario.setTelefone("11975476474");
-//        usuario.setCpf("11975476474");
-//        usuario.setNome("Turibio");
-//        usuario.setSobrenome("Junior");
-//        usuario.setEmail("batata@outlook.com");
 
         return usuario;
     }
