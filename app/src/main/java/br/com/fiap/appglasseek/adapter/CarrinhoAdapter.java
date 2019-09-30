@@ -55,7 +55,6 @@ public class CarrinhoAdapter extends RecyclerView.Adapter<CarrinhoOculosHolder> 
         txtQuantidade = quantidade.getEditableText().toString();
         intQuantidade = txtQuantidade.isEmpty() ? 1 : Integer.parseInt(txtQuantidade);
 
-
         viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -63,7 +62,6 @@ public class CarrinhoAdapter extends RecyclerView.Adapter<CarrinhoOculosHolder> 
                 fragmentManager.beginTransaction().replace(R.id.fragment_container, fragment).addToBackStack(null).commit();
             }
         });
-
 
         return viewHolder;
     }
@@ -122,7 +120,6 @@ public class CarrinhoAdapter extends RecyclerView.Adapter<CarrinhoOculosHolder> 
             });
         }
     }
-
 
     @Override
     public int getItemCount() {

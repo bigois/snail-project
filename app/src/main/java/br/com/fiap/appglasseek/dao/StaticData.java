@@ -14,7 +14,6 @@ public class StaticData {
         static List<Oculos> oculosList;
         static List<Integer> imageList;
 
-
         public static List<Oculos> getOculosList() {
             if (OculosData.oculosList == null) {
                 OculosData.oculosList = new ArrayList<Oculos>();

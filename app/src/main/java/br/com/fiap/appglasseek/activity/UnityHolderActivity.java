@@ -22,13 +22,6 @@ public class UnityHolderActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-//    public void onFinish(String modelo) {
-//        Intent resultIntent = new Intent(this, OculosFragment.class);
-//        resultIntent.putExtra("oculos", modelo);
-//
-//        startActivity(resultIntent);
-//    }
-
     public void setOculos(String oculos) {
         UnityHolderActivity.oculos = oculos;
     }

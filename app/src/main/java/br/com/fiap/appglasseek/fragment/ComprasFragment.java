@@ -16,6 +16,7 @@ public class ComprasFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         getActivity().setTitle("Compras");
+
         return inflater.inflate(R.layout.fragment_compras, container, false);
     }
 }

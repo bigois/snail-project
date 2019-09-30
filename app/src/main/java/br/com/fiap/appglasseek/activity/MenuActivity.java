@@ -11,7 +11,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import br.com.fiap.appglasseek.R;
@@ -25,12 +24,7 @@ import br.com.fiap.appglasseek.fragment.PerfilFragment;
 import br.com.fiap.appglasseek.model.Usuario;
 import br.com.fiap.appglasseek.service.LoginUtility;
 
-public class MenuActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
-    private TextView userEmail, userName;
-    private Usuario usuario;
-
-
+public class MenuActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -112,7 +106,6 @@ public class MenuActivity extends AppCompatActivity
             } else {
                 Toast.makeText(this, "Você não está conectado!", Toast.LENGTH_SHORT).show();
             }
-
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);

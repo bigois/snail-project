@@ -11,9 +11,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import br.com.fiap.appglasseek.R;
-import br.com.fiap.appglasseek.dao.StaticData;
 import br.com.fiap.appglasseek.service.UserService;
-import br.com.fiap.appglasseek.utility.TransportView;
 
 public class LoginFragment extends Fragment {
     private EditText txtUsuario;
@@ -29,7 +27,6 @@ public class LoginFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         getActivity().setTitle("Login");
-
         View view = inflater.inflate(R.layout.fragment_login, container, false);
 
         btnLogar = view.findViewById(R.id.btnLogar);
@@ -60,11 +57,6 @@ public class LoginFragment extends Fragment {
                 if (!valid) {
                     Toast.makeText(getContext(), "Campos obrigatórios não preenchidos", Toast.LENGTH_SHORT).show();
                 } else {
-                    TransportView.Transport.setActivity(getActivity());
-                    TransportView.Transport.setContext(getContext());
-                    TransportView.Transport.setFragmentManager(getFragmentManager());
-                    TransportView.Transport.setFragment(LoginFragment.this);
-
                     UserService userService = new UserService(getContext(), "GET");
                     userService.execute(email, senha);
 
@@ -77,15 +69,12 @@ public class LoginFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new RegistrarFragment(), "LoginFragment").commit();
-                              //getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new LoginFragment()).addToBackStack(null).commit();
-
             }
         });
 
         btnVoltar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
             }
         });
 
