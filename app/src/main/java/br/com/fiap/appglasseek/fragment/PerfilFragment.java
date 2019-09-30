@@ -12,6 +12,7 @@ import android.widget.EditText;
 
 import br.com.fiap.appglasseek.R;
 import br.com.fiap.appglasseek.dao.StaticData;
+import br.com.fiap.appglasseek.service.LoginUtility;
 import br.com.fiap.appglasseek.service.UserService;
 
 public class PerfilFragment extends Fragment {
@@ -78,6 +79,7 @@ public class PerfilFragment extends Fragment {
                                 UserService userService = new UserService(getContext(), "DELETE");
                                 userService.execute();
                                 getActivity().getSupportFragmentManager().popBackStack();
+                                LoginUtility.logOut(getContext());
                             }
                         })
                         .setNegativeButton("Não", null)

@@ -71,10 +71,6 @@ public class LoginFragment extends Fragment {
                     userService.execute(email, senha);
 
                     getActivity().getSupportFragmentManager().popBackStack();
-
-                    //getActivity().getSupportFragmentManager().beginTransaction().replace(android.R.id.content, new InicioFragment(), "LoginFragment").commit();
-
-                    //getActivity().getSupportFragmentManager().beginTransaction().replace(android.R.id.content, new PerfilFragment(), "PerfilFragment").commit();
                 }
             }
         });
