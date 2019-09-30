@@ -69,20 +69,13 @@ public class CarrinhoFragment extends Fragment {
             @Override
             public void onClick(View view) {
 
-                CarrinhoFragment carrinhoFragment = new CarrinhoFragment();
-                getActivity().getSupportFragmentManager().beginTransaction().replace(((ViewGroup) getView().getParent()).getId(), carrinhoFragment, "CarrinhoFragment").addToBackStack(null).commit();
+                PagamentoFragment pagamentoFragment = new PagamentoFragment();
+                getActivity().getSupportFragmentManager().beginTransaction().replace(((ViewGroup) getView().getParent()).getId(), pagamentoFragment, "PagamentoFragment").addToBackStack(null).commit();
             }
         });
 
 
-//        btnIrParaPagamento = rootView.findViewById(R.id.proceedToPayment);
-//        btnIrParaPagamento.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                CartaoFragment cartaoFragment = new CartaoFragment();
-//                getActivity().getSupportFragmentManager().beginTransaction().replace(((ViewGroup) getView().getParent()).getId(), cartaoFragment, "CartaoFragment").addToBackStack(null).commit();
-//            }
-//        });
+
 
 
         return rootView;

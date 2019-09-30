@@ -33,7 +33,7 @@ public class EnderecoFragment extends Fragment {
 
         getActivity().setTitle("Endereço");
 
-        btnConcluir = rootView.findViewById(R.id.btnConcluir);
+        btnConcluir = rootView.findViewById(R.id.btnPagar);
         btnConcluir.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

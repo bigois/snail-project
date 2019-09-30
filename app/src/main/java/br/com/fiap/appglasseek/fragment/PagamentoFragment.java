@@ -7,18 +7,24 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import java.text.DecimalFormat;
 
 import br.com.fiap.appglasseek.R;
+import br.com.fiap.appglasseek.dao.StaticData;
 
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class CartaoFragment extends Fragment {
-    private Button btnProximo;
+public class PagamentoFragment extends Fragment {
+    private Button btnPagar;
+    private TextView txtValorTotal;
 
 
-    public CartaoFragment() {
+    public PagamentoFragment() {
         // Required empty public constructor
     }
 
@@ -27,14 +33,16 @@ public class CartaoFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View rootView = inflater.inflate(R.layout.fragment_cartao, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_pagamento, container, false);
 
-        btnProximo = rootView.findViewById(R.id.btnProximo);
-        btnProximo.setOnClickListener(new View.OnClickListener() {
+        txtValorTotal = rootView.findViewById(R.id.txtValorTotal);
+        txtValorTotal.setText(new DecimalFormat("R$ #,##0.00").format(StaticData.UserData.valorTotalCarrinho()));
+
+        btnPagar = rootView.findViewById(R.id.btnPagar);
+        btnPagar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                EnderecoFragment enderecoFragment = new EnderecoFragment();
-                getActivity().getSupportFragmentManager().beginTransaction().replace(((ViewGroup) getView().getParent()).getId(), enderecoFragment, "EnderecoFragment").addToBackStack(null).commit();
+                Toast.makeText(getContext(), "Pagamento concluído com sucesso!", Toast.LENGTH_SHORT).show();
             }
         });
         return rootView;
