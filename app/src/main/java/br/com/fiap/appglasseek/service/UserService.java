@@ -29,6 +29,7 @@ public class UserService extends AsyncTask<String, Void, Usuario> {
     private String URL;
     private Context context;
     private ACProgressFlower dialog;
+    private Boolean success = false;
 
     public UserService(Context context, String operation) {
         this.context = context;
@@ -98,13 +99,10 @@ public class UserService extends AsyncTask<String, Void, Usuario> {
                         .url(URL + "/createUser")
                         .post(body)
                         .addHeader("Content-Type", "application/json")
-                        .addHeader("cache-control", "no-cache")
                         .build();
 
 
                 Response response = client.newCall(request).execute();
-
-                jsonObject = new Gson().fromJson(response.body().string(), JsonObject.class);
 
                 if (response.isSuccessful()) {
                     usuario.setNome(params[0]);
@@ -113,20 +111,57 @@ public class UserService extends AsyncTask<String, Void, Usuario> {
                     usuario.setTelefone(params[3]);
                     usuario.setEmail(params[4]);
                     usuario.setSenha(params[5]);
+
+                    StaticData.UserData.setUsuario(usuario);
                 }
 
             } catch (Exception e) {
                 e.printStackTrace();
             }
         } else if (operation.equals("UPDATE")) {
-            //
+            try {
+                JSONObject jsonBody = new JSONObject();
+                jsonBody.put("name", params[0]);
+                jsonBody.put("lastName", params[1]);
+                jsonBody.put("userId", params[2]);
+                jsonBody.put("phone", params[3]);
+                jsonBody.put("email", StaticData.UserData.getUsuario().getEmail());
+                jsonBody.put("newEmail", (StaticData.UserData.getUsuario().getEmail().equals(params[4]) ? null : params[4]));
+                jsonBody.put("password", params[5]);
+
+                OkHttpClient client = new OkHttpClient();
+
+                MediaType mediaType = MediaType.parse("application/json");
+                RequestBody body = RequestBody.create(mediaType, jsonBody.toString());
+                Request request = new Request.Builder()
+                        .url(URL + "/updateUser")
+                        .put(body)
+                        .addHeader("Content-Type", "application/json")
+                        .build();
+
+                Response response = client.newCall(request).execute();
+
+                if (response.isSuccessful()) {
+                    usuario.setNome(params[0]);
+                    usuario.setSobrenome(params[1]);
+                    usuario.setCpf(params[2]);
+                    usuario.setTelefone(params[3]);
+                    usuario.setEmail(params[4]);
+                    usuario.setSenha(params[5]);
+
+                    StaticData.UserData.setUsuario(usuario);
+                    success = true;
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         } else if (operation.equals("DELETE")) {
 
             try {
                 OkHttpClient client = new OkHttpClient();
 
                 Request request = new Request.Builder()
-                        .url("http://192.168.1.139:6085/rest/00User/deleteUser?email=" + StaticData.UserData.getUsuario().getEmail())
+                        .url(URL + "/deleteUser?email=" + StaticData.UserData.getUsuario().getEmail())
                         .delete(null)
                         .build();
 
@@ -163,12 +198,15 @@ public class UserService extends AsyncTask<String, Void, Usuario> {
             }
 
         } else if (operation.equals("UPDATE")) {
-            //
+            if (success) {
+                Toast.makeText(context, "Dados do usuário alterados com sucesso!", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(context, "Não foi possível alterar os dados do usuário", Toast.LENGTH_SHORT).show();
+            }
         } else if (operation.equals("DELETE")) {
             if (usuario.getCpf() == null) {
                 LoginUtility.logOut(context);
                 Toast.makeText(context, "Usuário deletado, você foi desconectado!", Toast.LENGTH_SHORT).show();
-                // TransportView.Transport.getFragmentManager().beginTransaction().replace(android.R.id.content,new InicioFragment()).commit();
             }
         }
     }

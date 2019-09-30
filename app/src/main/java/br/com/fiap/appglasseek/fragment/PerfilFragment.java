@@ -12,6 +12,7 @@ import android.widget.EditText;
 
 import br.com.fiap.appglasseek.R;
 import br.com.fiap.appglasseek.dao.StaticData;
+import br.com.fiap.appglasseek.model.Usuario;
 import br.com.fiap.appglasseek.service.LoginUtility;
 import br.com.fiap.appglasseek.service.UserService;
 
@@ -92,10 +93,20 @@ public class PerfilFragment extends Fragment {
         btnAtualizar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Usuario usuario = new Usuario();
+                usuario.setNome(txtNome.getText().toString());
+                usuario.setSobrenome(txtSobrenome.getText().toString());
+                usuario.setCpf(txtCpf.getText().toString());
+                usuario.setTelefone(txtTelefone.getText().toString());
+                usuario.setEmail(txtEmail.getText().toString());
+                usuario.setSenha(txtSenha.getText().toString());
 
+
+                UserService userService = new UserService(getContext(), "UPDATE");
+                userService.execute(usuario.getNome(),usuario.getSobrenome(),usuario.getCpf(),usuario.getTelefone(),usuario.getEmail(),usuario.getSenha());
+                getActivity().getSupportFragmentManager().popBackStack();
             }
         });
-
 
         return view;
     }

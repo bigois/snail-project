@@ -111,7 +111,6 @@ public class MenuActivity extends AppCompatActivity
                 Toast.makeText(this, "Você foi desconectado!", Toast.LENGTH_SHORT).show();
             } else {
                 Toast.makeText(this, "Você não está conectado!", Toast.LENGTH_SHORT).show();
-
             }
 
         }
