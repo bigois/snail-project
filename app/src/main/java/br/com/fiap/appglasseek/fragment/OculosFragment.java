@@ -25,8 +25,6 @@ import br.com.fiap.appglasseek.model.Item;
 import br.com.fiap.appglasseek.model.Oculos;
 
 public class OculosFragment extends Fragment {
-    public OculosFragment() {}
-
     private static Oculos oculos;
     private TextView txtMarca;
     private TextView txtModelo;
@@ -42,6 +40,8 @@ public class OculosFragment extends Fragment {
     private Button btnExperimentar;
     private Button btnComprar;
     private ToggleButton toggleButton;
+    public OculosFragment() {
+    }
 
     public OculosFragment setOculos(Oculos oculos) {
         OculosFragment.oculos = oculos;

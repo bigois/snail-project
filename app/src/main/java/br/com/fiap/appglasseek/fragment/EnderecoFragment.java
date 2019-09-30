@@ -9,8 +9,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import br.com.fiap.appglasseek.R;
-import br.com.fiap.appglasseek.dao.StaticData;
-import br.com.fiap.appglasseek.service.UserService;
 
 
 /**

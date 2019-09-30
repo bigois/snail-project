@@ -35,8 +35,6 @@ public class LoginActivity extends AppCompatActivity {
         Toast.makeText(this, "Você não está conectado!\nEntre para mais detalhes", Toast.LENGTH_LONG).show();
 
 
-
-
         btnLogar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -59,7 +57,7 @@ public class LoginActivity extends AppCompatActivity {
                 } else {
                     UserService userService = new UserService(LoginActivity.this, "GET");
                     userService.execute(email, senha);
-                    if(null != StaticData.UserData.getUsuario().getCpf()){
+                    if (null != StaticData.UserData.getUsuario().getCpf()) {
                         getSupportFragmentManager().beginTransaction().replace(android.R.id.content, new PerfilFragment(), "PerfilFragment").commit();
                     }
 

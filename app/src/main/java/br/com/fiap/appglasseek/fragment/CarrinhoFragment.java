@@ -75,9 +75,6 @@ public class CarrinhoFragment extends Fragment {
         });
 
 
-
-
-
         return rootView;
     }
 

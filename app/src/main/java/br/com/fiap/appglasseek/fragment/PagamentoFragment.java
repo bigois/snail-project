@@ -16,7 +16,6 @@ import br.com.fiap.appglasseek.R;
 import br.com.fiap.appglasseek.dao.StaticData;
 
 
-
 /**
  * A simple {@link Fragment} subclass.
  */

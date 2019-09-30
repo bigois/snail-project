@@ -1,12 +1,8 @@
 package br.com.fiap.appglasseek.service;
 
-import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
 import android.os.AsyncTask;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
@@ -15,12 +11,8 @@ import com.google.gson.JsonObject;
 import org.json.JSONObject;
 
 import br.com.fiap.appglasseek.R;
-import br.com.fiap.appglasseek.activity.MenuActivity;
 import br.com.fiap.appglasseek.dao.StaticData;
-import br.com.fiap.appglasseek.fragment.InicioFragment;
-import br.com.fiap.appglasseek.fragment.PerfilFragment;
 import br.com.fiap.appglasseek.model.Usuario;
-import br.com.fiap.appglasseek.utility.TransportView;
 import cc.cloudist.acplibrary.ACProgressConstant;
 import cc.cloudist.acplibrary.ACProgressFlower;
 import okhttp3.MediaType;
@@ -30,8 +22,8 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 
 public class UserService extends AsyncTask<String, Void, Usuario> {
-    private String URL;
     static String operation;
+    private String URL;
     private Context context;
     private ACProgressFlower dialog;
 
@@ -101,11 +93,11 @@ public class UserService extends AsyncTask<String, Void, Usuario> {
 
                 Response response = client.newCall(request).execute();
 
-                if (response.isSuccessful()){
+                if (response.isSuccessful()) {
                     StaticData.UserData.setUsuario(new Usuario());
                 }
 
-            }catch (Exception e){
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         }
@@ -133,7 +125,7 @@ public class UserService extends AsyncTask<String, Void, Usuario> {
             if (usuario.getCpf() == null) {
                 LoginUtility.logOut(context);
                 Toast.makeText(context, "Usuário deletado, você foi desconectado!", Toast.LENGTH_SHORT).show();
-                //TransportView.Transport.getFragmentManager().beginTransaction().replace(android.R.id.content,new InicioFragment()).commit();
+                // TransportView.Transport.getFragmentManager().beginTransaction().replace(android.R.id.content,new InicioFragment()).commit();
             }
         }
     }

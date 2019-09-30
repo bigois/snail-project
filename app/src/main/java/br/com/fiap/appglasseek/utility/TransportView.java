@@ -6,7 +6,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 
 public class TransportView {
-    public static class Transport{
+    public static class Transport {
         public static FragmentManager fragmentManager;
         public static Context context;
         public static Activity activity;

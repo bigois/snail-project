@@ -1,6 +1,5 @@
 package br.com.fiap.appglasseek.fragment;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
@@ -12,7 +11,6 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import br.com.fiap.appglasseek.R;
-import br.com.fiap.appglasseek.activity.RegistrarActivity;
 import br.com.fiap.appglasseek.service.UserService;
 import br.com.fiap.appglasseek.utility.TransportView;
 
