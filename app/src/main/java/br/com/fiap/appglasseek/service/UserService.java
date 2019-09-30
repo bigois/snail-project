@@ -115,6 +115,7 @@ public class UserService extends AsyncTask<String, Void, Usuario> {
             } else {
                 StaticData.UserData.setUsuario(usuario);
                 LoginUtility.logIn(context, usuario.getEmail());
+                Toast.makeText(context, "Conectado com sucesso!", Toast.LENGTH_SHORT).show();
 
             }
         } else if (operation.equals("CREATE")) {
