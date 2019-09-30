@@ -91,8 +91,6 @@ public class MenuActivity extends AppCompatActivity
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new PerfilFragment()).addToBackStack(null).commit();
             } else {
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new LoginFragment()).addToBackStack(null).commit();
-//                Intent intent = new Intent(MenuActivity.this, LoginActivity.class);
-//                startActivity(intent);
             }
         } else if (id == R.id.nav_favoritos) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new FavoritosFragment()).addToBackStack(null).commit();
