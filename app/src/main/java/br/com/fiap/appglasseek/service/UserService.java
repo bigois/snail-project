@@ -8,7 +8,10 @@ import android.widget.Toast;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
+import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.io.IOException;
 
 import br.com.fiap.appglasseek.R;
 import br.com.fiap.appglasseek.dao.StaticData;
@@ -78,7 +81,43 @@ public class UserService extends AsyncTask<String, Void, Usuario> {
                 e.printStackTrace();
             }
         } else if (operation.equals("CREATE")) {
-            // TODO CHAMADO APÓS SPLASH
+            try {
+                JSONObject jsonBody = new JSONObject();
+                jsonBody.put("name", params[0]);
+                jsonBody.put("lastName", params[1]);
+                jsonBody.put("userId", params[2]);
+                jsonBody.put("phone", params[3]);
+                jsonBody.put("email", params[4]);
+                jsonBody.put("password", params[5]);
+
+                OkHttpClient client = new OkHttpClient();
+
+                MediaType mediaType = MediaType.parse("application/json");
+                RequestBody body = RequestBody.create(mediaType, jsonBody.toString());
+                Request request = new Request.Builder()
+                        .url(URL + "/createUser")
+                        .post(body)
+                        .addHeader("Content-Type", "application/json")
+                        .addHeader("cache-control", "no-cache")
+                        .build();
+
+
+                Response response = client.newCall(request).execute();
+
+                jsonObject = new Gson().fromJson(response.body().string(), JsonObject.class);
+
+                if (response.isSuccessful()) {
+                    usuario.setNome(params[0]);
+                    usuario.setSobrenome(params[1]);
+                    usuario.setCpf(params[2]);
+                    usuario.setTelefone(params[3]);
+                    usuario.setEmail(params[4]);
+                    usuario.setSenha(params[5]);
+                }
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         } else if (operation.equals("UPDATE")) {
             //
         } else if (operation.equals("DELETE")) {
@@ -118,7 +157,10 @@ public class UserService extends AsyncTask<String, Void, Usuario> {
 
             }
         } else if (operation.equals("CREATE")) {
-            // TODO CHAMADO APÓS SPLASH
+            if (usuario.getCpf() == null) {
+                StaticData.UserData.setUsuario(usuario);
+            }
+
         } else if (operation.equals("UPDATE")) {
             //
         } else if (operation.equals("DELETE")) {

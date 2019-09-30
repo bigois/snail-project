@@ -7,8 +7,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import br.com.fiap.appglasseek.R;
+import br.com.fiap.appglasseek.model.Usuario;
+import br.com.fiap.appglasseek.service.UserService;
 
 public class RegistrarFragment extends Fragment {
     private EditText txtNome;
@@ -35,6 +38,8 @@ public class RegistrarFragment extends Fragment {
         txtSobrenome = view.findViewById(R.id.txtSobrenome);
         txtEmail = view.findViewById(R.id.txtEmail);
         txtCpf = view.findViewById(R.id.txtCpf);
+        txtCpf.setEnabled(true);
+
         txtTelefone = view.findViewById(R.id.txtTelefone);
         txtSenha = view.findViewById(R.id.txtSenha);
         btnEnderecos = view.findViewById(R.id.btnEnderecos);
@@ -72,6 +77,23 @@ public class RegistrarFragment extends Fragment {
 //        });
 
         btnCadastrar.setText("Cadastrar");
+        btnCadastrar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Usuario usuario = new Usuario();
+                usuario.setNome(txtNome.getText().toString());
+                usuario.setSobrenome(txtSobrenome.getText().toString());
+                usuario.setCpf(txtCpf.getText().toString());
+                usuario.setTelefone(txtTelefone.getText().toString());
+                usuario.setEmail(txtEmail.getText().toString());
+                usuario.setSenha(txtSenha.getText().toString());
+
+
+                UserService userService = new UserService(getContext(), "CREATE");
+                userService.execute(usuario.getNome(),usuario.getSobrenome(),usuario.getCpf(),usuario.getTelefone(),usuario.getEmail(),usuario.getSenha());
+                getActivity().getSupportFragmentManager().popBackStack();
+            }
+        });
 
 
         return view;

@@ -105,9 +105,14 @@ public class MenuActivity extends AppCompatActivity
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new AjudaFragment()).addToBackStack(null).commit();
 
         } else if (id == R.id.nav_sair) {
-            LoginUtility.logOut(getApplicationContext());
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new InicioFragment()).addToBackStack(null).commit();
-            Toast.makeText(this, "Você foi desconectado!", Toast.LENGTH_SHORT).show();
+            if(LoginUtility.isLogged(getApplicationContext())){
+                LoginUtility.logOut(getApplicationContext());
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new InicioFragment()).addToBackStack(null).commit();
+                Toast.makeText(this, "Você foi desconectado!", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(this, "Você não está conectado!", Toast.LENGTH_SHORT).show();
+            }
+
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);

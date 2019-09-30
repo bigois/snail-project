@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/tela_login"
+    android:layout_marginTop="56dp"
     tools:context=".fragment.LoginFragment">
 
     <Button
@@ -24,14 +25,13 @@
         android:layout_width="107dp"
         android:layout_height="53dp"
         android:layout_alignStart="@+id/txtNome"
-        android:layout_alignTop="@+id/btnCadastrar"
+        android:layout_marginTop="54dp"
         android:text="Voltar"
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnRegistrar"
-        app:layout_constraintVertical_bias="0.714" />
+        app:layout_constraintTop_toBottomOf="@+id/btnRegistrar" />
 
     <EditText
         android:id="@+id/txtUsuario"
