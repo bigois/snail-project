@@ -100,7 +100,6 @@ public class UserService extends AsyncTask<String, Void, Usuario> {
                         .build();
 
                 Response response = client.newCall(request).execute();
-                jsonObject = new Gson().fromJson(response.body().string(), JsonObject.class);
 
                 if (response.isSuccessful()){
                     StaticData.UserData.setUsuario(new Usuario());
