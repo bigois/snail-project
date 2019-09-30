@@ -16,11 +16,12 @@ import br.com.fiap.appglasseek.R;
 import br.com.fiap.appglasseek.dao.StaticData;
 
 
+
 /**
  * A simple {@link Fragment} subclass.
  */
 public class PagamentoFragment extends Fragment {
-    private Button btnPagar;
+    private Button btnPagar, btnVoltar;
     private TextView txtValorTotal;
 
 
@@ -37,6 +38,15 @@ public class PagamentoFragment extends Fragment {
 
         txtValorTotal = rootView.findViewById(R.id.txtValorTotal);
         txtValorTotal.setText(new DecimalFormat("R$ #,##0.00").format(StaticData.UserData.valorTotalCarrinho()));
+
+        btnVoltar = rootView.findViewById(R.id.btnVoltar);
+        btnVoltar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                CarrinhoFragment carrinhoFragment = new CarrinhoFragment();
+                getActivity().getSupportFragmentManager().beginTransaction().replace(((ViewGroup) getView().getParent()).getId(), carrinhoFragment, "CarrinhoFragment").addToBackStack(null).commit();
+            }
+        });
 
         btnPagar = rootView.findViewById(R.id.btnPagar);
         btnPagar.setOnClickListener(new View.OnClickListener() {
