@@ -195,6 +195,10 @@ public class UserService extends AsyncTask<String, Void, Usuario> {
         } else if (operation.equals("CREATE")) {
             if (usuario.getCpf() == null) {
                 StaticData.UserData.setUsuario(usuario);
+                Toast.makeText(context, "Não foi possível realizar o cadastro.\nTente novamente!", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(context, "Registro realizado com sucesso!", Toast.LENGTH_SHORT).show();
+                LoginUtility.logIn(context.getApplicationContext(), usuario.getEmail());
             }
 
         } else if (operation.equals("UPDATE")) {
