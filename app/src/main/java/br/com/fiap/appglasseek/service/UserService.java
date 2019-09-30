@@ -114,7 +114,7 @@ public class UserService extends AsyncTask<String, Void, Usuario> {
                 Toast.makeText(context, "Usuário ou senha inválido!", Toast.LENGTH_SHORT).show();
             } else {
                 StaticData.UserData.setUsuario(usuario);
-                LoginUtility.logIn(context, usuario.getEmail());
+                LoginUtility.logIn(context.getApplicationContext(), usuario.getEmail());
                 Toast.makeText(context, "Conectado com sucesso!", Toast.LENGTH_SHORT).show();
 
             }
