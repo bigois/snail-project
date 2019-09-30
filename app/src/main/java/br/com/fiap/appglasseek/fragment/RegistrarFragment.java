@@ -91,7 +91,9 @@ public class RegistrarFragment extends Fragment {
 
                 UserService userService = new UserService(getContext(), "CREATE");
                 userService.execute(usuario.getNome(),usuario.getSobrenome(),usuario.getCpf(),usuario.getTelefone(),usuario.getEmail(),usuario.getSenha());
+
                 getActivity().getSupportFragmentManager().popBackStack();
+                getActivity().getSupportFragmentManager().beginTransaction().remove(RegistrarFragment.this).commit();
             }
         });
 
