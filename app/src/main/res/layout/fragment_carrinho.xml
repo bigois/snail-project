@@ -77,7 +77,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:background="@color/colorPrimary"
+            android:background="@color/design_default_color_primary_dark"
             android:inputType="text"
             android:text="CHECKOUT"
             android:textColor="@android:color/white"

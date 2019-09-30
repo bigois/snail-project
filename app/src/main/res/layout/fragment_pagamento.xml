@@ -5,7 +5,9 @@
     android:id="@+id/cartaoConstr"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragment.PagamentoFragment">
+    tools:context=".fragment.PagamentoFragment"
+    android:background="@android:color/background_light"
+    android:layout_marginTop="56dp">
 
     <!-- TODO: Update blank fragment layout -->
 
@@ -18,16 +20,6 @@
         android:text="pagar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
-
-    <Button
-        android:id="@+id/btnVoltar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="64dp"
-        android:layout_marginBottom="20dp"
-        android:text="Voltar"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/txtNumero"

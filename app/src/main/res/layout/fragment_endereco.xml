@@ -5,7 +5,8 @@
     android:id="@+id/enderecoConstr"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragment.EnderecoFragment">
+    tools:context=".fragment.EnderecoFragment"
+    android:background="@color/tela_login">
 
     <!-- TODO: Update blank fragment layout -->
 
@@ -14,24 +15,15 @@
         android:id="@+id/btnSalvar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="40dp"
         android:layout_marginEnd="60dp"
-        android:layout_marginBottom="20dp"
+        android:background="#80167c2a"
         android:text="Salvar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="60dp"
-        android:layout_marginBottom="20dp"
-        android:text="voltar"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/txtCep"
         android:layout_width="354dp"
         android:layout_height="42dp"
         android:layout_marginStart="40dp"
@@ -42,7 +34,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView10" />
 
     <EditText
-        android:id="@+id/editText2"
+        android:id="@+id/txtDestinatario"
         android:layout_width="354dp"
         android:layout_height="42dp"
         android:layout_marginStart="40dp"
@@ -52,7 +44,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView11" />
 
     <EditText
-        android:id="@+id/editText3"
+        android:id="@+id/txtEndereco"
         android:layout_width="354dp"
         android:layout_height="42dp"
         android:layout_marginStart="40dp"
@@ -62,7 +54,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView18" />
 
     <EditText
-        android:id="@+id/editText4"
+        android:id="@+id/txtCidade"
         android:layout_width="192dp"
         android:layout_height="38dp"
         android:layout_marginStart="40dp"
@@ -72,17 +64,17 @@
         app:layout_constraintTop_toBottomOf="@+id/textView14" />
 
     <EditText
-        android:id="@+id/editText6"
+        android:id="@+id/txtEstado"
         android:layout_width="141dp"
         android:layout_height="40dp"
         android:layout_marginStart="12dp"
         android:ems="10"
         android:inputType="textPersonName"
-        app:layout_constraintStart_toEndOf="@+id/editText4"
+        app:layout_constraintStart_toEndOf="@+id/txtCidade"
         app:layout_constraintTop_toBottomOf="@+id/textView15" />
 
     <EditText
-        android:id="@+id/editText7"
+        android:id="@+id/txtComplemento"
         android:layout_width="354dp"
         android:layout_height="42dp"
         android:layout_marginStart="40dp"
@@ -92,7 +84,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView16" />
 
     <EditText
-        android:id="@+id/editText8"
+        android:id="@+id/txtTelefone"
         android:layout_width="354dp"
         android:layout_height="42dp"
         android:layout_marginStart="40dp"
@@ -119,7 +111,7 @@
         android:layout_marginTop="10dp"
         android:text="Destinatário:"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText" />
+        app:layout_constraintTop_toBottomOf="@+id/txtCep" />
 
     <TextView
         android:id="@+id/textView14"
@@ -129,7 +121,7 @@
         android:layout_marginTop="10dp"
         android:text="Cidade"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText3" />
+        app:layout_constraintTop_toBottomOf="@+id/txtEndereco" />
 
     <TextView
         android:id="@+id/textView16"
@@ -139,7 +131,7 @@
         android:layout_marginTop="10dp"
         android:text="Complemento:"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText6" />
+        app:layout_constraintTop_toBottomOf="@+id/txtEstado" />
 
     <TextView
         android:id="@+id/textView17"
@@ -149,7 +141,7 @@
         android:layout_marginTop="10dp"
         android:text="Telefone:"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText7" />
+        app:layout_constraintTop_toBottomOf="@+id/txtComplemento" />
 
     <TextView
         android:id="@+id/textView15"
@@ -159,7 +151,7 @@
         android:layout_marginEnd="120dp"
         android:text="Estado:"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText3" />
+        app:layout_constraintTop_toBottomOf="@+id/txtEndereco" />
 
     <TextView
         android:id="@+id/textView18"
@@ -169,6 +161,6 @@
         android:layout_marginTop="10dp"
         android:text="Endereço:"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText2" />
+        app:layout_constraintTop_toBottomOf="@+id/txtDestinatario" />
 
 </android.support.constraint.ConstraintLayout>
