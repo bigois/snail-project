@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import br.com.fiap.appglasseek.R;
+import br.com.fiap.appglasseek.dao.StaticData;
 import br.com.fiap.appglasseek.service.UserService;
 import br.com.fiap.appglasseek.utility.TransportView;
 
@@ -38,9 +39,6 @@ public class LoginFragment extends Fragment {
         txtSenha = view.findViewById(R.id.txtSenha);
 
         Toast.makeText(getContext(), "Você não está conectado!\nEntre para mais detalhes", Toast.LENGTH_LONG).show();
-
-        txtUsuario.setText("batata@outlook.com");
-        txtSenha.setText("batata");
 
         btnLogar.setOnClickListener(new View.OnClickListener() {
             @Override
