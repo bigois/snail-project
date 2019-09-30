@@ -33,10 +33,9 @@ public class EnderecoFragment extends Fragment {
 
         getActivity().setTitle("Endereço");
 
-        //if(StaticData.UserData.getUsuario().getEnderecos())
-
         btnSalvar = rootView.findViewById(R.id.btnSalvar);
         btnSalvar.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
                 //UserService.updateAddress();
