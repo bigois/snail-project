@@ -2,19 +2,25 @@ package br.com.fiap.appglasseek.fragment;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import br.com.fiap.appglasseek.R;
+import br.com.fiap.appglasseek.dao.StaticData;
+import br.com.fiap.appglasseek.model.Endereco;
+import br.com.fiap.appglasseek.service.AddressService;
 
 public class EnderecoFragment extends Fragment {
-    private Button btnSalvar;
+    private Button btnAtualizar;
     private EditText txtCep;
     private EditText txtDestinatario;
     private EditText txtEndereco;
+    private EditText txtNumero;
     private EditText txtCidade;
     private EditText txtEstado;
     private EditText txtComplemento;
@@ -32,19 +38,87 @@ public class EnderecoFragment extends Fragment {
         txtCep = rootView.findViewById(R.id.txtCep);
         txtDestinatario = rootView.findViewById(R.id.txtDestinatario);
         txtEndereco = rootView.findViewById(R.id.txtEndereco);
+        txtNumero = rootView.findViewById(R.id.txtNumero);
         txtCidade = rootView.findViewById(R.id.txtCidade);
         txtEstado = rootView.findViewById(R.id.txtEstado);
         txtComplemento = rootView.findViewById(R.id.txtComplemento);
         txtTelefone = rootView.findViewById(R.id.txtTelefone);
 
+        if(!StaticData.UserData.getUsuario().getEnderecos().isEmpty()){
+            txtCep.setText(StaticData.UserData.getUsuario().getEnderecos().get(0).getCep());
+            txtDestinatario.setText(StaticData.UserData.getUsuario().getEnderecos().get(0).getDestinatario());
+            txtEndereco.setText(StaticData.UserData.getUsuario().getEnderecos().get(0).getEndereco());
+            txtNumero.setText(StaticData.UserData.getUsuario().getEnderecos().get(0).getNumero());
+            txtCidade.setText(StaticData.UserData.getUsuario().getEnderecos().get(0).getCidade());
+            txtEstado.setText(StaticData.UserData.getUsuario().getEnderecos().get(0).getEstado());
+            txtComplemento.setText(StaticData.UserData.getUsuario().getEnderecos().get(0).getComplemento());
+            txtTelefone.setText(StaticData.UserData.getUsuario().getEnderecos().get(0).getTelefone());
+        }
 
-        btnSalvar = rootView.findViewById(R.id.btnSalvar);
-        btnSalvar.setOnClickListener(new View.OnClickListener() {
+
+        btnAtualizar = rootView.findViewById(R.id.btnAtualizar);
+        btnAtualizar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                if(validaCampos()){
+                    Endereco endereco = new Endereco();
+                    endereco.setCep(txtCep.getText().toString());
+                    endereco.setDestinatario(txtDestinatario.getText().toString());
+                    endereco.setEndereco(txtEndereco.getText().toString());
+                    endereco.setNumero(txtNumero.getText().toString());
+                    endereco.setCidade(txtCidade.getText().toString());
+                    endereco.setEstado(txtEstado.getText().toString());
+                    endereco.setComplemento(txtComplemento.getText().toString());
+                    endereco.setTelefone(txtTelefone.getText().toString());
+
+                    StaticData.UserData.getUsuario().getEnderecos().add(endereco);
+
+                    AddressService addressService = new AddressService(getContext(), "UPDATE");
+                    addressService.execute(StaticData.UserData.getUsuario().getEmail(), endereco.getNumero(), endereco.getEndereco(), endereco.getCep(), endereco.getEstado(), endereco.getComplemento(), endereco.getCidade(), endereco.getMunicipio());
+
+                    getActivity().getSupportFragmentManager().popBackStack();
+                } else {
+                    Toast.makeText(getContext(), "Campos obrigatórios não preenchidos", Toast.LENGTH_SHORT).show();
+                }
+
+
+
+
+
+                //notify();
             }
         });
 
+
+
         return rootView;
+    }
+    public Boolean validaCampos(){
+        Boolean valid = true;
+
+        if (TextUtils.isEmpty(txtCep.getText().toString())) {
+            txtCep.setError("Informe o CEP!");
+            valid = false;
+        }
+        if (TextUtils.isEmpty(txtEndereco.getText().toString())) {
+            txtEndereco.setError("Informe o endereço!");
+            valid = false;
+        }
+        if (TextUtils.isEmpty(txtNumero.getText().toString())) {
+            txtNumero.setError("Informe o número!");
+            valid = false;
+        }
+        if (TextUtils.isEmpty(txtCidade.getText().toString())) {
+            txtCidade.setError("Informe a cidade!");
+            valid = false;
+        }
+        if (TextUtils.isEmpty(txtEstado.getText().toString())) {
+            txtEstado.setError("Informe o estado!");
+            valid = false;
+        }
+
+        return valid;
+
     }
 }

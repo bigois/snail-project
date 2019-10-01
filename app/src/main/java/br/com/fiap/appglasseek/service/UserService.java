@@ -1,5 +1,6 @@
 package br.com.fiap.appglasseek.service;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
 import android.os.AsyncTask;
@@ -11,6 +12,7 @@ import com.google.gson.JsonObject;
 import org.json.JSONObject;
 
 import br.com.fiap.appglasseek.R;
+import br.com.fiap.appglasseek.activity.SplashActivity;
 import br.com.fiap.appglasseek.dao.StaticData;
 import br.com.fiap.appglasseek.model.Usuario;
 import cc.cloudist.acplibrary.ACProgressConstant;
@@ -21,26 +23,33 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
-public class UserService extends AsyncTask<String, Void, Usuario> {
+public class UserService extends AsyncTask<String, Void, Usuario> implements Service{
     static String operation;
     private String URL;
     private Context context;
     private ACProgressFlower dialog;
-    private Boolean success = false;
+    private Boolean success;
 
     public UserService(Context context, String operation) {
         this.context = context;
-        UserService.operation = operation;
-        this.URL = "http://" + context.getString(R.string.ip_address) + ":6085/rest/00User";
+        this.operation = operation;
+        this.URL = Service.URL + "/00User";
+        this.success = Service.success;
     }
 
     @Override
     protected void onPreExecute() {
-        dialog = new ACProgressFlower.Builder(context)
-                .direction(ACProgressConstant.DIRECT_CLOCKWISE)
-                .themeColor(Color.WHITE)
-                .fadeColor(Color.DKGRAY).build();
-        dialog.show();
+
+        if(this.context instanceof SplashActivity){
+
+        }else{
+            dialog = new ACProgressFlower.Builder(context)
+                    .direction(ACProgressConstant.DIRECT_CLOCKWISE)
+                    .themeColor(Color.WHITE)
+                    .fadeColor(Color.DKGRAY).build();
+            dialog.show();
+        }
+
     }
 
     @Override
@@ -75,6 +84,8 @@ public class UserService extends AsyncTask<String, Void, Usuario> {
                     usuario.setSobrenome(jsonObject.get("lastName").getAsString());
                     usuario.setEmail(jsonObject.get("email").getAsString());
                 }
+                response.close();
+
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -98,7 +109,6 @@ public class UserService extends AsyncTask<String, Void, Usuario> {
                         .addHeader("Content-Type", "application/json")
                         .build();
 
-
                 Response response = client.newCall(request).execute();
 
                 if (response.isSuccessful()) {
@@ -111,6 +121,7 @@ public class UserService extends AsyncTask<String, Void, Usuario> {
 
                     StaticData.UserData.setUsuario(usuario);
                 }
+                response.close();
 
             } catch (Exception e) {
                 e.printStackTrace();
@@ -149,6 +160,8 @@ public class UserService extends AsyncTask<String, Void, Usuario> {
                     StaticData.UserData.setUsuario(usuario);
                     success = true;
                 }
+                response.close();
+
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -167,6 +180,7 @@ public class UserService extends AsyncTask<String, Void, Usuario> {
                 if (response.isSuccessful()) {
                     StaticData.UserData.setUsuario(new Usuario());
                 }
+                response.close();
 
             } catch (Exception e) {
                 e.printStackTrace();
@@ -178,24 +192,38 @@ public class UserService extends AsyncTask<String, Void, Usuario> {
 
     @Override
     protected void onPostExecute(Usuario usuario) {
-        dialog.hide();
+        if(this.context instanceof SplashActivity){
+
+        }else{
+            dialog.hide();
+        }
+
 
         if (operation.equals("GET")) {
             if (usuario.getCpf() == null) {
                 Toast.makeText(context, "Usuário ou senha inválido!", Toast.LENGTH_SHORT).show();
             } else {
                 StaticData.UserData.setUsuario(usuario);
-                LoginUtility.logIn(context.getApplicationContext(), usuario.getEmail());
-                Toast.makeText(context, "Conectado com sucesso!", Toast.LENGTH_SHORT).show();
+                LoginUtility.logIn(context.getApplicationContext(), usuario.getEmail(), usuario.getSenha());
+                Toast.makeText(context, "Login realizado com sucesso!", Toast.LENGTH_SHORT).show();
 
+                AddressService addressService = new AddressService(context, "GET");
+                addressService.execute(StaticData.UserData.getUsuario().getEmail());
+
+                FavoritesService favoritesService = new FavoritesService(context, "GET");
+                favoritesService.execute(StaticData.UserData.getUsuario().getEmail());
+//
+//                CarrinhoService carrinhoService = new CarrinhoService(context,"GET");
+//                carrinhoService.execute(StaticData.UserData.getUsuario().getEmail());
             }
+
         } else if (operation.equals("CREATE")) {
             if (usuario.getCpf() == null) {
                 StaticData.UserData.setUsuario(usuario);
                 Toast.makeText(context, "Não foi possível realizar o cadastro.\nTente novamente!", Toast.LENGTH_SHORT).show();
             } else {
                 Toast.makeText(context, "Registro realizado com sucesso!", Toast.LENGTH_SHORT).show();
-                LoginUtility.logIn(context.getApplicationContext(), usuario.getEmail());
+                LoginUtility.logIn(context.getApplicationContext(), usuario.getEmail(), usuario.getSenha());
             }
 
         } else if (operation.equals("UPDATE")) {

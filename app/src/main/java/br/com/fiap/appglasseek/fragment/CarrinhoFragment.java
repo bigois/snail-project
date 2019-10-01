@@ -66,7 +66,7 @@ public class CarrinhoFragment extends Fragment {
         carrinhoRecyclerView.setItemAnimator(new DefaultItemAnimator());
 
         txtValorTotal = rootView.findViewById(R.id.txtValorTotal);
-        btnCheckout = rootView.findViewById(R.id.btnComprar);
+        btnCheckout = rootView.findViewById(R.id.btnCheckout);
 
         updateValorTotalNoFragment();
 

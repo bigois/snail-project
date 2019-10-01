@@ -13,6 +13,7 @@ import android.widget.EditText;
 import br.com.fiap.appglasseek.R;
 import br.com.fiap.appglasseek.dao.StaticData;
 import br.com.fiap.appglasseek.model.Usuario;
+import br.com.fiap.appglasseek.service.AddressService;
 import br.com.fiap.appglasseek.service.LoginUtility;
 import br.com.fiap.appglasseek.service.UserService;
 
@@ -59,6 +60,10 @@ public class PerfilFragment extends Fragment {
         btnEnderecos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if(StaticData.UserData.getUsuario().getEnderecos().isEmpty()){
+                    AddressService addressService = new AddressService(getContext(), "GET");
+                    addressService.execute(StaticData.UserData.getUsuario().getEmail());
+                }
 
                 EnderecoFragment enderecoFragment = new EnderecoFragment();
                 getActivity().getSupportFragmentManager().beginTransaction().replace(((ViewGroup) getView().getParent()).getId(), enderecoFragment, "perfilFragment").addToBackStack(null).commit();

@@ -1,5 +1,6 @@
 package br.com.fiap.appglasseek.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Usuario {
@@ -99,6 +100,9 @@ public class Usuario {
     }
 
     public List<Endereco> getEnderecos() {
+        if (null == enderecos) {
+            enderecos = new ArrayList<>();
+        }
         return enderecos;
     }
 

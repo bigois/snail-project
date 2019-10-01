@@ -53,8 +53,6 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public void onBackPressed() {
-        getSupportFragmentManager().popBackStack();
-
         Fragment currentFragment = getSupportFragmentManager().findFragmentById(R.id.fragment_container);
 
         if (currentFragment instanceof InicioFragment){
@@ -63,11 +61,13 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
                 .setCancelable(false)
                 .setPositiveButton("Sim", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        MenuActivity.super.onBackPressed();
+                        finish();
                     }
                 })
                 .setNegativeButton("Não", null)
                 .show();
+        } else {
+            getSupportFragmentManager().popBackStack();
         }
     }
 

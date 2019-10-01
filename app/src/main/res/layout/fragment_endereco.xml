@@ -6,19 +6,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".fragment.EnderecoFragment"
-    android:background="@color/tela_login">
-
-    <!-- TODO: Update blank fragment layout -->
-
+    android:background="@color/tela_login"
+    android:layout_marginTop="56dp">
 
     <Button
-        android:id="@+id/btnSalvar"
+        android:id="@+id/btnAtualizar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="40dp"
         android:layout_marginEnd="60dp"
         android:background="#80167c2a"
-        android:text="Salvar"
+        android:text="Atualizar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
@@ -26,95 +24,105 @@
         android:id="@+id/txtCep"
         android:layout_width="354dp"
         android:layout_height="42dp"
+        android:layout_marginEnd="16dp"
         android:layout_marginStart="40dp"
         android:layout_marginTop="2dp"
         android:ems="10"
         android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView10" />
+        app:layout_constraintTop_toBottomOf="@+id/lblCep" />
 
     <EditText
         android:id="@+id/txtDestinatario"
         android:layout_width="354dp"
         android:layout_height="42dp"
+        android:layout_marginEnd="16dp"
         android:layout_marginStart="40dp"
         android:ems="10"
         android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView11" />
+        app:layout_constraintTop_toBottomOf="@+id/lblDestinatario" />
 
     <EditText
         android:id="@+id/txtEndereco"
-        android:layout_width="354dp"
+        android:layout_width="250dp"
         android:layout_height="42dp"
         android:layout_marginStart="40dp"
         android:ems="10"
         android:inputType="textPersonName"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView18" />
+        app:layout_constraintTop_toBottomOf="@+id/lblEndereco" />
 
     <EditText
         android:id="@+id/txtCidade"
         android:layout_width="192dp"
-        android:layout_height="38dp"
+        android:layout_height="42dp"
         android:layout_marginStart="40dp"
         android:ems="10"
         android:inputType="textPersonName"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView14" />
+        app:layout_constraintTop_toBottomOf="@+id/lblCidade" />
 
     <EditText
         android:id="@+id/txtEstado"
         android:layout_width="141dp"
-        android:layout_height="40dp"
+        android:layout_height="44dp"
+        android:layout_marginEnd="16dp"
         android:layout_marginStart="12dp"
         android:ems="10"
         android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/txtCidade"
-        app:layout_constraintTop_toBottomOf="@+id/textView15" />
+        app:layout_constraintTop_toBottomOf="@+id/lblEstado" />
 
     <EditText
         android:id="@+id/txtComplemento"
         android:layout_width="354dp"
         android:layout_height="42dp"
+        android:layout_marginEnd="16dp"
         android:layout_marginStart="40dp"
         android:ems="10"
         android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView16" />
+        app:layout_constraintTop_toBottomOf="@+id/lblComplemento" />
 
     <EditText
         android:id="@+id/txtTelefone"
         android:layout_width="354dp"
         android:layout_height="42dp"
+        android:layout_marginEnd="16dp"
         android:layout_marginStart="40dp"
         android:ems="10"
         android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView17" />
+        app:layout_constraintTop_toBottomOf="@+id/lblTelefone" />
 
     <TextView
-        android:id="@+id/textView10"
+        android:id="@+id/lblCep"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
+        android:layout_marginStart="41dp"
         android:layout_marginTop="200dp"
         android:text="CEP:"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView11"
+        android:id="@+id/lblDestinatario"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
+        android:layout_marginStart="41dp"
         android:layout_marginTop="10dp"
         android:text="Destinatário:"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtCep" />
 
     <TextView
-        android:id="@+id/textView14"
+        android:id="@+id/lblCidade"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
@@ -124,37 +132,37 @@
         app:layout_constraintTop_toBottomOf="@+id/txtEndereco" />
 
     <TextView
-        android:id="@+id/textView16"
+        android:id="@+id/lblComplemento"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
+        android:layout_marginStart="41dp"
         android:layout_marginTop="10dp"
         android:text="Complemento:"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtEstado" />
 
     <TextView
-        android:id="@+id/textView17"
+        android:id="@+id/lblTelefone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
+        android:layout_marginStart="41dp"
         android:layout_marginTop="10dp"
         android:text="Telefone:"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtComplemento" />
 
     <TextView
-        android:id="@+id/textView15"
+        android:id="@+id/lblEstado"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="114dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="120dp"
         android:text="Estado:"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtEndereco" />
 
     <TextView
-        android:id="@+id/textView18"
+        android:id="@+id/lblEndereco"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
@@ -162,5 +170,29 @@
         android:text="Endereço:"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtDestinatario" />
+
+    <TextView
+        android:id="@+id/lblNumero"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="41dp"
+        android:layout_marginStart="300dp"
+        android:layout_marginTop="10dp"
+        android:text="Número:"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtDestinatario" />
+
+    <EditText
+        android:id="@+id/txtNumero"
+        android:layout_width="80dp"
+        android:layout_height="42dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="300dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lblEndereco" />
 
 </android.support.constraint.ConstraintLayout>

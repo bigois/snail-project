@@ -88,7 +88,7 @@ public class OculosFragment extends Fragment {
 
             toggleButton = view.findViewById(R.id.toggleButton);
 
-            if (StaticData.UserData.getFavoritosList().contains(oculos)) {
+            if (StaticData.UserData.getFavorito().getOculos().contains(oculos)) {
                 toggleButton.setChecked(true);
             } else {
                 toggleButton.setChecked(false);
@@ -98,10 +98,10 @@ public class OculosFragment extends Fragment {
                 @Override
                 public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                     if (isChecked) {
-                        StaticData.UserData.addFavorito(oculos);
+                        StaticData.UserData.getFavorito().getOculos().add(oculos);
                         Toast.makeText(getContext(), "Oculos adicionado aos favoritos.", Toast.LENGTH_SHORT).show();
                     } else {
-                        StaticData.UserData.removeFavorito(oculos);
+                        StaticData.UserData.getFavorito().getOculos().remove(oculos);
                         Toast.makeText(getContext(), "Oculos removido dos favoritos.", Toast.LENGTH_SHORT).show();
                     }
                 }
@@ -134,7 +134,7 @@ public class OculosFragment extends Fragment {
                 public void onClick(View view) {
                     if (!StaticData.UserData.oculosExisteNoCarrinho(oculos)) {
                         Item item = new Item(oculos, 1);
-                        StaticData.UserData.addToCarrinho(item);
+                        StaticData.UserData.getCarrinho().getItens().add(item);
                     }
 
                     CarrinhoFragment carrinhoFragment = new CarrinhoFragment();

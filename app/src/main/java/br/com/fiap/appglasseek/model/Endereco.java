@@ -4,13 +4,14 @@ public class Endereco {
     private String cep;
     private String destinatario;
     private String endereco;
+    private String numero;
     private String cidade;
     private String municipio;
     private String estado;
     private String complemento;
     private String telefone;
 
-    public Endereco(String cep, String destinatario, String endereco, String cidade, String municipio, String estado, String complemento, String telefone) {
+    public Endereco(String cep, String destinatario, String endereco, String numero, String cidade, String municipio, String estado, String complemento, String telefone) {
         this.cep = cep;
         this.destinatario = destinatario;
         this.endereco = endereco;
@@ -21,7 +22,7 @@ public class Endereco {
         this.telefone = telefone;
     }
 
-    public Endereco(String cep, String destinatario, String endereco, String cidade, String municipio, String estado, String telefone) {
+    public Endereco(String cep, String destinatario, String endereco, String numero, String cidade, String municipio, String estado, String telefone) {
         this.cep = cep;
         this.destinatario = destinatario;
         this.endereco = endereco;
@@ -56,6 +57,14 @@ public class Endereco {
 
     public void setEndereco(String endereco) {
         this.endereco = endereco;
+    }
+
+    public String getNumero() {
+        return numero;
+    }
+
+    public void setNumero(String numero) {
+        this.numero = numero;
     }
 
     public String getCidade() {

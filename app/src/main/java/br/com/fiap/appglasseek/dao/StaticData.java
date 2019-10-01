@@ -5,6 +5,7 @@ import java.util.List;
 
 import br.com.fiap.appglasseek.R;
 import br.com.fiap.appglasseek.model.Carrinho;
+import br.com.fiap.appglasseek.model.Favorito;
 import br.com.fiap.appglasseek.model.Item;
 import br.com.fiap.appglasseek.model.Oculos;
 import br.com.fiap.appglasseek.model.Usuario;
@@ -12,7 +13,7 @@ import br.com.fiap.appglasseek.model.Usuario;
 public class StaticData {
     public static class OculosData {
         static List<Oculos> oculosList;
-        static List<Integer> imageList;
+        public static List<Integer> imageList;
 
         public static List<Oculos> getOculosList() {
             if (OculosData.oculosList == null) {
@@ -49,37 +50,40 @@ public class StaticData {
         public static void removeOculos(Oculos oculos) {
             OculosData.oculosList.remove(oculos);
         }
+
+        public static Oculos getOculosByCodigo(String codigo){
+            Oculos oculos = new Oculos();
+
+            for (Oculos oculosLista : oculosList
+                 ) {
+                if (oculosLista.getCodigo().equals(codigo)){
+                    oculos = oculosLista;
+                }
+            }
+            return oculos;
+        }
     }
 
     public static class UserData {
         static Usuario usuario;
         static Carrinho carrinho;
-        static List<Oculos> favoritosList;
+        static Favorito favorito;
 
-        public static List<Oculos> getFavoritosList() {
+        public static Favorito getFavorito() {
             instanciarFavoritosList();
-            return favoritosList;
+            return favorito;
         }
 
-        public static void setFavoritosList(List<Oculos> favoritosList) {
-            UserData.favoritosList = favoritosList;
-        }
-
-        public static void addFavorito(Oculos oculos) {
-            instanciarFavoritosList();
-            UserData.favoritosList.add(oculos);
-        }
-
-        public static void removeFavorito(Oculos oculos) {
-            UserData.favoritosList.remove(oculos);
+        public static void setFavorito(Favorito favorito) {
+            UserData.favorito = favorito;
         }
 
         public static void instanciarFavoritosList() {
-            if (null == favoritosList) UserData.favoritosList = new ArrayList<Oculos>();
+            if (null == favorito) UserData.favorito = new Favorito();
         }
 
         public static Usuario getUsuario() {
-            if (null == UserData.usuario) UserData.usuario = new Usuario();
+            instanciarUsuario();
             return UserData.usuario;
         }
 
@@ -89,6 +93,10 @@ public class StaticData {
 
         public static void resetUsuario() {
             UserData.usuario = new Usuario();
+        }
+
+        public static void instanciarUsuario(){
+            if (null == UserData.usuario) UserData.usuario = new Usuario();
         }
 
         public static Carrinho getCarrinho() {
@@ -102,15 +110,6 @@ public class StaticData {
 
         public static void instanciarCarrinhoSeNull() {
             if (null == carrinho) UserData.carrinho = new Carrinho();
-        }
-
-        public static void addToCarrinho(Item item) {
-            instanciarCarrinhoSeNull();
-            UserData.carrinho.addItemToCarrinho(item);
-        }
-
-        public static void removeFromCarrinho(Item item) {
-            if (carrinho != null) UserData.carrinho.getItens().remove(item);
         }
 
         public static boolean oculosExisteNoCarrinho(Oculos oculos) {
