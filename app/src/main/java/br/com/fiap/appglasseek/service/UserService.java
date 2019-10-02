@@ -212,9 +212,9 @@ public class UserService extends AsyncTask<String, Void, Usuario> implements Ser
 
                 FavoritesService favoritesService = new FavoritesService(context, "GET");
                 favoritesService.execute(StaticData.UserData.getUsuario().getEmail());
-//
-//                CarrinhoService carrinhoService = new CarrinhoService(context,"GET");
-//                carrinhoService.execute(StaticData.UserData.getUsuario().getEmail());
+
+                CarrinhoService carrinhoService = new CarrinhoService(context,"GET");
+                carrinhoService.execute(StaticData.UserData.getUsuario().getEmail());
             }
 
         } else if (operation.equals("CREATE")) {

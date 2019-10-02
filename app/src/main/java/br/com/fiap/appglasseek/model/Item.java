@@ -8,6 +8,12 @@ public class Item {
     private Integer parcelas;
     private Double custoEnvio;
 
+    public Item(Oculos oculos, Integer quantidade, Double total){
+        this.oculos = oculos;
+        this.quantidade = quantidade;
+        this.total = total;
+    }
+
     public Item(Oculos oculos, Integer parcelas, Double custoEnvio, Double total, Integer quantidade) {
         this.oculos = oculos;
         this.parcelas = parcelas;

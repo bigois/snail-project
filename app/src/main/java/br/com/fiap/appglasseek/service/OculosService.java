@@ -95,6 +95,7 @@ public class OculosService extends AsyncTask<String, Void, List<Oculos>> impleme
                     }
 
                 }
+                response.close();
 
 
             } //else if (operation.equals("CREATE")) {

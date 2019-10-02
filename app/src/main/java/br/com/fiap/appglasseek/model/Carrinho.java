@@ -14,7 +14,7 @@ public class Carrinho {
     }
 
     public List<Item> getItens() {
-        if (null == itens) instanciarItensSeNull();
+        instanciarItensSeNull();
         return itens;
     }
 

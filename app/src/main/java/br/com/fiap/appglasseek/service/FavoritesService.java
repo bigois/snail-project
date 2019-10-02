@@ -79,6 +79,7 @@ public class FavoritesService extends AsyncTask<String, Void, Favorito> implemen
                     }
 
                 }
+                response.close();
 
             }
 //            else if (operation.equals("CREATE")) {
