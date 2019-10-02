@@ -34,7 +34,7 @@ public class CarrinhoService extends AsyncTask<String, Void, Carrinho> implement
 
     @Override
     protected void onPreExecute() {
-//        dialog = new ACProgressFlower.Builder(context)
+        //        dialog = new ACProgressFlower.Builder(context)
 //                .direction(ACProgressConstant.DIRECT_CLOCKWISE)
 //                .themeColor(Color.WHITE)
 //                .fadeColor(Color.DKGRAY).build();
@@ -85,11 +85,12 @@ public class CarrinhoService extends AsyncTask<String, Void, Carrinho> implement
                 response.close();
 
             }
-//            else if (operation.equals("CREATE")) {
-//
-//            } else if (operation.equals("UPDATE")) {
-//
-//            } else if (operation.equals("DELETE")) {
+            else if (operation.equals("CREATE")) {
+
+
+
+            }
+//            else if (operation.equals("DELETE")) {
 //
 //            }
         } catch (Exception e){
@@ -106,11 +107,12 @@ public class CarrinhoService extends AsyncTask<String, Void, Carrinho> implement
             if (carrinho.getItens().size() > 0){
                 StaticData.UserData.setCarrinho(carrinho);
             }
+
+        } else if (operation.equals("CREATE")) {
+
+
         }
-//        } else if (operation.equals("CREATE")) {
-//
-//
-//        } else if (operation.equals("UPDATE")) {
+//        else if (operation.equals("UPDATE")) {
 //
 //        } else if (operation.equals("DELETE")) {
 //

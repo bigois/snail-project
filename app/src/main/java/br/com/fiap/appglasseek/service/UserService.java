@@ -43,11 +43,11 @@ public class UserService extends AsyncTask<String, Void, Usuario> implements Ser
         if(this.context instanceof SplashActivity){
 
         }else{
-            dialog = new ACProgressFlower.Builder(context)
-                    .direction(ACProgressConstant.DIRECT_CLOCKWISE)
-                    .themeColor(Color.WHITE)
-                    .fadeColor(Color.DKGRAY).build();
-            dialog.show();
+//            dialog = new ACProgressFlower.Builder(context)
+//                    .direction(ACProgressConstant.DIRECT_CLOCKWISE)
+//                    .themeColor(Color.WHITE)
+//                    .fadeColor(Color.DKGRAY).build();
+//            dialog.show();
         }
 
     }
@@ -195,17 +195,28 @@ public class UserService extends AsyncTask<String, Void, Usuario> implements Ser
         if(this.context instanceof SplashActivity){
 
         }else{
-            dialog.hide();
+//            dialog.hide();
         }
 
 
         if (operation.equals("GET")) {
             if (usuario.getCpf() == null) {
-                Toast.makeText(context, "Usuário ou senha inválido!", Toast.LENGTH_SHORT).show();
+                if(this.context instanceof SplashActivity){
+                    Toast.makeText(context, "Não foi possível te reconectar, tente realizar o login novamente!", Toast.LENGTH_SHORT).show();
+                }else{
+                    Toast.makeText(context, "Usuário ou senha inválido!", Toast.LENGTH_SHORT).show();
+                }
+
             } else {
                 StaticData.UserData.setUsuario(usuario);
                 LoginUtility.logIn(context.getApplicationContext(), usuario.getEmail(), usuario.getSenha());
-                Toast.makeText(context, "Login realizado com sucesso!", Toast.LENGTH_SHORT).show();
+
+                if(this.context instanceof SplashActivity){
+                    Toast.makeText(context, "Você foi reconectado!", Toast.LENGTH_SHORT).show();
+                }else{
+                    Toast.makeText(context, "Login realizado com sucesso!", Toast.LENGTH_SHORT).show();
+                }
+
 
                 AddressService addressService = new AddressService(context, "GET");
                 addressService.execute(StaticData.UserData.getUsuario().getEmail());

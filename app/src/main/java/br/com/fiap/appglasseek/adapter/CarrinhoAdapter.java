@@ -101,6 +101,7 @@ public class CarrinhoAdapter extends RecyclerView.Adapter<CarrinhoOculosHolder> 
                                 .setPositiveButton("Sim", new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int id) {
                                         StaticData.UserData.getCarrinho().getItens().remove(carrinho.getItens().get(position));//.removeFromCarrinho(carrinho.getItens().get(position));
+
                                         updateValorTotalNoFragment();
                                         notifyDataSetChanged();
                                     }

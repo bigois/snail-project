@@ -6,7 +6,6 @@ import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
 import java.util.ArrayList;
@@ -38,11 +37,13 @@ public class OculosService extends AsyncTask<String, Void, List<Oculos>> impleme
 
     @Override
     protected void onPreExecute() {
-//        dialog = new ACProgressFlower.Builder(context)
-//                .direction(ACProgressConstant.DIRECT_CLOCKWISE)
-//                .themeColor(Color.WHITE)
-//                .fadeColor(Color.DKGRAY).build();
-//        dialog.show();
+        if (operation.equals("GET")) {
+//            dialog = new ACProgressFlower.Builder(context)
+//                    .direction(ACProgressConstant.DIRECT_CLOCKWISE)
+//                    .themeColor(Color.WHITE)
+//                    .fadeColor(Color.DKGRAY).build();
+//            dialog.show();
+        }
     }
 
     @Override
@@ -115,6 +116,7 @@ public class OculosService extends AsyncTask<String, Void, List<Oculos>> impleme
     @Override
     protected void onPostExecute(List<Oculos> oculosList) {
         if (operation.equals("GET")) {
+//            dialog.dismiss();
             if (oculosList.isEmpty()) {
                 Toast.makeText(context, "Lista de óculos indisponíveis!", Toast.LENGTH_SHORT).show();
             } else {

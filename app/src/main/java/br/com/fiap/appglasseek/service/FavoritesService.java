@@ -3,6 +3,7 @@ package br.com.fiap.appglasseek.service;
 import android.content.Context;
 import android.graphics.Color;
 import android.os.AsyncTask;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
@@ -13,8 +14,10 @@ import br.com.fiap.appglasseek.model.Favorito;
 import br.com.fiap.appglasseek.model.Oculos;
 import cc.cloudist.acplibrary.ACProgressConstant;
 import cc.cloudist.acplibrary.ACProgressFlower;
+import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
+import okhttp3.RequestBody;
 import okhttp3.Response;
 
 public class FavoritesService extends AsyncTask<String, Void, Favorito> implements Service{
@@ -43,7 +46,7 @@ public class FavoritesService extends AsyncTask<String, Void, Favorito> implemen
     @Override
     protected Favorito doInBackground(String... params) {
         JsonArray jsonArray;
-        Favorito favorito = new Favorito();
+        Favorito favoritos = new Favorito();
 
         try {
             if (operation.equals("GET")) {
@@ -73,7 +76,8 @@ public class FavoritesService extends AsyncTask<String, Void, Favorito> implemen
                         oculos = StaticData.OculosData.getOculosByCodigo(codigoOculos);
 
                         if(null != oculos){
-                            favorito.getOculos().add(oculos);
+                            favoritos.getOculos().add(oculos);
+                            success = true;
                         }
 
                     }
@@ -82,34 +86,93 @@ public class FavoritesService extends AsyncTask<String, Void, Favorito> implemen
                 response.close();
 
             }
-//            else if (operation.equals("CREATE")) {
-//
-//            } else if (operation.equals("UPDATE")) {
-//
-//            } else if (operation.equals("DELETE")) {
-//
-//            }
+            else if (operation.equals("CREATE")) {
+                JsonObject jsonList = new JsonObject();
+
+                JsonArray wishProperty = new JsonArray();
+
+                JsonObject wishJson = new JsonObject();
+                wishJson.addProperty("code", params[1]);
+
+                wishProperty.add(wishJson);
+                jsonList.add("wishes",wishProperty);
+
+                OkHttpClient client = new OkHttpClient();
+
+                MediaType mediaType = MediaType.parse("application/json");
+                RequestBody body = RequestBody.create(mediaType, jsonList.toString());
+                Request request = new Request.Builder()
+                        .url(URL + "?email=" + params[0])
+                        .post(body)
+                        .addHeader("Content-Type", "application/json")
+                        .addHeader("cache-control", "no-cache")
+                        .build();
+
+                Response response = client.newCall(request).execute();
+                if(response.isSuccessful()){
+                    favoritos.getOculos().add(StaticData.OculosData.getOculosByCodigo(params[1]));
+                    success = true;
+                }
+                response.close();
+
+
+            }
+            else if (operation.equals("DELETE")) {
+
+                JsonObject jsonList = new JsonObject();
+
+                JsonArray wishProperty = new JsonArray();
+
+                JsonObject wishJson = new JsonObject();
+                wishJson.addProperty("code", params[1]);
+
+                wishProperty.add(wishJson);
+                jsonList.add("wishes",wishProperty);
+
+                OkHttpClient client = new OkHttpClient();
+
+                MediaType mediaType = MediaType.parse("application/json");
+                RequestBody body = RequestBody.create(mediaType, jsonList.toString());
+                Request request = new Request.Builder()
+                        .url(URL + "?email=" + params[0])
+                        .delete(body)
+                        .addHeader("Content-Type", "application/json")
+                        .addHeader("cache-control", "no-cache")
+                        .build();
+
+                Response response = client.newCall(request).execute();
+
+                if(response.isSuccessful()){
+                    favoritos.getOculos().remove(StaticData.OculosData.getOculosByCodigo(params[1]));
+                    success = true;
+                }
+                response.close();
+
+            }
         } catch (Exception e){
             e.printStackTrace();
         }
 
-        return favorito;
+        return favoritos;
     }
 
     @Override
     protected void onPostExecute(Favorito favoritos) {
         //dialog.hide();
         if (operation.equals("GET")) {
-            if(favoritos.getOculos().size()>0){
+            if(true == success){
                 StaticData.UserData.getFavorito().setOculos(favoritos.getOculos());
             }
         }
-//        else if (operation.equals("CREATE")) {
-//
-//        } else if (operation.equals("UPDATE")) {
-//
-//        } else if (operation.equals("DELETE")) {
-//
-//        }
+        else if (operation.equals("CREATE")) {
+            if(!success){
+                Toast.makeText(context, "Não foi possível adicionar os óculos aos favoritos no servidor, tente novamente.", Toast.LENGTH_SHORT).show();
+            }
+        }
+        else if (operation.equals("DELETE")) {
+            if(!success){
+                Toast.makeText(context, "Não foi possível remover os óculos dos favoritos no servidor, tente novamente.", Toast.LENGTH_SHORT).show();
+            }
+        }
     }
 }

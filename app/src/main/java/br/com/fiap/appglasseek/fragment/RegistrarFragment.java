@@ -2,11 +2,13 @@ package br.com.fiap.appglasseek.fragment;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import br.com.fiap.appglasseek.R;
 import br.com.fiap.appglasseek.model.Usuario;
@@ -55,22 +57,59 @@ public class RegistrarFragment extends Fragment {
         btnCadastrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Usuario usuario = new Usuario();
-                usuario.setNome(txtNome.getText().toString());
-                usuario.setSobrenome(txtSobrenome.getText().toString());
-                usuario.setCpf(txtCpf.getText().toString());
-                usuario.setTelefone(txtTelefone.getText().toString());
-                usuario.setEmail(txtEmail.getText().toString());
-                usuario.setSenha(txtSenha.getText().toString());
 
-                UserService userService = new UserService(getContext(), "CREATE");
-                userService.execute(usuario.getNome(), usuario.getSobrenome(), usuario.getCpf(), usuario.getTelefone(), usuario.getEmail(), usuario.getSenha());
+                if(validaCampos()){
+                    Usuario usuario = new Usuario();
+                    usuario.setNome(txtNome.getText().toString());
+                    usuario.setSobrenome(txtSobrenome.getText().toString());
+                    usuario.setCpf(txtCpf.getText().toString());
+                    usuario.setTelefone(txtTelefone.getText().toString());
+                    usuario.setEmail(txtEmail.getText().toString());
+                    usuario.setSenha(txtSenha.getText().toString());
 
-                getActivity().getSupportFragmentManager().popBackStack();
-                getActivity().getSupportFragmentManager().beginTransaction().remove(RegistrarFragment.this).commit();
+                    UserService userService = new UserService(getContext(), "CREATE");
+                    userService.execute(usuario.getNome(), usuario.getSobrenome(), usuario.getCpf(), usuario.getTelefone(), usuario.getEmail(), usuario.getSenha());
+
+                    getActivity().getSupportFragmentManager().popBackStack();
+                    getActivity().getSupportFragmentManager().beginTransaction().remove(RegistrarFragment.this).commit();
+                } else {
+                    Toast.makeText(getContext(), "Campos obrigatórios não preenchidos", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
         return view;
+    }
+
+    public Boolean validaCampos(){
+        Boolean valid = true;
+
+        if (TextUtils.isEmpty(txtNome.getText().toString())) {
+            txtNome.setError("Informe o nome!");
+            valid = false;
+        }
+        if (TextUtils.isEmpty(txtSobrenome.getText().toString())) {
+            txtSobrenome.setError("Informe o sobrenome!");
+            valid = false;
+        }
+        if (TextUtils.isEmpty(txtCpf.getText().toString())) {
+            txtCpf.setError("Informe o CPF!");
+            valid = false;
+        }
+        if (TextUtils.isEmpty(txtTelefone.getText().toString())) {
+            txtTelefone.setError("Informe a telefone!");
+            valid = false;
+        }
+        if (TextUtils.isEmpty(txtEmail.getText().toString())) {
+            txtEmail.setError("Informe o email!");
+            valid = false;
+        }
+        if (TextUtils.isEmpty(txtSenha.getText().toString())) {
+            txtSenha.setError("Informe a senha!");
+            valid = false;
+        }
+
+        return valid;
+
     }
 }

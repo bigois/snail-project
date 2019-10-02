@@ -36,23 +36,19 @@ public class EnderecoFragment extends Fragment {
         getActivity().setTitle("Endereço");
 
         txtCep = rootView.findViewById(R.id.txtCep);
-        txtDestinatario = rootView.findViewById(R.id.txtDestinatario);
         txtEndereco = rootView.findViewById(R.id.txtEndereco);
         txtNumero = rootView.findViewById(R.id.txtNumero);
         txtCidade = rootView.findViewById(R.id.txtCidade);
         txtEstado = rootView.findViewById(R.id.txtEstado);
         txtComplemento = rootView.findViewById(R.id.txtComplemento);
-        txtTelefone = rootView.findViewById(R.id.txtTelefone);
 
         if(!StaticData.UserData.getUsuario().getEnderecos().isEmpty()){
             txtCep.setText(StaticData.UserData.getUsuario().getEnderecos().get(0).getCep());
-            txtDestinatario.setText(StaticData.UserData.getUsuario().getEnderecos().get(0).getDestinatario());
             txtEndereco.setText(StaticData.UserData.getUsuario().getEnderecos().get(0).getEndereco());
             txtNumero.setText(StaticData.UserData.getUsuario().getEnderecos().get(0).getNumero());
             txtCidade.setText(StaticData.UserData.getUsuario().getEnderecos().get(0).getCidade());
             txtEstado.setText(StaticData.UserData.getUsuario().getEnderecos().get(0).getEstado());
             txtComplemento.setText(StaticData.UserData.getUsuario().getEnderecos().get(0).getComplemento());
-            txtTelefone.setText(StaticData.UserData.getUsuario().getEnderecos().get(0).getTelefone());
         }
 
 
@@ -60,22 +56,27 @@ public class EnderecoFragment extends Fragment {
         btnAtualizar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String method;
 
                 if(validaCampos()){
                     Endereco endereco = new Endereco();
                     endereco.setCep(txtCep.getText().toString());
-                    endereco.setDestinatario(txtDestinatario.getText().toString());
                     endereco.setEndereco(txtEndereco.getText().toString());
                     endereco.setNumero(txtNumero.getText().toString());
                     endereco.setCidade(txtCidade.getText().toString());
                     endereco.setEstado(txtEstado.getText().toString());
                     endereco.setComplemento(txtComplemento.getText().toString());
-                    endereco.setTelefone(txtTelefone.getText().toString());
+
+                    if(StaticData.UserData.getUsuario().getEnderecos().size() > 0){
+                        method = "UPDATE";
+                    } else {
+                        method = "CREATE";
+                    }
 
                     StaticData.UserData.getUsuario().getEnderecos().add(endereco);
 
-                    AddressService addressService = new AddressService(getContext(), "UPDATE");
-                    addressService.execute(StaticData.UserData.getUsuario().getEmail(), endereco.getNumero(), endereco.getEndereco(), endereco.getCep(), endereco.getEstado(), endereco.getComplemento(), endereco.getCidade(), endereco.getMunicipio());
+                    AddressService addressService = new AddressService(getContext(), method);
+                    addressService.execute(StaticData.UserData.getUsuario().getEmail(), endereco.getNumero(), endereco.getEndereco(), endereco.getCep(), endereco.getEstado(), endereco.getComplemento(), endereco.getCidade(), endereco.getMunicipio(),endereco.getDestinatario(),endereco.getTelefone());
 
                     getActivity().getSupportFragmentManager().popBackStack();
                 } else {
@@ -115,6 +116,10 @@ public class EnderecoFragment extends Fragment {
         }
         if (TextUtils.isEmpty(txtEstado.getText().toString())) {
             txtEstado.setError("Informe o estado!");
+            valid = false;
+        }
+        if (TextUtils.isEmpty(txtComplemento.getText().toString())) {
+            txtComplemento.setError("Informe o complemento!");
             valid = false;
         }
 
