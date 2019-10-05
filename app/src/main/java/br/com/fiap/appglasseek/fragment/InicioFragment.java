@@ -32,21 +32,21 @@ public class InicioFragment extends Fragment {
 
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getContext());
 
-        if(preferences.getString("email", null) != null
-                && preferences.getString("senha", null) != null
-                && preferences.getBoolean("logged", false) == false) {
-
-            OculosService oculosService = new OculosService(getContext(),"GET");
-            oculosService.execute();
-
-            UserService userService = new UserService(getContext(), "GET");
-            userService.execute(preferences.getString("email", null), preferences.getString("senha", null), "InicioFragment");
-
-            MenuActivity menuActivity = new MenuActivity();
-            Intent intent = new Intent(getActivity(), menuActivity.getClass());
-
-            startActivity(intent);
-        }
+//        if(preferences.getString("email", null) != null
+//                && preferences.getString("senha", null) != null
+//                && preferences.getBoolean("logged", false) == false) {
+//
+//            OculosService oculosService = new OculosService(getContext(),"GET");
+//            oculosService.execute();
+//
+//            UserService userService = new UserService(getContext(), "GET");
+//            userService.execute(preferences.getString("email", null), preferences.getString("senha", null), "InicioFragment");
+//
+//            MenuActivity menuActivity = new MenuActivity();
+//            Intent intent = new Intent(getActivity(), menuActivity.getClass());
+//
+//            startActivity(intent);
+//        }
 
         RecyclerView recyclerView = rootView.findViewById(R.id.rclInicio);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));

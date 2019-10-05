@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#FFFFFF</color>
-    <color name="colorPrimaryDark">#E95D15</color>
+    <color name="colorPrimaryDark">#B8E95D15</color>
     <color name="colorAccent">#FF4081</color>
-    <color name="tela_login">#388370</color>
+    <color name="tela_login">#ED8956</color>
 </resources>

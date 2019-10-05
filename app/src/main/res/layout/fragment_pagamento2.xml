@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".fragment.PagamentoFragment">
+
+<com.braintreepayments.cardform.view.CardForm
+    android:layout_marginTop="56dp"
+    android:id="@+id/card_form"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content" />
+
+
+    <TextView
+        android:id="@+id/lblValorTotal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/btnBuy"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="50dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="10dp"
+        android:text="Valor a pagar:"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="555dp" />
+
+    <TextView
+        android:id="@+id/txtValorTotalP"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/btnBuy"
+        android:layout_marginBottom="50dp"
+        android:layout_marginLeft="120dp"
+        android:layout_marginRight="150dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="10dp"
+        android:layout_toEndOf="@+id/lblValorTotal"
+        android:text="XXXXX"
+        android:textSize="20sp"
+        app:layout_constraintStart_toEndOf="@+id/lblValorTotal"
+        tools:layout_editor_absoluteY="555dp" />
+
+    <Button
+        android:id="@+id/btnBuy"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/colorPrimaryDark"
+        android:text="Comprar"
+        android:textColor="@android:color/white" />
+
+
+
+</RelativeLayout>

@@ -22,6 +22,7 @@ import br.com.fiap.appglasseek.fragment.OculosFragment;
 import br.com.fiap.appglasseek.holder.CarrinhoOculosHolder;
 import br.com.fiap.appglasseek.model.Carrinho;
 import br.com.fiap.appglasseek.model.Oculos;
+import br.com.fiap.appglasseek.service.CarrinhoService;
 
 import static br.com.fiap.appglasseek.fragment.CarrinhoFragment.updateValorTotalNoFragment;
 
@@ -69,7 +70,7 @@ public class CarrinhoAdapter extends RecyclerView.Adapter<CarrinhoOculosHolder> 
     @Override
     public void onBindViewHolder(@NonNull final CarrinhoOculosHolder carrinhoOculosHolder, final int position) {
         if (carrinho.getItens() != null && carrinho.getItens().size() > 0) {
-            Oculos oculos = carrinho.getItens().get(position).getOculos();
+            final Oculos oculos = carrinho.getItens().get(position).getOculos();
 
             Locale.setDefault(new Locale("pt", "BR"));
 
@@ -101,6 +102,9 @@ public class CarrinhoAdapter extends RecyclerView.Adapter<CarrinhoOculosHolder> 
                                 .setPositiveButton("Sim", new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int id) {
                                         StaticData.UserData.getCarrinho().getItens().remove(carrinho.getItens().get(position));//.removeFromCarrinho(carrinho.getItens().get(position));
+
+                                        CarrinhoService carrinhoService = new CarrinhoService(context,"DELETE");
+                                        carrinhoService.execute(StaticData.UserData.getUsuario().getEmail(),oculos.getCodigo());
 
                                         updateValorTotalNoFragment();
                                         notifyDataSetChanged();

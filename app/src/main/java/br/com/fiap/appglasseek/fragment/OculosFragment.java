@@ -181,17 +181,23 @@ public class OculosFragment extends Fragment {
             btnComprar.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    if (!StaticData.UserData.oculosExisteNoCarrinho(oculos)) {
-                        Item item = new Item(oculos, 1);
-                        StaticData.UserData.getCarrinho().getItens().add(item);
+                    if(LoginUtility.isLogged(getContext())){
+                        if (!StaticData.UserData.oculosExisteNoCarrinho(oculos)) {
+                            Item item = new Item(oculos, 1);
+                            StaticData.UserData.getCarrinho().getItens().add(item);
 
-                        CarrinhoService carrinhoService = new CarrinhoService(getContext(),"CREATE");
+                            CarrinhoService carrinhoService = new CarrinhoService(getContext(),"CREATE");
+                            carrinhoService.execute(StaticData.UserData.getUsuario().getEmail(),oculos.getCodigo());
 
 
+                        }
+
+                        CarrinhoFragment carrinhoFragment = new CarrinhoFragment();
+                        getActivity().getSupportFragmentManager().beginTransaction().replace(((ViewGroup) getView().getParent()).getId(), carrinhoFragment, "OculosFragment").addToBackStack(null).commit();
+                    }else{
+                        Toast.makeText(getContext(), "Faça o login para poder realizar uma compra!", Toast.LENGTH_SHORT).show();
                     }
 
-                    CarrinhoFragment carrinhoFragment = new CarrinhoFragment();
-                    getActivity().getSupportFragmentManager().beginTransaction().replace(((ViewGroup) getView().getParent()).getId(), carrinhoFragment, "OculosFragment").addToBackStack(null).commit();
                 }
             });
         }

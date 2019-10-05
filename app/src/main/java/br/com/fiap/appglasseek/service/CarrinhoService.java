@@ -14,8 +14,10 @@ import br.com.fiap.appglasseek.model.Item;
 import br.com.fiap.appglasseek.model.Oculos;
 import cc.cloudist.acplibrary.ACProgressConstant;
 import cc.cloudist.acplibrary.ACProgressFlower;
+import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
+import okhttp3.RequestBody;
 import okhttp3.Response;
 
 public class CarrinhoService extends AsyncTask<String, Void, Carrinho> implements Service{
@@ -86,13 +88,83 @@ public class CarrinhoService extends AsyncTask<String, Void, Carrinho> implement
 
             }
             else if (operation.equals("CREATE")) {
+                JsonObject jsonList = new JsonObject();
 
+                JsonArray cartProperty = new JsonArray();
+
+                JsonObject wishJson = new JsonObject();
+                wishJson.addProperty("code", params[1]);
+
+                cartProperty.add(wishJson);
+                jsonList.add("cart",cartProperty);
+
+                OkHttpClient client = new OkHttpClient();
+
+                MediaType mediaType = MediaType.parse("application/json");
+                RequestBody body = RequestBody.create(mediaType,jsonList.toString());
+                Request request = new Request.Builder()
+                        .url(URL + "?email=" + params[0])
+                        .post(body)
+                        .addHeader("Content-Type", "application/json")
+                        .addHeader("cache-control", "no-cache")
+                        .build();
+
+                Response response = client.newCall(request).execute();
+
+//                if(response.isSuccessful()){
+//                    carrinho.getItens().add()
+//                    //favoritos.getOculos().add(StaticData.OculosData.getOculosByCodigo(params[1]));
+//                    success = true;
+//                }
+                response.close();
 
 
             }
-//            else if (operation.equals("DELETE")) {
-//
-//            }
+            else if (operation.equals("DELETE")) {
+                JsonObject jsonList = new JsonObject();
+
+                JsonArray cartProperty = new JsonArray();
+
+                JsonObject wishJson = new JsonObject();
+
+                if (params.length==2){
+                    if (params[1].equals("DELETE_ALL")){
+                        for (Item item: StaticData.UserData.getCarrinho().getItens()
+                             ) {
+                            wishJson.addProperty("code", item.getOculos().getCodigo());
+                            cartProperty.add(wishJson);
+                        }
+                    }else {
+                        wishJson.addProperty("code", params[1]);
+                        cartProperty.add(wishJson);
+                    }
+                }
+
+                jsonList.add("cart",cartProperty);
+
+                OkHttpClient client = new OkHttpClient();
+
+                MediaType mediaType = MediaType.parse("application/json");
+                RequestBody body = RequestBody.create(mediaType,jsonList.toString());
+                Request request = new Request.Builder()
+                        .url(URL + "?email=" + params[0])
+                        .delete(body)
+                        .addHeader("Content-Type", "application/json")
+                        .addHeader("cache-control", "no-cache")
+                        .build();
+
+                Response response = client.newCall(request).execute();
+                if (response.isSuccessful()){
+                    success = true;
+                    if (params.length==2) {
+                        if (params[1].equals("DELETE_ALL")) {
+                            StaticData.UserData.setCarrinho(new Carrinho());
+                        }
+                    }
+                }
+
+                response.close();
+            }
         } catch (Exception e){
             e.printStackTrace();
         }
@@ -108,15 +180,17 @@ public class CarrinhoService extends AsyncTask<String, Void, Carrinho> implement
                 StaticData.UserData.setCarrinho(carrinho);
             }
 
-        } else if (operation.equals("CREATE")) {
-
-
         }
+//        else if (operation.equals("CREATE")) {
+
+
+//        }
 //        else if (operation.equals("UPDATE")) {
 //
-//        } else if (operation.equals("DELETE")) {
-//
 //        }
+        else if (operation.equals("DELETE")) {
+
+        }
     }
 }
 

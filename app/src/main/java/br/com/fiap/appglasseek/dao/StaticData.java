@@ -1,10 +1,12 @@
 package br.com.fiap.appglasseek.dao;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import br.com.fiap.appglasseek.R;
 import br.com.fiap.appglasseek.model.Carrinho;
+import br.com.fiap.appglasseek.model.Compra;
 import br.com.fiap.appglasseek.model.Favorito;
 import br.com.fiap.appglasseek.model.Item;
 import br.com.fiap.appglasseek.model.Oculos;
@@ -68,6 +70,7 @@ public class StaticData {
         static Usuario usuario;
         static Carrinho carrinho;
         static Favorito favorito;
+        static List<Compra> compras;
 
         public static Favorito getFavorito() {
             instanciarFavoritosList();
@@ -132,5 +135,16 @@ public class StaticData {
 
             return valorCarrinho;
         }
+
+        public static List<Compra> getCompras() {
+            instanciarComprasList();
+            return compras;
+        }
+
+        private static void instanciarComprasList() {
+            if (null == compras) UserData.compras = new ArrayList<>();
+        }
+
+
     }
 }
