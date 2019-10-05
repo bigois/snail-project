@@ -1,12 +1,16 @@
 package br.com.fiap.appglasseek.service;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.AsyncTask;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import br.com.fiap.appglasseek.dao.StaticData;
 import br.com.fiap.appglasseek.model.Carrinho;
@@ -65,18 +69,18 @@ public class CarrinhoService extends AsyncTask<String, Void, Carrinho> implement
                 if(response.isSuccessful()){
                     for (int i = 0; i < jsonArray.size(); i++) {
                         Oculos oculos = new Oculos();
-                        Integer quantidade = 1;
                         Double total;
                         String codigoOculos;
+                        Integer quantity;
 
                         JsonObject row = jsonArray.get(i).getAsJsonObject();
 
                         codigoOculos = row.get("code").getAsString();
-                        //item = row.get("item").getAsString();
+                        quantity = row.get("item").getAsInt();
 
                         oculos = StaticData.OculosData.getOculosByCodigo(codigoOculos);
-                        total = oculos.getPreco() * quantidade;
-                        Item item = new Item(oculos,quantidade,total);
+                        total = oculos.getPreco() * quantity;
+                        Item item = new Item(oculos,quantity,total);
 
                         if(null != oculos){
                             carrinho.getItens().add(item);
@@ -94,6 +98,7 @@ public class CarrinhoService extends AsyncTask<String, Void, Carrinho> implement
 
                 JsonObject wishJson = new JsonObject();
                 wishJson.addProperty("code", params[1]);
+                wishJson.addProperty("quantity", Integer.parseInt(params[2]));
 
                 cartProperty.add(wishJson);
                 jsonList.add("cart",cartProperty);
@@ -118,6 +123,46 @@ public class CarrinhoService extends AsyncTask<String, Void, Carrinho> implement
 //                }
                 response.close();
 
+
+            }else if (operation.equals("UPDATE")) {
+                JsonObject jsonList = new JsonObject();
+
+                JsonArray cartProperty = new JsonArray();
+
+                JsonObject wishJson = new JsonObject();
+                wishJson.addProperty("code", params[1]);
+                wishJson.addProperty("quantity", Integer.parseInt(params[2]));
+
+                cartProperty.add(wishJson);
+                jsonList.add("cart",cartProperty);
+
+                OkHttpClient client = new OkHttpClient();
+
+                MediaType mediaType = MediaType.parse("application/json");
+                RequestBody body = RequestBody.create(mediaType,jsonList.toString());
+                Request request = new Request.Builder()
+                        .url(URL + "?email=" + params[0])
+                        .put(body)
+                        .addHeader("Content-Type", "application/json")
+                        .addHeader("cache-control", "no-cache")
+                        .build();
+
+                Response response = client.newCall(request).execute();
+
+                if(response.isSuccessful()){
+                    List<Item> itemList;
+                    itemList = carrinho.getItens();
+
+                    for (Item item:itemList
+                         ) {
+                        if(item.getOculos().getCodigo().equals(params[1])){
+                            item.setQuantidade(Integer.parseInt(params[2]));
+                        }
+                    }
+                    carrinho.setItens(itemList);
+                    success = true;
+                }
+                response.close();
 
             }
             else if (operation.equals("DELETE")) {

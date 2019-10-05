@@ -87,6 +87,10 @@ public class CarrinhoAdapter extends RecyclerView.Adapter<CarrinhoOculosHolder> 
                     quantidade.setText(intQuantidade.toString());
 
                     StaticData.UserData.getCarrinho().getItens().get(position).setQuantidade(Integer.parseInt(quantidade.getText().toString()));
+
+                    CarrinhoService carrinhoService = new CarrinhoService(context,"UPDATE");
+                    carrinhoService.execute(StaticData.UserData.getUsuario().getEmail(),oculos.getCodigo(),quantidade.getText().toString());
+
                     updateValorTotalNoFragment();
                     notifyDataSetChanged();
                 }
@@ -117,6 +121,10 @@ public class CarrinhoAdapter extends RecyclerView.Adapter<CarrinhoOculosHolder> 
                         quantidade.setText(intQuantidade.toString());
 
                         StaticData.UserData.getCarrinho().getItens().get(position).setQuantidade(Integer.parseInt(quantidade.getText().toString()));
+
+                        CarrinhoService carrinhoService = new CarrinhoService(context,"UPDATE");
+                        carrinhoService.execute(StaticData.UserData.getUsuario().getEmail(),oculos.getCodigo(),quantidade.getText().toString());
+
                         updateValorTotalNoFragment();
                         notifyDataSetChanged();
                     }

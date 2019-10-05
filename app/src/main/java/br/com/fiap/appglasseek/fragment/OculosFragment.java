@@ -187,7 +187,7 @@ public class OculosFragment extends Fragment {
                             StaticData.UserData.getCarrinho().getItens().add(item);
 
                             CarrinhoService carrinhoService = new CarrinhoService(getContext(),"CREATE");
-                            carrinhoService.execute(StaticData.UserData.getUsuario().getEmail(),oculos.getCodigo());
+                            carrinhoService.execute(StaticData.UserData.getUsuario().getEmail(),item.getOculos().getCodigo(),item.getQuantidade().toString());
 
 
                         }
