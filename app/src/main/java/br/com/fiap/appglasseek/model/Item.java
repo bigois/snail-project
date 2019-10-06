@@ -8,7 +8,7 @@ public class Item {
     private Integer parcelas;
     private Double custoEnvio;
 
-    public Item(Oculos oculos, Integer quantidade, Double total){
+    public Item(Oculos oculos, Integer quantidade, Double total) {
         this.oculos = oculos;
         this.quantidade = quantidade;
         this.total = total;

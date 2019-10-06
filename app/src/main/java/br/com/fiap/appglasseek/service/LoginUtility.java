@@ -14,22 +14,22 @@ public class LoginUtility {
         Boolean logged = false;
 
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
-        if(     preferences.getBoolean("logged", false) == true
+        if (preferences.getBoolean("logged", false) == true
                 && preferences.getString("senha", null) != null
-                && preferences.getString("email", null) != null){
+                && preferences.getString("email", null) != null) {
             logged = true;
         }
 
         return logged;
     }
 
-    public static void logIn(Context context, String email,String senha) {
+    public static void logIn(Context context, String email, String senha) {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = preferences.edit();
 
         editor.putBoolean("logged", true);
         editor.putString("email", email);
-        editor.putString("senha",senha);
+        editor.putString("senha", senha);
         editor.commit();
     }
 

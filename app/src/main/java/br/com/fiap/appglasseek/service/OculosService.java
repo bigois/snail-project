@@ -21,7 +21,7 @@ import okhttp3.Response;
 
 import static br.com.fiap.appglasseek.dao.StaticData.OculosData.imageList;
 
-public class OculosService extends AsyncTask<String, Void, List<Oculos>> implements Service{
+public class OculosService extends AsyncTask<String, Void, List<Oculos>> implements Service {
     static String operation;
     private String URL;
     private Context context;
@@ -63,9 +63,9 @@ public class OculosService extends AsyncTask<String, Void, List<Oculos>> impleme
                         .build();
 
                 Response response = client.newCall(request).execute();
-                jsonArray = new Gson().fromJson(response.body().string(),JsonObject.class).getAsJsonArray("glasses");
+                jsonArray = new Gson().fromJson(response.body().string(), JsonObject.class).getAsJsonArray("glasses");
 
-                if(response.isSuccessful()){
+                if (response.isSuccessful()) {
 
                     imageList = new ArrayList<Integer>();
 
@@ -106,7 +106,7 @@ public class OculosService extends AsyncTask<String, Void, List<Oculos>> impleme
 //            } else if (operation.equals("DELETE")) {
 //
 //            }
-        } catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 

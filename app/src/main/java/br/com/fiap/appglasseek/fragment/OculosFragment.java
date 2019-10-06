@@ -1,9 +1,7 @@
 package br.com.fiap.appglasseek.fragment;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,16 +19,13 @@ import com.synnapps.carouselview.ImageListener;
 import java.text.DecimalFormat;
 
 import br.com.fiap.appglasseek.R;
-import br.com.fiap.appglasseek.activity.MenuActivity;
 import br.com.fiap.appglasseek.activity.UnityHolderActivity;
 import br.com.fiap.appglasseek.dao.StaticData;
-import br.com.fiap.appglasseek.model.Carrinho;
 import br.com.fiap.appglasseek.model.Item;
 import br.com.fiap.appglasseek.model.Oculos;
 import br.com.fiap.appglasseek.service.CarrinhoService;
 import br.com.fiap.appglasseek.service.FavoritesService;
 import br.com.fiap.appglasseek.service.LoginUtility;
-import br.com.fiap.appglasseek.service.OculosService;
 
 public class OculosFragment extends Fragment {
     private static Oculos oculos;
@@ -105,37 +100,24 @@ public class OculosFragment extends Fragment {
             toggleButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                 @Override
                 public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                    if(LoginUtility.isLogged(getContext())){
+                    if (LoginUtility.isLogged(getContext())) {
                         if (isChecked) {
-
                             StaticData.UserData.getFavorito().getOculos().add(oculos);
                             Toast.makeText(getContext(), "Oculos adicionado aos favoritos.", Toast.LENGTH_SHORT).show();
 
-                            FavoritesService favoritesService = new FavoritesService(getContext(),"CREATE");
-                            favoritesService.execute(StaticData.UserData.getUsuario().getEmail(),oculos.getCodigo());
-
+                            FavoritesService favoritesService = new FavoritesService(getContext(), "CREATE");
+                            favoritesService.execute(StaticData.UserData.getUsuario().getEmail(), oculos.getCodigo());
                         } else {
                             StaticData.UserData.getFavorito().getOculos().remove(oculos);
                             Toast.makeText(getContext(), "Oculos removido dos favoritos.", Toast.LENGTH_SHORT).show();
 
-                            FavoritesService favoritesService = new FavoritesService(getContext(),"DELETE");
-                            favoritesService.execute(StaticData.UserData.getUsuario().getEmail(),oculos.getCodigo());
-
+                            FavoritesService favoritesService = new FavoritesService(getContext(), "DELETE");
+                            favoritesService.execute(StaticData.UserData.getUsuario().getEmail(), oculos.getCodigo());
                         }
                     } else {
                         Toast.makeText(getContext(), "Faça o login para poder favoritar um óculos!", Toast.LENGTH_SHORT).show();
-                        isChecked = false;
                         toggleButton.setChecked(false);
-
-//                        if (isChecked) {
-//                            StaticData.UserData.getFavorito().getOculos().add(oculos);
-//                            Toast.makeText(getContext(), "Oculos adicionado aos favoritos.", Toast.LENGTH_SHORT).show();
-//                        }else {
-//                            StaticData.UserData.getFavorito().getOculos().remove(oculos);
-//                            Toast.makeText(getContext(), "Oculos removido dos favoritos.", Toast.LENGTH_SHORT).show();
-//                        }
                     }
-
                 }
             });
 
@@ -152,28 +134,11 @@ public class OculosFragment extends Fragment {
             btnExperimentar.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-
-//                    InicioFragment inicioFragment = new InicioFragment();
-//                    getActivity().getSupportFragmentManager().beginTransaction().replace(((ViewGroup) getView().getParent()).getId(), inicioFragment).commit();
-
                     UnityHolderActivity unityHolderActivity = new UnityHolderActivity();
                     unityHolderActivity.setOculos(oculos.getCodigo());
 
                     Intent intent = new Intent(getActivity(), unityHolderActivity.getClass());
                     startActivity(intent);
-
-//                    SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getContext());
-//                    SharedPreferences.Editor editor = preferences.edit();
-//
-//                    editor.putBoolean("logged", false);
-//                    editor.commit();
-
-//                    MenuActivity menuActivity = new MenuActivity();
-//                    Intent intent2 = new Intent(getActivity(), menuActivity.getClass());
-//
-//                    startActivity(intent2);
-
-
                 }
             });
 
@@ -181,23 +146,20 @@ public class OculosFragment extends Fragment {
             btnComprar.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    if(LoginUtility.isLogged(getContext())){
+                    if (LoginUtility.isLogged(getContext())) {
                         if (!StaticData.UserData.oculosExisteNoCarrinho(oculos)) {
                             Item item = new Item(oculos, 1);
                             StaticData.UserData.getCarrinho().getItens().add(item);
 
-                            CarrinhoService carrinhoService = new CarrinhoService(getContext(),"CREATE");
-                            carrinhoService.execute(StaticData.UserData.getUsuario().getEmail(),item.getOculos().getCodigo(),item.getQuantidade().toString());
-
-
+                            CarrinhoService carrinhoService = new CarrinhoService(getContext(), "CREATE");
+                            carrinhoService.execute(StaticData.UserData.getUsuario().getEmail(), item.getOculos().getCodigo(), item.getQuantidade().toString());
                         }
 
                         CarrinhoFragment carrinhoFragment = new CarrinhoFragment();
                         getActivity().getSupportFragmentManager().beginTransaction().replace(((ViewGroup) getView().getParent()).getId(), carrinhoFragment, "OculosFragment").addToBackStack(null).commit();
-                    }else{
+                    } else {
                         Toast.makeText(getContext(), "Faça o login para poder realizar uma compra!", Toast.LENGTH_SHORT).show();
                     }
-
                 }
             });
         }

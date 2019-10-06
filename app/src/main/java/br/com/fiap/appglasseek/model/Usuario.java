@@ -103,6 +103,7 @@ public class Usuario {
         if (null == enderecos) {
             enderecos = new ArrayList<>();
         }
+
         return enderecos;
     }
 

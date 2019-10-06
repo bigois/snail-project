@@ -18,7 +18,7 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
-public class AddressService extends AsyncTask<String, Void, Endereco> implements Service{
+public class AddressService extends AsyncTask<String, Void, Endereco> implements Service {
     static String operation;
     private String URL;
     private Context context;
@@ -57,15 +57,15 @@ public class AddressService extends AsyncTask<String, Void, Endereco> implements
                         .build();
 
                 Response response = client.newCall(request).execute();
-                jsonObject = new Gson().fromJson(response.body().string(),JsonObject.class).getAsJsonArray("addresses").get(0).getAsJsonObject();
+                jsonObject = new Gson().fromJson(response.body().string(), JsonObject.class).getAsJsonArray("addresses").get(0).getAsJsonObject();
 
 
-                if(response.isSuccessful()){
+                if (response.isSuccessful()) {
                     endereco.setNumero(jsonObject.get("number").getAsString());
                     endereco.setEndereco(jsonObject.get("address").getAsString());
                     endereco.setCep(jsonObject.get("postalCode").getAsString());
                     endereco.setEstado(jsonObject.get("state").getAsString());
-                    if (!(jsonObject.get("complement") instanceof JsonNull)){
+                    if (!(jsonObject.get("complement") instanceof JsonNull)) {
                         endereco.setComplemento(jsonObject.get("complement").getAsString());
                     }
                     endereco.setCidade(jsonObject.get("city").getAsString());
@@ -91,7 +91,7 @@ public class AddressService extends AsyncTask<String, Void, Endereco> implements
                 enderecoJson.addProperty("municipality", null == params[7] ? "null" : params[7]);
 
                 enderecos.add(enderecoJson);
-                jsonList.add("addresses",enderecos);
+                jsonList.add("addresses", enderecos);
 
                 OkHttpClient client = new OkHttpClient();
 
@@ -106,7 +106,7 @@ public class AddressService extends AsyncTask<String, Void, Endereco> implements
 
                 Response response = client.newCall(request).execute();
 
-                if(response.isSuccessful()){
+                if (response.isSuccessful()) {
                     //String cep, String destinatario, String endereco, String numero, String cidade, String municipio, String estado, String complemento, String telefone
                     endereco = new Endereco();
                     endereco.setCep(params[3]);
@@ -141,12 +141,12 @@ public class AddressService extends AsyncTask<String, Void, Endereco> implements
                 enderecoJson.addProperty("municipality", null == params[7] ? "null" : params[7]);
 
                 enderecos.add(enderecoJson);
-                jsonList.add("addresses",enderecos);
+                jsonList.add("addresses", enderecos);
 
                 OkHttpClient client = new OkHttpClient();
 
                 MediaType mediaType = MediaType.parse("application/json");
-                RequestBody body = RequestBody.create(mediaType,jsonList.toString());
+                RequestBody body = RequestBody.create(mediaType, jsonList.toString());
                 Request request = new Request.Builder()
                         .url(URL + "?email=" + params[0])
                         .put(body)
@@ -158,20 +158,19 @@ public class AddressService extends AsyncTask<String, Void, Endereco> implements
 
                 Response response = client.newCall(request).execute();
 
-                if(response.isSuccessful()){
+                if (response.isSuccessful()) {
                     StaticData.UserData.getUsuario().getEnderecos().remove(0);
                     success = true;
-                }else{
+                } else {
                     StaticData.UserData.getUsuario().getEnderecos().remove(1);
                 }
                 response.close();
 
 
-
             } else if (operation.equals("DELETE")) {
 
             }
-        } catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -182,7 +181,7 @@ public class AddressService extends AsyncTask<String, Void, Endereco> implements
     protected void onPostExecute(Endereco endereco) {
         //dialog.hide();
         if (operation.equals("GET")) {
-            if(endereco.getCep() == null){
+            if (endereco.getCep() == null) {
                 //Toast.makeText(context, "Endereço inexistente!", Toast.LENGTH_SHORT).show();
             } else {
                 StaticData.UserData.getUsuario().getEnderecos().add(endereco);

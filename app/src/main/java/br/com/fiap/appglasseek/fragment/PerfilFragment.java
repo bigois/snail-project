@@ -60,7 +60,7 @@ public class PerfilFragment extends Fragment {
         btnEnderecos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(StaticData.UserData.getUsuario().getEnderecos().isEmpty()){
+                if (StaticData.UserData.getUsuario().getEnderecos().isEmpty()) {
                     AddressService addressService = new AddressService(getContext(), "GET");
                     addressService.execute(StaticData.UserData.getUsuario().getEmail());
                 }
@@ -90,7 +90,6 @@ public class PerfilFragment extends Fragment {
                         .show();
             }
         });
-
 
         btnAtualizar.setText("Atualizar");
         btnAtualizar.setOnClickListener(new View.OnClickListener() {

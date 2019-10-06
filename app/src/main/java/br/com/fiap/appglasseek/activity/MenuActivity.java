@@ -22,7 +22,6 @@ import br.com.fiap.appglasseek.fragment.FavoritosFragment;
 import br.com.fiap.appglasseek.fragment.InicioFragment;
 import br.com.fiap.appglasseek.fragment.LoginFragment;
 import br.com.fiap.appglasseek.fragment.PerfilFragment;
-import br.com.fiap.appglasseek.model.Usuario;
 import br.com.fiap.appglasseek.service.LoginUtility;
 
 public class MenuActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -55,17 +54,17 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
     public void onBackPressed() {
         Fragment currentFragment = getSupportFragmentManager().findFragmentById(R.id.fragment_container);
 
-        if (currentFragment instanceof InicioFragment){
+        if (currentFragment instanceof InicioFragment) {
             new AlertDialog.Builder(this)
-                .setMessage("Deseja realmente sair da aplicação?")
-                .setCancelable(false)
-                .setPositiveButton("Sim", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        finish();
-                    }
-                })
-                .setNegativeButton("Não", null)
-                .show();
+                    .setMessage("Deseja realmente sair da aplicação?")
+                    .setCancelable(false)
+                    .setPositiveButton("Sim", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            finish();
+                        }
+                    })
+                    .setNegativeButton("Não", null)
+                    .show();
         } else {
             getSupportFragmentManager().popBackStack();
         }

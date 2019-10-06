@@ -58,7 +58,7 @@ public class RegistrarFragment extends Fragment {
             @Override
             public void onClick(View view) {
 
-                if(validaCampos()){
+                if (validaCampos()) {
                     Usuario usuario = new Usuario();
                     usuario.setNome(txtNome.getText().toString());
                     usuario.setSobrenome(txtSobrenome.getText().toString());
@@ -81,35 +81,39 @@ public class RegistrarFragment extends Fragment {
         return view;
     }
 
-    public Boolean validaCampos(){
+    public Boolean validaCampos() {
         Boolean valid = true;
 
         if (TextUtils.isEmpty(txtNome.getText().toString())) {
             txtNome.setError("Informe o nome!");
             valid = false;
         }
+
         if (TextUtils.isEmpty(txtSobrenome.getText().toString())) {
             txtSobrenome.setError("Informe o sobrenome!");
             valid = false;
         }
+
         if (TextUtils.isEmpty(txtCpf.getText().toString())) {
             txtCpf.setError("Informe o CPF!");
             valid = false;
         }
+
         if (TextUtils.isEmpty(txtTelefone.getText().toString())) {
             txtTelefone.setError("Informe a telefone!");
             valid = false;
         }
+
         if (TextUtils.isEmpty(txtEmail.getText().toString())) {
             txtEmail.setError("Informe o email!");
             valid = false;
         }
+
         if (TextUtils.isEmpty(txtSenha.getText().toString())) {
             txtSenha.setError("Informe a senha!");
             valid = false;
         }
 
         return valid;
-
     }
 }

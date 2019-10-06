@@ -6,5 +6,4 @@ public interface Service {
     String PATH = "rest";
     String URL = "http://" + IP_ADDRESS + ":" + PORT + "/" + PATH;
     Boolean success = false;
-
 }

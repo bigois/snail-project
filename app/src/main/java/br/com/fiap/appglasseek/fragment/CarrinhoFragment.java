@@ -37,18 +37,18 @@ public class CarrinhoFragment extends Fragment {
     public CarrinhoFragment() {
     }
 
-    public CarrinhoFragment setOculos(Oculos oculos) {
-        CarrinhoFragment.oculos = oculos;
-        return this;
-    }
-
     public static void updateValorTotalNoFragment() {
         txtValorTotal.setText(new DecimalFormat("R$ #,##0.00").format(StaticData.UserData.valorTotalCarrinho()));
         if (StaticData.UserData.valorTotalCarrinho() == Double.parseDouble("0")) {
             btnCheckout.setBackgroundColor(Color.parseColor("#808080"));
-        }else {
+        } else {
             btnCheckout.setBackgroundColor(Color.parseColor("#303F9F"));
         }
+    }
+
+    public CarrinhoFragment setOculos(Oculos oculos) {
+        CarrinhoFragment.oculos = oculos;
+        return this;
     }
 
     @Override
@@ -73,7 +73,7 @@ public class CarrinhoFragment extends Fragment {
 
         if (StaticData.UserData.valorTotalCarrinho() == Double.parseDouble("0")) {
             btnCheckout.setBackgroundColor(Color.parseColor("#808080"));
-        }else {
+        } else {
             btnCheckout.setBackgroundColor(Color.parseColor("#303F9F"));
         }
 

@@ -25,7 +25,7 @@ public class EnderecoFragment extends Fragment {
     private EditText txtEstado;
     private EditText txtComplemento;
     private EditText txtTelefone;
-    
+
     public EnderecoFragment() {
     }
 
@@ -42,7 +42,7 @@ public class EnderecoFragment extends Fragment {
         txtEstado = rootView.findViewById(R.id.txtEstado);
         txtComplemento = rootView.findViewById(R.id.txtComplemento);
 
-        if(!StaticData.UserData.getUsuario().getEnderecos().isEmpty()){
+        if (!StaticData.UserData.getUsuario().getEnderecos().isEmpty()) {
             txtCep.setText(StaticData.UserData.getUsuario().getEnderecos().get(0).getCep());
             txtEndereco.setText(StaticData.UserData.getUsuario().getEnderecos().get(0).getEndereco());
             txtNumero.setText(StaticData.UserData.getUsuario().getEnderecos().get(0).getNumero());
@@ -51,14 +51,13 @@ public class EnderecoFragment extends Fragment {
             txtComplemento.setText(StaticData.UserData.getUsuario().getEnderecos().get(0).getComplemento());
         }
 
-
         btnAtualizar = rootView.findViewById(R.id.btnAtualizar);
         btnAtualizar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String method;
 
-                if(validaCampos()){
+                if (validaCampos()) {
                     Endereco endereco = new Endereco();
                     endereco.setCep(txtCep.getText().toString());
                     endereco.setEndereco(txtEndereco.getText().toString());
@@ -67,7 +66,7 @@ public class EnderecoFragment extends Fragment {
                     endereco.setEstado(txtEstado.getText().toString());
                     endereco.setComplemento(txtComplemento.getText().toString());
 
-                    if(StaticData.UserData.getUsuario().getEnderecos().size() > 0){
+                    if (StaticData.UserData.getUsuario().getEnderecos().size() > 0) {
                         method = "UPDATE";
                     } else {
                         method = "CREATE";
@@ -76,48 +75,46 @@ public class EnderecoFragment extends Fragment {
                     StaticData.UserData.getUsuario().getEnderecos().add(endereco);
 
                     AddressService addressService = new AddressService(getContext(), method);
-                    addressService.execute(StaticData.UserData.getUsuario().getEmail(), endereco.getNumero(), endereco.getEndereco(), endereco.getCep(), endereco.getEstado(), endereco.getComplemento(), endereco.getCidade(), endereco.getMunicipio(),endereco.getDestinatario(),endereco.getTelefone());
+                    addressService.execute(StaticData.UserData.getUsuario().getEmail(), endereco.getNumero(), endereco.getEndereco(), endereco.getCep(), endereco.getEstado(), endereco.getComplemento(), endereco.getCidade(), endereco.getMunicipio(), endereco.getDestinatario(), endereco.getTelefone());
 
                     getActivity().getSupportFragmentManager().popBackStack();
                 } else {
                     Toast.makeText(getContext(), "Campos obrigatórios não preenchidos", Toast.LENGTH_SHORT).show();
                 }
-
-
-
-
-
-                //notify();
             }
         });
 
-
-
         return rootView;
     }
-    public Boolean validaCampos(){
+
+    public Boolean validaCampos() {
         Boolean valid = true;
 
         if (TextUtils.isEmpty(txtCep.getText().toString())) {
             txtCep.setError("Informe o CEP!");
             valid = false;
         }
+
         if (TextUtils.isEmpty(txtEndereco.getText().toString())) {
             txtEndereco.setError("Informe o endereço!");
             valid = false;
         }
+
         if (TextUtils.isEmpty(txtNumero.getText().toString())) {
             txtNumero.setError("Informe o número!");
             valid = false;
         }
+
         if (TextUtils.isEmpty(txtCidade.getText().toString())) {
             txtCidade.setError("Informe a cidade!");
             valid = false;
         }
+
         if (TextUtils.isEmpty(txtEstado.getText().toString())) {
             txtEstado.setError("Informe o estado!");
             valid = false;
         }
+
         if (TextUtils.isEmpty(txtComplemento.getText().toString())) {
             txtComplemento.setError("Informe o complemento!");
             valid = false;

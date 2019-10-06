@@ -1,7 +1,6 @@
 package br.com.fiap.appglasseek.dao;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 import br.com.fiap.appglasseek.R;
@@ -14,8 +13,8 @@ import br.com.fiap.appglasseek.model.Usuario;
 
 public class StaticData {
     public static class OculosData {
-        static List<Oculos> oculosList;
         public static List<Integer> imageList;
+        static List<Oculos> oculosList;
 
         public static List<Oculos> getOculosList() {
             if (OculosData.oculosList == null) {
@@ -32,10 +31,6 @@ public class StaticData {
                         "OC000002", "Ray Ban", "Round Metal", "Óculos de sol", "U", "Dourado", 14.50, 13.20, 4.20, 449.90, "Metal", R.drawable.oc_ray_ban, imageList));
                 oculosList.add(new Oculos(
                         "OC000003", "Track & Field", "Pipa", "Óculos de sol", "F", "Transparente", 13.15, 10.00, 5.10, 260.90, "Acrílico", R.drawable.oc_tf_pipa, imageList));
-//                oculosList.add(new Oculos(
-//                        "OC000004", "Prada", "NoLenses", "Óculos de grau", "F", "Tartaruga", 15.00, 13.00, 5.45, 749.90, "Termoplástico", R.drawable.oc_prada_millennials, imageList));
-//                oculosList.add(new Oculos(
-//                        "OC000005", "Lema21", "Otto", "Óculos de grau", "U", "Dourado", 14.20, 14.25, 6.10, 142.29, "Aço", R.drawable.oc_lema21_otto, imageList));
             }
 
             return OculosData.oculosList;
@@ -53,15 +48,15 @@ public class StaticData {
             OculosData.oculosList.remove(oculos);
         }
 
-        public static Oculos getOculosByCodigo(String codigo){
+        public static Oculos getOculosByCodigo(String codigo) {
             Oculos oculos = new Oculos();
 
-            for (Oculos oculosLista : oculosList
-                 ) {
-                if (oculosLista.getCodigo().equals(codigo)){
+            for (Oculos oculosLista : oculosList) {
+                if (oculosLista.getCodigo().equals(codigo)) {
                     oculos = oculosLista;
                 }
             }
+
             return oculos;
         }
     }
@@ -98,7 +93,7 @@ public class StaticData {
             UserData.usuario = new Usuario();
         }
 
-        public static void instanciarUsuario(){
+        public static void instanciarUsuario() {
             if (null == UserData.usuario) UserData.usuario = new Usuario();
         }
 

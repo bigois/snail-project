@@ -1,34 +1,28 @@
 package br.com.fiap.appglasseek.service;
 
 import android.content.Context;
-import android.content.Intent;
-import android.graphics.Color;
 import android.os.AsyncTask;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import br.com.fiap.appglasseek.dao.StaticData;
 import br.com.fiap.appglasseek.model.Carrinho;
 import br.com.fiap.appglasseek.model.Item;
 import br.com.fiap.appglasseek.model.Oculos;
-import cc.cloudist.acplibrary.ACProgressConstant;
-import cc.cloudist.acplibrary.ACProgressFlower;
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
-public class CarrinhoService extends AsyncTask<String, Void, Carrinho> implements Service{
+public class CarrinhoService extends AsyncTask<String, Void, Carrinho> implements Service {
     static String operation;
     private String URL;
     private Context context;
-    private ACProgressFlower dialog;
     private Boolean success;
 
     public CarrinhoService(Context context, String operation) {
@@ -40,11 +34,6 @@ public class CarrinhoService extends AsyncTask<String, Void, Carrinho> implement
 
     @Override
     protected void onPreExecute() {
-        //        dialog = new ACProgressFlower.Builder(context)
-//                .direction(ACProgressConstant.DIRECT_CLOCKWISE)
-//                .themeColor(Color.WHITE)
-//                .fadeColor(Color.DKGRAY).build();
-//        dialog.show();
     }
 
     @Override
@@ -54,7 +43,6 @@ public class CarrinhoService extends AsyncTask<String, Void, Carrinho> implement
 
         try {
             if (operation.equals("GET")) {
-
                 OkHttpClient client = new OkHttpClient();
 
                 Request request = new Request.Builder()
@@ -66,9 +54,9 @@ public class CarrinhoService extends AsyncTask<String, Void, Carrinho> implement
                 Response response = client.newCall(request).execute();
                 jsonArray = new Gson().fromJson(response.body().string(), JsonObject.class).getAsJsonArray("cart");
 
-                if(response.isSuccessful()){
+                if (response.isSuccessful()) {
                     for (int i = 0; i < jsonArray.size(); i++) {
-                        Oculos oculos = new Oculos();
+                        Oculos oculos;
                         Double total;
                         String codigoOculos;
                         Integer quantity;
@@ -80,33 +68,31 @@ public class CarrinhoService extends AsyncTask<String, Void, Carrinho> implement
 
                         oculos = StaticData.OculosData.getOculosByCodigo(codigoOculos);
                         total = oculos.getPreco() * quantity;
-                        Item item = new Item(oculos,quantity,total);
+                        Item item = new Item(oculos, quantity, total);
 
-                        if(null != oculos){
+                        if (null != oculos) {
                             carrinho.getItens().add(item);
                         }
 
                     }
                 }
+
                 response.close();
-
-            }
-            else if (operation.equals("CREATE")) {
+            } else if (operation.equals("CREATE")) {
                 JsonObject jsonList = new JsonObject();
-
                 JsonArray cartProperty = new JsonArray();
-
                 JsonObject wishJson = new JsonObject();
+
                 wishJson.addProperty("code", params[1]);
                 wishJson.addProperty("quantity", Integer.parseInt(params[2]));
 
                 cartProperty.add(wishJson);
-                jsonList.add("cart",cartProperty);
+                jsonList.add("cart", cartProperty);
 
                 OkHttpClient client = new OkHttpClient();
 
                 MediaType mediaType = MediaType.parse("application/json");
-                RequestBody body = RequestBody.create(mediaType,jsonList.toString());
+                RequestBody body = RequestBody.create(mediaType, jsonList.toString());
                 Request request = new Request.Builder()
                         .url(URL + "?email=" + params[0])
                         .post(body)
@@ -115,31 +101,22 @@ public class CarrinhoService extends AsyncTask<String, Void, Carrinho> implement
                         .build();
 
                 Response response = client.newCall(request).execute();
-
-//                if(response.isSuccessful()){
-//                    carrinho.getItens().add()
-//                    //favoritos.getOculos().add(StaticData.OculosData.getOculosByCodigo(params[1]));
-//                    success = true;
-//                }
                 response.close();
-
-
-            }else if (operation.equals("UPDATE")) {
+            } else if (operation.equals("UPDATE")) {
                 JsonObject jsonList = new JsonObject();
-
                 JsonArray cartProperty = new JsonArray();
-
                 JsonObject wishJson = new JsonObject();
+
                 wishJson.addProperty("code", params[1]);
                 wishJson.addProperty("quantity", Integer.parseInt(params[2]));
 
                 cartProperty.add(wishJson);
-                jsonList.add("cart",cartProperty);
+                jsonList.add("cart", cartProperty);
 
                 OkHttpClient client = new OkHttpClient();
 
                 MediaType mediaType = MediaType.parse("application/json");
-                RequestBody body = RequestBody.create(mediaType,jsonList.toString());
+                RequestBody body = RequestBody.create(mediaType, jsonList.toString());
                 Request request = new Request.Builder()
                         .url(URL + "?email=" + params[0])
                         .put(body)
@@ -149,13 +126,12 @@ public class CarrinhoService extends AsyncTask<String, Void, Carrinho> implement
 
                 Response response = client.newCall(request).execute();
 
-                if(response.isSuccessful()){
+                if (response.isSuccessful()) {
                     List<Item> itemList;
                     itemList = carrinho.getItens();
 
-                    for (Item item:itemList
-                         ) {
-                        if(item.getOculos().getCodigo().equals(params[1])){
+                    for (Item item : itemList) {
+                        if (item.getOculos().getCodigo().equals(params[1])) {
                             item.setQuantidade(Integer.parseInt(params[2]));
                         }
                     }
@@ -164,33 +140,32 @@ public class CarrinhoService extends AsyncTask<String, Void, Carrinho> implement
                 }
                 response.close();
 
-            }
-            else if (operation.equals("DELETE")) {
+            } else if (operation.equals("DELETE")) {
                 JsonObject jsonList = new JsonObject();
 
                 JsonArray cartProperty = new JsonArray();
 
                 JsonObject wishJson = new JsonObject();
 
-                if (params.length==2){
-                    if (params[1].equals("DELETE_ALL")){
-                        for (Item item: StaticData.UserData.getCarrinho().getItens()
-                             ) {
+                if (params.length == 2) {
+                    if (params[1].equals("DELETE_ALL")) {
+                        for (Item item : StaticData.UserData.getCarrinho().getItens()
+                        ) {
                             wishJson.addProperty("code", item.getOculos().getCodigo());
                             cartProperty.add(wishJson);
                         }
-                    }else {
+                    } else {
                         wishJson.addProperty("code", params[1]);
                         cartProperty.add(wishJson);
                     }
                 }
 
-                jsonList.add("cart",cartProperty);
+                jsonList.add("cart", cartProperty);
 
                 OkHttpClient client = new OkHttpClient();
 
                 MediaType mediaType = MediaType.parse("application/json");
-                RequestBody body = RequestBody.create(mediaType,jsonList.toString());
+                RequestBody body = RequestBody.create(mediaType, jsonList.toString());
                 Request request = new Request.Builder()
                         .url(URL + "?email=" + params[0])
                         .delete(body)
@@ -199,9 +174,9 @@ public class CarrinhoService extends AsyncTask<String, Void, Carrinho> implement
                         .build();
 
                 Response response = client.newCall(request).execute();
-                if (response.isSuccessful()){
+                if (response.isSuccessful()) {
                     success = true;
-                    if (params.length==2) {
+                    if (params.length == 2) {
                         if (params[1].equals("DELETE_ALL")) {
                             StaticData.UserData.setCarrinho(new Carrinho());
                         }
@@ -210,7 +185,7 @@ public class CarrinhoService extends AsyncTask<String, Void, Carrinho> implement
 
                 response.close();
             }
-        } catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -219,22 +194,12 @@ public class CarrinhoService extends AsyncTask<String, Void, Carrinho> implement
 
     @Override
     protected void onPostExecute(Carrinho carrinho) {
-        //dialog.hide();
         if (operation.equals("GET")) {
-            if (carrinho.getItens().size() > 0){
+            if (carrinho.getItens().size() > 0) {
                 StaticData.UserData.setCarrinho(carrinho);
             }
-
-        }
-//        else if (operation.equals("CREATE")) {
-
-
-//        }
-//        else if (operation.equals("UPDATE")) {
-//
-//        }
-        else if (operation.equals("DELETE")) {
-
+        } else if (operation.equals("DELETE")) {
+            // TODO
         }
     }
 }

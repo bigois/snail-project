@@ -19,7 +19,7 @@ public class SplashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
-        OculosService oculosService = new OculosService(SplashActivity.this,"GET");
+        OculosService oculosService = new OculosService(SplashActivity.this, "GET");
         oculosService.execute();
 
         Handler handle = new Handler();
@@ -30,13 +30,13 @@ public class SplashActivity extends AppCompatActivity {
                 Intent intent = new Intent(SplashActivity.this, MenuActivity.class);
                 startActivity(intent);
 
-                if(LoginUtility.isLogged(getApplicationContext())){
+                if (LoginUtility.isLogged(getApplicationContext())) {
                     UserService userService = new UserService(SplashActivity.this, "GET");
 
                     SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
                     SharedPreferences.Editor editor = preferences.edit();
 
-                    userService.execute(preferences.getString("email",null), preferences.getString("senha",null));
+                    userService.execute(preferences.getString("email", null), preferences.getString("senha", null));
                 }
                 finish();
             }

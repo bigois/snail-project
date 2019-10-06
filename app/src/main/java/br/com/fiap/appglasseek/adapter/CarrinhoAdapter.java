@@ -88,8 +88,8 @@ public class CarrinhoAdapter extends RecyclerView.Adapter<CarrinhoOculosHolder> 
 
                     StaticData.UserData.getCarrinho().getItens().get(position).setQuantidade(Integer.parseInt(quantidade.getText().toString()));
 
-                    CarrinhoService carrinhoService = new CarrinhoService(context,"UPDATE");
-                    carrinhoService.execute(StaticData.UserData.getUsuario().getEmail(),oculos.getCodigo(),quantidade.getText().toString());
+                    CarrinhoService carrinhoService = new CarrinhoService(context, "UPDATE");
+                    carrinhoService.execute(StaticData.UserData.getUsuario().getEmail(), oculos.getCodigo(), quantidade.getText().toString());
 
                     updateValorTotalNoFragment();
                     notifyDataSetChanged();
@@ -107,8 +107,8 @@ public class CarrinhoAdapter extends RecyclerView.Adapter<CarrinhoOculosHolder> 
                                     public void onClick(DialogInterface dialog, int id) {
                                         StaticData.UserData.getCarrinho().getItens().remove(carrinho.getItens().get(position));//.removeFromCarrinho(carrinho.getItens().get(position));
 
-                                        CarrinhoService carrinhoService = new CarrinhoService(context,"DELETE");
-                                        carrinhoService.execute(StaticData.UserData.getUsuario().getEmail(),oculos.getCodigo());
+                                        CarrinhoService carrinhoService = new CarrinhoService(context, "DELETE");
+                                        carrinhoService.execute(StaticData.UserData.getUsuario().getEmail(), oculos.getCodigo());
 
                                         updateValorTotalNoFragment();
                                         notifyDataSetChanged();
@@ -122,13 +122,12 @@ public class CarrinhoAdapter extends RecyclerView.Adapter<CarrinhoOculosHolder> 
 
                         StaticData.UserData.getCarrinho().getItens().get(position).setQuantidade(Integer.parseInt(quantidade.getText().toString()));
 
-                        CarrinhoService carrinhoService = new CarrinhoService(context,"UPDATE");
-                        carrinhoService.execute(StaticData.UserData.getUsuario().getEmail(),oculos.getCodigo(),quantidade.getText().toString());
+                        CarrinhoService carrinhoService = new CarrinhoService(context, "UPDATE");
+                        carrinhoService.execute(StaticData.UserData.getUsuario().getEmail(), oculos.getCodigo(), quantidade.getText().toString());
 
                         updateValorTotalNoFragment();
                         notifyDataSetChanged();
                     }
-
                 }
             });
         }

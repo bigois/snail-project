@@ -1,8 +1,6 @@
 package br.com.fiap.appglasseek.service;
 
-import android.app.Activity;
 import android.content.Context;
-import android.graphics.Color;
 import android.os.AsyncTask;
 import android.widget.Toast;
 
@@ -11,11 +9,9 @@ import com.google.gson.JsonObject;
 
 import org.json.JSONObject;
 
-import br.com.fiap.appglasseek.R;
 import br.com.fiap.appglasseek.activity.SplashActivity;
 import br.com.fiap.appglasseek.dao.StaticData;
 import br.com.fiap.appglasseek.model.Usuario;
-import cc.cloudist.acplibrary.ACProgressConstant;
 import cc.cloudist.acplibrary.ACProgressFlower;
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
@@ -23,7 +19,7 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
-public class UserService extends AsyncTask<String, Void, Usuario> implements Service{
+public class UserService extends AsyncTask<String, Void, Usuario> implements Service {
     static String operation;
     private String URL;
     private Context context;
@@ -39,17 +35,6 @@ public class UserService extends AsyncTask<String, Void, Usuario> implements Ser
 
     @Override
     protected void onPreExecute() {
-
-        if(this.context instanceof SplashActivity){
-
-        }else{
-//            dialog = new ACProgressFlower.Builder(context)
-//                    .direction(ACProgressConstant.DIRECT_CLOCKWISE)
-//                    .themeColor(Color.WHITE)
-//                    .fadeColor(Color.DKGRAY).build();
-//            dialog.show();
-        }
-
     }
 
     @Override
@@ -84,8 +69,8 @@ public class UserService extends AsyncTask<String, Void, Usuario> implements Ser
                     usuario.setSobrenome(jsonObject.get("lastName").getAsString());
                     usuario.setEmail(jsonObject.get("email").getAsString());
                 }
-                response.close();
 
+                response.close();
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -121,8 +106,8 @@ public class UserService extends AsyncTask<String, Void, Usuario> implements Ser
 
                     StaticData.UserData.setUsuario(usuario);
                 }
-                response.close();
 
+                response.close();
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -160,13 +145,12 @@ public class UserService extends AsyncTask<String, Void, Usuario> implements Ser
                     StaticData.UserData.setUsuario(usuario);
                     success = true;
                 }
-                response.close();
 
+                response.close();
             } catch (Exception e) {
                 e.printStackTrace();
             }
         } else if (operation.equals("DELETE")) {
-
             try {
                 OkHttpClient client = new OkHttpClient();
 
@@ -180,8 +164,8 @@ public class UserService extends AsyncTask<String, Void, Usuario> implements Ser
                 if (response.isSuccessful()) {
                     StaticData.UserData.setUsuario(new Usuario());
                 }
-                response.close();
 
+                response.close();
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -192,18 +176,11 @@ public class UserService extends AsyncTask<String, Void, Usuario> implements Ser
 
     @Override
     protected void onPostExecute(Usuario usuario) {
-        if(this.context instanceof SplashActivity){
-
-        }else{
-//            dialog.hide();
-        }
-
-
         if (operation.equals("GET")) {
             if (usuario.getCpf() == null) {
-                if(this.context instanceof SplashActivity){
+                if (this.context instanceof SplashActivity) {
                     Toast.makeText(context, "Não foi possível te reconectar, tente realizar o login novamente!", Toast.LENGTH_SHORT).show();
-                }else{
+                } else {
                     Toast.makeText(context, "Usuário ou senha inválido!", Toast.LENGTH_SHORT).show();
                 }
 
@@ -211,12 +188,11 @@ public class UserService extends AsyncTask<String, Void, Usuario> implements Ser
                 StaticData.UserData.setUsuario(usuario);
                 LoginUtility.logIn(context.getApplicationContext(), usuario.getEmail(), usuario.getSenha());
 
-                if(this.context instanceof SplashActivity){
+                if (this.context instanceof SplashActivity) {
                     Toast.makeText(context, "Você foi reconectado!", Toast.LENGTH_SHORT).show();
-                }else{
+                } else {
                     Toast.makeText(context, "Login realizado com sucesso!", Toast.LENGTH_SHORT).show();
                 }
-
 
                 AddressService addressService = new AddressService(context, "GET");
                 addressService.execute(StaticData.UserData.getUsuario().getEmail());
@@ -224,10 +200,9 @@ public class UserService extends AsyncTask<String, Void, Usuario> implements Ser
                 FavoritesService favoritesService = new FavoritesService(context, "GET");
                 favoritesService.execute(StaticData.UserData.getUsuario().getEmail());
 
-                CarrinhoService carrinhoService = new CarrinhoService(context,"GET");
+                CarrinhoService carrinhoService = new CarrinhoService(context, "GET");
                 carrinhoService.execute(StaticData.UserData.getUsuario().getEmail());
             }
-
         } else if (operation.equals("CREATE")) {
             if (usuario.getCpf() == null) {
                 StaticData.UserData.setUsuario(usuario);
@@ -236,7 +211,6 @@ public class UserService extends AsyncTask<String, Void, Usuario> implements Ser
                 Toast.makeText(context, "Registro realizado com sucesso!", Toast.LENGTH_SHORT).show();
                 LoginUtility.logIn(context.getApplicationContext(), usuario.getEmail(), usuario.getSenha());
             }
-
         } else if (operation.equals("UPDATE")) {
             if (success) {
                 Toast.makeText(context, "Dados do usuário alterados com sucesso!", Toast.LENGTH_SHORT).show();
