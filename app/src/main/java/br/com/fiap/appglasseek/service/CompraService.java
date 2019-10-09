@@ -4,12 +4,14 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
 import br.com.fiap.appglasseek.dao.StaticData;
 import br.com.fiap.appglasseek.model.Compra;
 import br.com.fiap.appglasseek.model.Item;
+import br.com.fiap.appglasseek.model.Oculos;
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -36,9 +38,46 @@ public class CompraService extends AsyncTask<String, Void, Compra> implements Se
     @Override
     protected Compra doInBackground(String... params) {
         Compra compra = new Compra();
+        JsonArray jsonArray;
 
         try {
-            if (operation.equals("CREATE")) {
+            if (operation.equals("GET")){
+
+                OkHttpClient client = new OkHttpClient();
+
+                Request request = new Request.Builder()
+                        .url(URL + "?email=" + params[0])
+                        .get()
+                        .addHeader("cache-control", "no-cache")
+                        .build();
+
+                Response response = client.newCall(request).execute();
+
+//                jsonArray = new Gson().fromJson(response.body().string(), JsonObject.class).getAsJsonArray("purchases");
+////
+////                if (response.isSuccessful()) {
+////
+////                    for (int i = 0; i < jsonArray.size(); i++) {
+////                        Oculos oculos = new Oculos();
+////                        String codigoOculos;
+////                        String item;
+////
+////                        JsonObject row = jsonArray.get(i).getAsJsonObject();
+////
+//////                        codigoOculos = row.get("code").getAsString();
+//////                        oculos = StaticData.OculosData.getOculosByCodigo(codigoOculos);
+//////
+//////                        if (null != oculos) {
+//////                            compra.getItem().add(item);
+//////                            favoritos.getOculos().add(oculos);
+//////                            success = true;
+//////                        }
+////                    }
+////                }
+
+                response.close();
+
+            } else if (operation.equals("CREATE")) {
                 JsonObject jsonParent = new JsonObject();
                 JsonObject jsonPurchase = new JsonObject();
 
