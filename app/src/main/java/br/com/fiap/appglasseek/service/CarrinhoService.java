@@ -151,6 +151,7 @@ public class CarrinhoService extends AsyncTask<String, Void, Carrinho> implement
                     if (params[1].equals("DELETE_ALL")) {
                         for (Item item : StaticData.UserData.getCarrinho().getItens()
                         ) {
+                            wishJson = new JsonObject();
                             wishJson.addProperty("code", item.getOculos().getCodigo());
                             cartProperty.add(wishJson);
                         }
@@ -174,14 +175,14 @@ public class CarrinhoService extends AsyncTask<String, Void, Carrinho> implement
                         .build();
 
                 Response response = client.newCall(request).execute();
-                if (response.isSuccessful()) {
-                    success = true;
-                    if (params.length == 2) {
-                        if (params[1].equals("DELETE_ALL")) {
+//                if (response.isSuccessful()) {
+//                    success = true;
+//                    if (params.length == 2) {
+//                        if (params[1].equals("DELETE_ALL")) {
                             StaticData.UserData.setCarrinho(new Carrinho());
-                        }
-                    }
-                }
+//                        }
+//                    }
+//                }
 
                 response.close();
             }
