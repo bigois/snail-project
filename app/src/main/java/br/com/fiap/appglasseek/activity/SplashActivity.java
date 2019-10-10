@@ -8,6 +8,7 @@ import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 
 import br.com.fiap.appglasseek.R;
+import br.com.fiap.appglasseek.service.CompraService;
 import br.com.fiap.appglasseek.service.LoginUtility;
 import br.com.fiap.appglasseek.service.OculosService;
 import br.com.fiap.appglasseek.service.UserService;
@@ -32,12 +33,15 @@ public class SplashActivity extends AppCompatActivity {
 
                 if (LoginUtility.isLogged(getApplicationContext())) {
                     UserService userService = new UserService(SplashActivity.this, "GET");
+                    CompraService compraService = new CompraService(SplashActivity.this, "GET");
 
                     SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
                     SharedPreferences.Editor editor = preferences.edit();
 
+                    compraService.execute(preferences.getString("email", null), preferences.getString("senha", null));
                     userService.execute(preferences.getString("email", null), preferences.getString("senha", null));
                 }
+                
                 finish();
             }
         }, 1500);

@@ -57,7 +57,7 @@ public class LoginFragment extends Fragment {
                 if (!valid) {
                     Toast.makeText(getContext(), "Campos obrigatórios não preenchidos", Toast.LENGTH_SHORT).show();
                 } else {
-                    UserService userService = new UserService(getContext(), "GET");
+                    UserService userService = new UserService(getContext(), "GET", getActivity());
                     userService.execute(email, senha);
 
                     getActivity().getSupportFragmentManager().popBackStack();

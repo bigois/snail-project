@@ -131,6 +131,10 @@ public class StaticData {
             return valorCarrinho;
         }
 
+        public static void setCompras(List<Compra> compras) {
+            UserData.compras = compras;
+        }
+
         public static List<Compra> getCompras() {
             instanciarComprasList();
             return compras;

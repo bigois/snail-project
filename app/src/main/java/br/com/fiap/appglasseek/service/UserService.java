@@ -1,7 +1,11 @@
 package br.com.fiap.appglasseek.service;
 
+import android.app.Activity;
 import android.content.Context;
 import android.os.AsyncTask;
+import android.support.design.widget.NavigationView;
+import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
@@ -9,6 +13,7 @@ import com.google.gson.JsonObject;
 
 import org.json.JSONObject;
 
+import br.com.fiap.appglasseek.R;
 import br.com.fiap.appglasseek.activity.SplashActivity;
 import br.com.fiap.appglasseek.dao.StaticData;
 import br.com.fiap.appglasseek.model.Usuario;
@@ -25,12 +30,21 @@ public class UserService extends AsyncTask<String, Void, Usuario> implements Ser
     private Context context;
     private ACProgressFlower dialog;
     private Boolean success;
+    private Activity activity;
 
     public UserService(Context context, String operation) {
         this.context = context;
         this.operation = operation;
         this.URL = Service.URL + "/00User";
         this.success = Service.success;
+    }
+
+    public UserService(Context context, String operation, Activity activity) {
+        this.context = context;
+        this.operation = operation;
+        this.URL = Service.URL + "/00User";
+        this.success = Service.success;
+        this.activity = activity;
     }
 
     @Override
@@ -192,6 +206,15 @@ public class UserService extends AsyncTask<String, Void, Usuario> implements Ser
                     Toast.makeText(context, "Você foi reconectado!", Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(context, "Login realizado com sucesso!", Toast.LENGTH_SHORT).show();
+
+                    NavigationView navigationView = activity.findViewById(R.id.nav_view);
+                    View headerView = navigationView.getHeaderView(0);
+
+                    TextView nomeUsuario = headerView.findViewById(R.id.txt_usuario_nome);
+                    nomeUsuario.setText(StaticData.UserData.getUsuario().getNome() + " " + StaticData.UserData.getUsuario().getSobrenome());
+
+                    TextView emailUsuario = headerView.findViewById(R.id.txt_usuario_email);
+                    emailUsuario.setText(StaticData.UserData.getUsuario().getEmail());
                 }
 
                 AddressService addressService = new AddressService(context, "GET");

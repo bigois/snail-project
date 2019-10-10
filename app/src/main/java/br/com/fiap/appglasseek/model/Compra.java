@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 public class Compra {
+    private String codigo;
     private Date data;
     private String meioPagamento;
     private Integer quantidade;
@@ -11,7 +12,8 @@ public class Compra {
     private Double total;
     private List<Item> item;
 
-    public Compra(Date data, String meioPagamento, Integer quantidade, Double custoEnvio, Double total, List<Item> item) {
+    public Compra(String codigo, Date data, String meioPagamento, Integer quantidade, Double custoEnvio, Double total, List<Item> item) {
+        this.codigo = codigo;
         this.data = data;
         this.meioPagamento = meioPagamento;
         this.quantidade = quantidade;
@@ -20,7 +22,21 @@ public class Compra {
         this.item = item;
     }
 
+    public Compra(String codigo, Date data, Double total) {
+        this.codigo = codigo;
+        this.data = data;
+        this.total = total;
+    }
+
     public Compra() {
+    }
+
+    public String getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
     }
 
     public Date getData() {

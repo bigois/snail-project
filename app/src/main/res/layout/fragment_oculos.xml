@@ -183,7 +183,7 @@
         app:layout_constraintTop_toTopOf="@+id/guideline" />
 
     <TextView
-        android:id="@+id/txtModelo"
+        android:id="@+id/lbl_cod_compra"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
@@ -200,7 +200,7 @@
         android:layout_marginTop="36dp"
         android:text="TextView"
         app:layout_constraintStart_toEndOf="@+id/lblTipo"
-        app:layout_constraintTop_toBottomOf="@+id/txtModelo" />
+        app:layout_constraintTop_toBottomOf="@+id/lbl_cod_compra" />
 
     <TextView
         android:id="@+id/txtGenero"

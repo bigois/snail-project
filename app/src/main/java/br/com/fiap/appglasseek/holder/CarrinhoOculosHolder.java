@@ -17,7 +17,7 @@ public class CarrinhoOculosHolder extends RecyclerView.ViewHolder {
     public CarrinhoOculosHolder(View itemView) {
         super(itemView);
 
-        modelo = itemView.findViewById(R.id.txtModelo);
+        modelo = itemView.findViewById(R.id.lbl_cod_compra);
         preco = itemView.findViewById(R.id.txtPreco);
         imagem = itemView.findViewById(R.id.imgOculos);
         quantidade = itemView.findViewById(R.id.txtQuantidade);

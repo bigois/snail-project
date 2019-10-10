@@ -62,7 +62,7 @@ public class OculosFragment extends Fragment {
             txtMarca = view.findViewById(R.id.txtMarca);
             txtMarca.setText(oculos.getMarca());
 
-            txtModelo = view.findViewById(R.id.txtModelo);
+            txtModelo = view.findViewById(R.id.lbl_cod_compra);
             txtModelo.setText(oculos.getModelo());
 
             txtTipo = view.findViewById(R.id.txtTipo);

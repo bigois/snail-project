@@ -17,7 +17,7 @@ public class OculosHolder extends RecyclerView.ViewHolder {
         super(itemView);
 
         marca = itemView.findViewById(R.id.txtMarca);
-        modelo = itemView.findViewById(R.id.txtModelo);
+        modelo = itemView.findViewById(R.id.lbl_cod_compra);
         preco = itemView.findViewById(R.id.txtPreco);
         imagem = itemView.findViewById(R.id.imgOculos);
     }

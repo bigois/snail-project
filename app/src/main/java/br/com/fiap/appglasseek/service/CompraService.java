@@ -2,11 +2,16 @@ package br.com.fiap.appglasseek.service;
 
 import android.content.Context;
 import android.os.AsyncTask;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.List;
 
 import br.com.fiap.appglasseek.dao.StaticData;
 import br.com.fiap.appglasseek.model.Compra;
@@ -18,7 +23,7 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
-public class CompraService extends AsyncTask<String, Void, Compra> implements Service {
+public class CompraService extends AsyncTask<String, Void, List<Compra>> implements Service {
     static String operation;
     private String URL;
     private Context context;
@@ -36,15 +41,14 @@ public class CompraService extends AsyncTask<String, Void, Compra> implements Se
     }
 
     @Override
-    protected Compra doInBackground(String... params) {
+    protected List<Compra> doInBackground(String... params) {
         Compra compra = new Compra();
+        List<Compra> compraList = new ArrayList<>();
         JsonArray jsonArray;
 
         try {
             if (operation.equals("GET")){
-
                 OkHttpClient client = new OkHttpClient();
-
                 Request request = new Request.Builder()
                         .url(URL + "?email=" + params[0])
                         .get()
@@ -53,30 +57,45 @@ public class CompraService extends AsyncTask<String, Void, Compra> implements Se
 
                 Response response = client.newCall(request).execute();
 
-//                jsonArray = new Gson().fromJson(response.body().string(), JsonObject.class).getAsJsonArray("purchases");
-////
-////                if (response.isSuccessful()) {
-////
-////                    for (int i = 0; i < jsonArray.size(); i++) {
-////                        Oculos oculos = new Oculos();
-////                        String codigoOculos;
-////                        String item;
-////
-////                        JsonObject row = jsonArray.get(i).getAsJsonObject();
-////
-//////                        codigoOculos = row.get("code").getAsString();
-//////                        oculos = StaticData.OculosData.getOculosByCodigo(codigoOculos);
-//////
-//////                        if (null != oculos) {
-//////                            compra.getItem().add(item);
-//////                            favoritos.getOculos().add(oculos);
-//////                            success = true;
-//////                        }
-////                    }
-////                }
+                if (response.isSuccessful()) {
+                    jsonArray = new Gson().fromJson(response.body().string(), JsonObject.class).getAsJsonArray("purchases");
+
+                    for (int i = 0; i < jsonArray.size(); i++) {
+                        JsonObject row = jsonArray.get(i).getAsJsonObject();
+                        compra.setCodigo("#" + row.get("purchaseCode").getAsString());
+                        compra.setCustoEnvio(row.get("purchaseShippingCost").getAsDouble());
+                        compra.setTotal(row.get("purchaseAmount").getAsDouble());
+                        compra.setMeioPagamento(row.get("cardCode").getAsString());
+                        compra.setData(new SimpleDateFormat("dd/MM/yy").parse(row.get("date").getAsString()));
+                        compra.setQuantidade(row.get("quantityAmount").getAsInt());
+
+                        JsonArray items = row.getAsJsonArray("items");
+                        List<Item> itemList = new ArrayList<>();
+
+                        for (int j = 0; j < items.size(); j++) {
+                            JsonObject itemRow = items.get(j).getAsJsonObject();
+                            Item item = new Item();
+
+                            Oculos oculos = new Oculos();
+                            oculos.setCodigo(itemRow.get("glassesCode").getAsString());
+                            oculos.setPreco(itemRow.get("itemPrice").getAsDouble());
+
+                            item.setOculos(oculos);
+                            item.setCustoEnvio(itemRow.get("glassesShippingCost").getAsDouble());
+                            item.setParcelas(itemRow.get("itemInstallments").getAsInt());
+                            item.setTotal(itemRow.get("itemCostAmount").getAsDouble());
+                            item.setQuantidade(itemRow.get("itemQuantity").getAsInt());
+
+                            itemList.add(item);
+                        }
+
+                        compra.setItem(itemList);
+                    }
+
+                    compraList.add(compra);
+                }
 
                 response.close();
-
             } else if (operation.equals("CREATE")) {
                 JsonObject jsonParent = new JsonObject();
                 JsonObject jsonPurchase = new JsonObject();
@@ -121,13 +140,17 @@ public class CompraService extends AsyncTask<String, Void, Compra> implements Se
             e.printStackTrace();
         }
 
-        return compra;
+        return compraList;
     }
 
     @Override
-    protected void onPostExecute(Compra compra) {
+    protected void onPostExecute(List<Compra> compras) {
         if (operation.equals("GET")) {
-            // TODO
+            if (!compras.isEmpty()) {
+                StaticData.UserData.setCompras(compras);
+            } else {
+                Toast.makeText(context, "Não foi possível retornar os registros de compra!", Toast.LENGTH_SHORT).show();
+            }
         } else if (operation.equals("CREATE")) {
             if (success) {
                 CarrinhoService carrinhoService = new CarrinhoService(context, "DELETE");
